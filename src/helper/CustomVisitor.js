@@ -33,20 +33,30 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  visitDeclaracion(ctx) {
 		const error = document.getElementById('error');
 		const contenedorError = document.getElementById('contenedorError');
-		const lineNumber = ctx.start.line; // Obtener el número de línea
+		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
 
-		const id = ctx.ID() ? ctx.ID().getText() : null;
-		
-		//const type = ctx.type.getText();
-
+		const id = ctx.ID(0) ? ctx.ID(0).getText() : null; //ctx.ID(0) se refiere al primer identificador
 		let value = 0;
 		const numCtx = ctx.NUM();
-		const regexInicioLetra = /^[a-zA-Z]/;
 		
 		if(numCtx !== null){
 			value = parseInt(numCtx.getText());
 		}
+		else if(ctx.ID(1) !== null){
+			const otherId = ctx.ID(1).getText();
 
+			if(this.memory.has(otherId)){
+				value = this.memory.get(otherId);
+			}
+			else{
+				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${otherId}" no ha sido declarado anteriormente. <br>`;
+            	contenedorError.classList.remove('hidden');
+            	return null;
+			}
+		}
+
+		const regexInicioLetra = /^[a-zA-Z]/;
+		
 		if(regexInicioLetra.test(id)){
 			if (/[\+\-\*\/]/.test(id)) {
 				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${id}" no puede contener operadores matemáticos. <br>`;
@@ -55,10 +65,10 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 			else if(this.memory.has(id)){
 				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${id}" ya ha sido declarado. <br>`;
-				contenedorError.classList.remove('hidden');
+                contenedorError.classList.remove('hidden');
 			}
 
-			else if(id == null){
+			else if(id === null){
 				error.innerHTML += `Error en la línea ${lineNumber}: No se declaro ningun identificador. <br>`;
 				contenedorError.classList.remove('hidden');
 			}
@@ -76,8 +86,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		return null;
 	  }
-  
-  
+
 	  // Visit a parse tree produced by CompilatorParser#type.
 	  visitType(ctx) {
 		return this.visitChildren(ctx);

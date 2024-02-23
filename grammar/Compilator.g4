@@ -7,8 +7,7 @@ start        :   SWEET '{' NEWLINE contenido '}';
 
 contenido   :   declaracion*;
 
-declaracion :   '#' type (ID '=' NUM)? PUNTITO NEWLINE;
-                
+declaracion :   '#' type (ID '=' (NUM|ID))? PUNTITO NEWLINE;
 
 type        :   'mint' | 'mintchar' | 'mintflot';
 
