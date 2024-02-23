@@ -31,19 +31,21 @@ export default class CustomVisitor extends CompilatorVisitor {
   
 	  // Visit a parse tree produced by CompilatorParser#declaracion.
 	  visitDeclaracion(ctx) {
-		const id = ctx.ID().getText();
+		const error = document.getElementById('error');
+		const contenedorError = document.getElementById('contenedorError');
+		const lineNumber = ctx.start.line; // Obtener el número de línea
+
+		const id = ctx.ID() ? ctx.ID().getText() : null;
+		
 		//const type = ctx.type.getText();
+
 		let value = 0;
 		const numCtx = ctx.NUM();
+		const regexInicioLetra = /^[a-zA-Z]/;
 		
 		if(numCtx !== null){
 			value = parseInt(numCtx.getText());
 		}
-
-		const regexInicioLetra = /^[a-zA-Z]/;
-		const error = document.getElementById('error');
-		const contenedorError = document.getElementById('contenedorError');
-		const lineNumber = ctx.start.line; // Obtener el número de línea
 
 		if(regexInicioLetra.test(id)){
 			if (/[\+\-\*\/]/.test(id)) {
@@ -53,6 +55,11 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 			else if(this.memory.has(id)){
 				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${id}" ya ha sido declarado. <br>`;
+				contenedorError.classList.remove('hidden');
+			}
+
+			else if(id == null){
+				error.innerHTML += `Error en la línea ${lineNumber}: No se declaro ningun identificador. <br>`;
 				contenedorError.classList.remove('hidden');
 			}
 

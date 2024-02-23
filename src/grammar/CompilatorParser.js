@@ -3,19 +3,17 @@
 import antlr4 from 'antlr4';
 import CompilatorVisitor from './CompilatorVisitor.js';
 
-const serializedATN = [4,1,13,46,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
+const serializedATN = [4,1,13,40,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
 1,0,4,0,12,8,0,11,0,12,0,13,1,1,1,1,1,1,1,1,1,1,1,1,1,2,5,2,23,8,2,10,2,
-12,2,26,9,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,
-42,8,3,1,4,1,4,1,4,0,0,5,0,2,4,6,8,0,1,1,0,5,7,43,0,11,1,0,0,0,2,15,1,0,
-0,0,4,24,1,0,0,0,6,41,1,0,0,0,8,43,1,0,0,0,10,12,3,2,1,0,11,10,1,0,0,0,12,
-13,1,0,0,0,13,11,1,0,0,0,13,14,1,0,0,0,14,1,1,0,0,0,15,16,5,9,0,0,16,17,
-5,1,0,0,17,18,5,12,0,0,18,19,3,4,2,0,19,20,5,2,0,0,20,3,1,0,0,0,21,23,3,
-6,3,0,22,21,1,0,0,0,23,26,1,0,0,0,24,22,1,0,0,0,24,25,1,0,0,0,25,5,1,0,0,
-0,26,24,1,0,0,0,27,28,5,3,0,0,28,29,3,8,4,0,29,30,5,11,0,0,30,31,5,10,0,
-0,31,32,5,12,0,0,32,42,1,0,0,0,33,34,5,3,0,0,34,35,3,8,4,0,35,36,5,11,0,
-0,36,37,5,4,0,0,37,38,5,8,0,0,38,39,5,10,0,0,39,40,5,12,0,0,40,42,1,0,0,
-0,41,27,1,0,0,0,41,33,1,0,0,0,42,7,1,0,0,0,43,44,7,0,0,0,44,9,1,0,0,0,3,
-13,24,41];
+12,2,26,9,2,1,3,1,3,1,3,1,3,1,3,3,3,33,8,3,1,3,1,3,1,3,1,4,1,4,1,4,0,0,5,
+0,2,4,6,8,0,1,1,0,5,7,37,0,11,1,0,0,0,2,15,1,0,0,0,4,24,1,0,0,0,6,27,1,0,
+0,0,8,37,1,0,0,0,10,12,3,2,1,0,11,10,1,0,0,0,12,13,1,0,0,0,13,11,1,0,0,0,
+13,14,1,0,0,0,14,1,1,0,0,0,15,16,5,9,0,0,16,17,5,1,0,0,17,18,5,12,0,0,18,
+19,3,4,2,0,19,20,5,2,0,0,20,3,1,0,0,0,21,23,3,6,3,0,22,21,1,0,0,0,23,26,
+1,0,0,0,24,22,1,0,0,0,24,25,1,0,0,0,25,5,1,0,0,0,26,24,1,0,0,0,27,28,5,3,
+0,0,28,32,3,8,4,0,29,30,5,11,0,0,30,31,5,4,0,0,31,33,5,8,0,0,32,29,1,0,0,
+0,32,33,1,0,0,0,33,34,1,0,0,0,34,35,5,10,0,0,35,36,5,12,0,0,36,7,1,0,0,0,
+37,38,7,0,0,0,38,9,1,0,0,0,3,13,24,32];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -143,44 +141,29 @@ export default class CompilatorParser extends antlr4.Parser {
 	declaracion() {
 	    let localctx = new DeclaracionContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 6, CompilatorParser.RULE_declaracion);
+	    var _la = 0;
 	    try {
-	        this.state = 41;
+	        this.enterOuterAlt(localctx, 1);
+	        this.state = 27;
+	        this.match(CompilatorParser.T__2);
+	        this.state = 28;
+	        this.type();
+	        this.state = 32;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,2,this._ctx);
-	        switch(la_) {
-	        case 1:
-	            this.enterOuterAlt(localctx, 1);
-	            this.state = 27;
-	            this.match(CompilatorParser.T__2);
-	            this.state = 28;
-	            this.type();
+	        _la = this._input.LA(1);
+	        if(_la===11) {
 	            this.state = 29;
 	            this.match(CompilatorParser.ID);
 	            this.state = 30;
-	            this.match(CompilatorParser.PUNTITO);
-	            this.state = 31;
-	            this.match(CompilatorParser.NEWLINE);
-	            break;
-
-	        case 2:
-	            this.enterOuterAlt(localctx, 2);
-	            this.state = 33;
-	            this.match(CompilatorParser.T__2);
-	            this.state = 34;
-	            this.type();
-	            this.state = 35;
-	            this.match(CompilatorParser.ID);
-	            this.state = 36;
 	            this.match(CompilatorParser.T__3);
-	            this.state = 37;
+	            this.state = 31;
 	            this.match(CompilatorParser.NUM);
-	            this.state = 38;
-	            this.match(CompilatorParser.PUNTITO);
-	            this.state = 39;
-	            this.match(CompilatorParser.NEWLINE);
-	            break;
-
 	        }
+
+	        this.state = 34;
+	        this.match(CompilatorParser.PUNTITO);
+	        this.state = 35;
+	        this.match(CompilatorParser.NEWLINE);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -203,7 +186,7 @@ export default class CompilatorParser extends antlr4.Parser {
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 43;
+	        this.state = 37;
 	        _la = this._input.LA(1);
 	        if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 224) !== 0))) {
 	        this._errHandler.recoverInline(this);
@@ -383,16 +366,16 @@ class DeclaracionContext extends antlr4.ParserRuleContext {
 	    return this.getTypedRuleContext(TypeContext,0);
 	};
 
-	ID() {
-	    return this.getToken(CompilatorParser.ID, 0);
-	};
-
 	PUNTITO() {
 	    return this.getToken(CompilatorParser.PUNTITO, 0);
 	};
 
 	NEWLINE() {
 	    return this.getToken(CompilatorParser.NEWLINE, 0);
+	};
+
+	ID() {
+	    return this.getToken(CompilatorParser.ID, 0);
 	};
 
 	NUM() {
