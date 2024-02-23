@@ -3,21 +3,21 @@
 import antlr4 from 'antlr4';
 import CompilatorVisitor from './CompilatorVisitor.js';
 
-const serializedATN = [4,1,14,54,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
+const serializedATN = [4,1,13,54,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
 1,0,4,0,12,8,0,11,0,12,0,13,1,1,1,1,1,1,1,1,1,1,1,1,1,2,5,2,23,8,2,10,2,
-12,2,26,9,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,
-1,3,1,3,3,3,45,8,3,1,3,1,3,1,3,3,3,50,8,3,1,4,1,4,1,4,0,0,5,0,2,4,6,8,0,
-1,1,0,5,7,53,0,11,1,0,0,0,2,15,1,0,0,0,4,24,1,0,0,0,6,49,1,0,0,0,8,51,1,
-0,0,0,10,12,3,2,1,0,11,10,1,0,0,0,12,13,1,0,0,0,13,11,1,0,0,0,13,14,1,0,
-0,0,14,1,1,0,0,0,15,16,5,9,0,0,16,17,5,1,0,0,17,18,5,13,0,0,18,19,3,4,2,
-0,19,20,5,2,0,0,20,3,1,0,0,0,21,23,3,6,3,0,22,21,1,0,0,0,23,26,1,0,0,0,24,
+12,2,26,9,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,39,8,3,1,3,1,
+3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,50,8,3,1,4,1,4,1,4,0,0,5,0,2,4,6,8,0,1,
+1,0,5,7,53,0,11,1,0,0,0,2,15,1,0,0,0,4,24,1,0,0,0,6,49,1,0,0,0,8,51,1,0,
+0,0,10,12,3,2,1,0,11,10,1,0,0,0,12,13,1,0,0,0,13,11,1,0,0,0,13,14,1,0,0,
+0,14,1,1,0,0,0,15,16,5,9,0,0,16,17,5,1,0,0,17,18,5,12,0,0,18,19,3,4,2,0,
+19,20,5,2,0,0,20,3,1,0,0,0,21,23,3,6,3,0,22,21,1,0,0,0,23,26,1,0,0,0,24,
 22,1,0,0,0,24,25,1,0,0,0,25,5,1,0,0,0,26,24,1,0,0,0,27,28,5,3,0,0,28,29,
-3,8,4,0,29,30,5,11,0,0,30,31,5,10,0,0,31,32,5,13,0,0,32,50,1,0,0,0,33,34,
-5,3,0,0,34,35,3,8,4,0,35,36,5,12,0,0,36,37,5,10,0,0,37,38,5,13,0,0,38,50,
-1,0,0,0,39,40,5,3,0,0,40,41,3,8,4,0,41,44,5,11,0,0,42,43,5,4,0,0,43,45,5,
-8,0,0,44,42,1,0,0,0,44,45,1,0,0,0,45,46,1,0,0,0,46,47,5,10,0,0,47,48,5,13,
-0,0,48,50,1,0,0,0,49,27,1,0,0,0,49,33,1,0,0,0,49,39,1,0,0,0,50,7,1,0,0,0,
-51,52,7,0,0,0,52,9,1,0,0,0,4,13,24,44,49];
+3,8,4,0,29,30,5,11,0,0,30,31,5,10,0,0,31,32,5,12,0,0,32,50,1,0,0,0,33,34,
+5,3,0,0,34,35,3,8,4,0,35,38,5,11,0,0,36,37,5,4,0,0,37,39,5,8,0,0,38,36,1,
+0,0,0,38,39,1,0,0,0,39,40,1,0,0,0,40,41,5,10,0,0,41,42,5,12,0,0,42,50,1,
+0,0,0,43,44,5,3,0,0,44,45,3,8,4,0,45,46,5,8,0,0,46,47,5,10,0,0,47,48,5,12,
+0,0,48,50,1,0,0,0,49,27,1,0,0,0,49,33,1,0,0,0,49,43,1,0,0,0,50,7,1,0,0,0,
+51,52,7,0,0,0,52,9,1,0,0,0,4,13,24,38,49];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -33,8 +33,8 @@ export default class CompilatorParser extends antlr4.Parser {
                             "'mintchar'", "'mintflot'", null, "'Sweet'", 
                             "'.'" ];
     static symbolicNames = [ null, null, null, null, null, null, null, null, 
-                             "NUM", "SWEET", "PUNTITO", "ID", "WRONGID", 
-                             "NEWLINE", "SPACES" ];
+                             "NUM", "SWEET", "PUNTITO", "ID", "NEWLINE", 
+                             "SPACES" ];
     static ruleNames = [ "file", "start", "contenido", "declaracion", "type" ];
 
     constructor(input) {
@@ -172,31 +172,31 @@ export default class CompilatorParser extends antlr4.Parser {
 	            this.state = 34;
 	            this.type();
 	            this.state = 35;
-	            this.match(CompilatorParser.WRONGID);
-	            this.state = 36;
+	            this.match(CompilatorParser.ID);
+	            this.state = 38;
+	            this._errHandler.sync(this);
+	            _la = this._input.LA(1);
+	            if(_la===4) {
+	                this.state = 36;
+	                this.match(CompilatorParser.T__3);
+	                this.state = 37;
+	                this.match(CompilatorParser.NUM);
+	            }
+
+	            this.state = 40;
 	            this.match(CompilatorParser.PUNTITO);
-	            this.state = 37;
+	            this.state = 41;
 	            this.match(CompilatorParser.NEWLINE);
 	            break;
 
 	        case 3:
 	            this.enterOuterAlt(localctx, 3);
-	            this.state = 39;
+	            this.state = 43;
 	            this.match(CompilatorParser.T__2);
-	            this.state = 40;
-	            this.type();
-	            this.state = 41;
-	            this.match(CompilatorParser.ID);
 	            this.state = 44;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
-	            if(_la===4) {
-	                this.state = 42;
-	                this.match(CompilatorParser.T__3);
-	                this.state = 43;
-	                this.match(CompilatorParser.NUM);
-	            }
-
+	            this.type();
+	            this.state = 45;
+	            this.match(CompilatorParser.NUM);
 	            this.state = 46;
 	            this.match(CompilatorParser.PUNTITO);
 	            this.state = 47;
@@ -264,9 +264,8 @@ CompilatorParser.NUM = 8;
 CompilatorParser.SWEET = 9;
 CompilatorParser.PUNTITO = 10;
 CompilatorParser.ID = 11;
-CompilatorParser.WRONGID = 12;
-CompilatorParser.NEWLINE = 13;
-CompilatorParser.SPACES = 14;
+CompilatorParser.NEWLINE = 12;
+CompilatorParser.SPACES = 13;
 
 CompilatorParser.RULE_file = 0;
 CompilatorParser.RULE_start = 1;
@@ -417,10 +416,6 @@ class DeclaracionContext extends antlr4.ParserRuleContext {
 
 	NEWLINE() {
 	    return this.getToken(CompilatorParser.NEWLINE, 0);
-	};
-
-	WRONGID() {
-	    return this.getToken(CompilatorParser.WRONGID, 0);
 	};
 
 	NUM() {

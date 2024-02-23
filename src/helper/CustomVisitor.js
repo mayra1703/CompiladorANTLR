@@ -32,8 +32,10 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  // Visit a parse tree produced by CompilatorParser#declaracion.
 	  visitDeclaracion(ctx) {
 		const id = ctx.ID().getText();
+		//const type = ctx.type.getText();
 		let value = 0;
 		const numCtx = ctx.NUM();
+		
 		if(numCtx !== null){
 			value = parseInt(numCtx.getText());
 		}

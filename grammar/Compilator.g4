@@ -9,9 +9,9 @@ contenido   :   declaracion*;
 
 declaracion :   '#' type ID PUNTITO NEWLINE
                 |
-                '#' type WRONGID PUNTITO NEWLINE
+                '#' type ID ('=' NUM)? PUNTITO NEWLINE
                 |
-                '#' type ID ('=' NUM)? PUNTITO NEWLINE;
+                '#' type NUM PUNTITO NEWLINE;
                 
 
 type        :   'mint' | 'mintchar' | 'mintflot';

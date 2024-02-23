@@ -238,7 +238,6 @@ public class CompilatorParser extends Parser {
 		public TerminalNode ID() { return getToken(CompilatorParser.ID, 0); }
 		public TerminalNode PUNTITO() { return getToken(CompilatorParser.PUNTITO, 0); }
 		public TerminalNode NEWLINE() { return getToken(CompilatorParser.NEWLINE, 0); }
-		public TerminalNode WRONGID() { return getToken(CompilatorParser.WRONGID, 0); }
 		public TerminalNode NUM() { return getToken(CompilatorParser.NUM, 0); }
 		public DeclaracionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -277,34 +276,34 @@ public class CompilatorParser extends Parser {
 				setState(34);
 				type();
 				setState(35);
-				match(WRONGID);
-				setState(36);
+				match(ID);
+				setState(38);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==T__3) {
+					{
+					setState(36);
+					match(T__3);
+					setState(37);
+					match(NUM);
+					}
+				}
+
+				setState(40);
 				match(PUNTITO);
-				setState(37);
+				setState(41);
 				match(NEWLINE);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(39);
+				setState(43);
 				match(T__2);
-				setState(40);
-				type();
-				setState(41);
-				match(ID);
 				setState(44);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la==T__3) {
-					{
-					setState(42);
-					match(T__3);
-					setState(43);
-					match(NUM);
-					}
-				}
-
+				type();
+				setState(45);
+				match(NUM);
 				setState(46);
 				match(PUNTITO);
 				setState(47);
@@ -369,8 +368,8 @@ public class CompilatorParser extends Parser {
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0002\u0005\u0002"+
 		"\u0017\b\u0002\n\u0002\f\u0002\u001a\t\u0002\u0001\u0003\u0001\u0003\u0001"+
 		"\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001"+
+		"\u0003\u0001\u0003\u0001\u0003\u0003\u0003\'\b\u0003\u0001\u0003\u0001"+
 		"\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001"+
-		"\u0003\u0001\u0003\u0001\u0003\u0003\u0003-\b\u0003\u0001\u0003\u0001"+
 		"\u0003\u0001\u0003\u0003\u00032\b\u0003\u0001\u0004\u0001\u0004\u0001"+
 		"\u0004\u0000\u0000\u0005\u0000\u0002\u0004\u0006\b\u0000\u0001\u0001\u0000"+
 		"\u0005\u00075\u0000\u000b\u0001\u0000\u0000\u0000\u0002\u000f\u0001\u0000"+
@@ -387,15 +386,15 @@ public class CompilatorParser extends Parser {
 		"\u0018\u0001\u0000\u0000\u0000\u001b\u001c\u0005\u0003\u0000\u0000\u001c"+
 		"\u001d\u0003\b\u0004\u0000\u001d\u001e\u0005\u000b\u0000\u0000\u001e\u001f"+
 		"\u0005\n\u0000\u0000\u001f \u0005\r\u0000\u0000 2\u0001\u0000\u0000\u0000"+
-		"!\"\u0005\u0003\u0000\u0000\"#\u0003\b\u0004\u0000#$\u0005\f\u0000\u0000"+
-		"$%\u0005\n\u0000\u0000%&\u0005\r\u0000\u0000&2\u0001\u0000\u0000\u0000"+
-		"\'(\u0005\u0003\u0000\u0000()\u0003\b\u0004\u0000),\u0005\u000b\u0000"+
-		"\u0000*+\u0005\u0004\u0000\u0000+-\u0005\b\u0000\u0000,*\u0001\u0000\u0000"+
-		"\u0000,-\u0001\u0000\u0000\u0000-.\u0001\u0000\u0000\u0000./\u0005\n\u0000"+
-		"\u0000/0\u0005\r\u0000\u000002\u0001\u0000\u0000\u00001\u001b\u0001\u0000"+
-		"\u0000\u00001!\u0001\u0000\u0000\u00001\'\u0001\u0000\u0000\u00002\u0007"+
-		"\u0001\u0000\u0000\u000034\u0007\u0000\u0000\u00004\t\u0001\u0000\u0000"+
-		"\u0000\u0004\r\u0018,1";
+		"!\"\u0005\u0003\u0000\u0000\"#\u0003\b\u0004\u0000#&\u0005\u000b\u0000"+
+		"\u0000$%\u0005\u0004\u0000\u0000%\'\u0005\b\u0000\u0000&$\u0001\u0000"+
+		"\u0000\u0000&\'\u0001\u0000\u0000\u0000\'(\u0001\u0000\u0000\u0000()\u0005"+
+		"\n\u0000\u0000)*\u0005\r\u0000\u0000*2\u0001\u0000\u0000\u0000+,\u0005"+
+		"\u0003\u0000\u0000,-\u0003\b\u0004\u0000-.\u0005\b\u0000\u0000./\u0005"+
+		"\n\u0000\u0000/0\u0005\r\u0000\u000002\u0001\u0000\u0000\u00001\u001b"+
+		"\u0001\u0000\u0000\u00001!\u0001\u0000\u0000\u00001+\u0001\u0000\u0000"+
+		"\u00002\u0007\u0001\u0000\u0000\u000034\u0007\u0000\u0000\u00004\t\u0001"+
+		"\u0000\u0000\u0000\u0004\r\u0018&1";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
