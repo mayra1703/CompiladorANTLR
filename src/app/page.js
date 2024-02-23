@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { highlight, languages } from 'prismjs/components/prism-core';
+import CodeMirror from '@uiw/react-codemirror';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { calcular } from '@/module/generador';
 
@@ -14,7 +15,8 @@ const Page = () => {
     setResult(e.target.value);
     setExpressions(input);
   };
-
+  
+  
   const analizador = () => {
     const inputWithOutComments = expressions.replace(/(\/\/[^\n]*)|\/\*[\s\S]*?\*\//g, '')
     const inputLines = inputWithOutComments.split('\n'); // Dividir el input en líneas
@@ -53,8 +55,19 @@ const Page = () => {
       </section>
 
       <section className='relative h-44 mx-7'>
-        <textarea className='resize-none rounded-md absolute w-full h-full bg-slate text-md font-semibold p-4 bottom-0 right-0' placeholder='Structure' value={expressions}
+        <textarea className='resize-none rounded-md w-full h-full bg-slate text-md font-semibold p-4 bottom-0 right-0' placeholder='Structure' value={expressions}
         onChange={inputChange} id='compilador'></textarea>
+        <CodeMirror
+          value={expressions}
+          options={{
+            lineNumbers: true,
+            mode: 'javascript',
+            theme: 'default', // Puedes cambiar el tema según necesites
+            tabSize: 4,
+          }}
+          onChange={inputChange}
+          height='100px'
+          id='compilador'></CodeMirror>
       </section>
     
       <section className='relative mx-7 text-right mt-6'>
