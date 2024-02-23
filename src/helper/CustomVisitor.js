@@ -34,11 +34,11 @@ export default class CustomVisitor extends CompilatorVisitor {
 		const id = ctx.ID().getText();
 		//const type = ctx.type.getText();
 		let value = 0;
-		/*const numCtx = ctx.NUM();
+		const numCtx = ctx.NUM();
 		
 		if(numCtx !== null){
 			value = parseInt(numCtx.getText());
-		}*/
+		}
 
 		const regexInicioLetra = /^[a-zA-Z]/;
 		const error = document.getElementById('error');
