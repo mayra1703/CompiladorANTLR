@@ -23,7 +23,7 @@ const Page = () => {
     const validLines = inputLines.filter(line => line.trim().length > 0); // Filtrar líneas vacías con trim(eliminar espacios en blanco)
     const cleanInput = validLines.join('\n'); // Unir las líneas limpias nuevamente
     console.log(cleanInput);
-    
+
     const calculatedResult = calcular(cleanInput);
     //setResult(calculatedResult.toString()); MOSTRAR EN TEXTAREA
 
@@ -54,19 +54,24 @@ const Page = () => {
         <p className='m-1 text-sm font-normal'>Ingresa una declaracion de variables</p>
       </section>
 
-      <section className='relative h-44 mx-7'>
-        <textarea className='resize-none rounded-md w-full h-full bg-slate text-md font-semibold p-4 bottom-0 right-0' placeholder='Structure' value={expressions}
-        onChange={inputChange} id='compilador'></textarea>
+      <section className='relative h-44 mx-7 overflow-hidden border border-slate rounded-md'>
+       
         <CodeMirror
           value={expressions}
           options={{
-            lineNumbers: true,
-            mode: 'javascript',
-            theme: 'default', // Puedes cambiar el tema según necesites
+            lineNumbers: true, // Puedes cambiar el tema según necesites
             tabSize: 4,
           }}
-          onChange={inputChange}
-          height='100px'
+          style={{
+            resize: 'none',
+            borderRadius: '0.375rem',
+            width: '100%',
+            height: '100%',
+            fontSize: '1rem',
+            fontWeight: '600',
+          }}
+          onChange={(text) => inputChange({
+            target:{value: text}})}
           id='compilador'></CodeMirror>
       </section>
     
