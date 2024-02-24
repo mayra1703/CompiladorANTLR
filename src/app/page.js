@@ -51,7 +51,7 @@ const Page = () => {
 
       <section className='text-blue-950 font-bold text-center m-4'>
         <h1 className='m-2 text-3xl font-bold text-brownPink'>Compilador ANTLR</h1>
-        <p className='m-1 text-sm font-normal'>Ingresa una declaracion de variables</p>
+        <p className='m-1 text-sm font-normal'>Ingresa un bloque de codigo</p>
       </section>
 
       <section className='relative h-44 mx-7 overflow-hidden border border-slate rounded-md'>

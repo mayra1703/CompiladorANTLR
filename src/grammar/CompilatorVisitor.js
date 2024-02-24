@@ -24,14 +24,50 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#declaracion.
-	visitDeclaracion(ctx) {
+	// Visit a parse tree produced by CompilatorParser#validAssign.
+	visitValidAssign(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#type.
-	visitType(ctx) {
+	// Visit a parse tree produced by CompilatorParser#invalidAssign.
+	visitInvalidAssign(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#parentesis.
+	visitParentesis(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#multidiv.
+	visitMultidiv(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#masmenos.
+	visitMasmenos(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#impmulti.
+	visitImpmulti(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#num.
+	visitNum(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#id.
+	visitId(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

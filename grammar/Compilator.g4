@@ -5,10 +5,24 @@ file        :   start+;
 
 start        :   SWEET '{' NEWLINE contenido '}';
 
-contenido   :   declaracion*;
+contenido   :   expr | declaracion*;
 
-declaracion :   '#' type (ID '=' (NUM|ID))? PUNTITO NEWLINE;
+declaracion :   '#' TYPE ID PUNTITO NEWLINE  #validAssign
+            |   '#' TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
+            |   '#' TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
+            |   '#' TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
+            ;
 
-type        :   'mint' | 'mintchar' | 'mintflot';
+expr        :   '(' expr ')'  #parentesis
+                |
+                expr expr  #impmulti
+                |
+                expr operation=(TIMES|DIV) expr  #multidiv
+                |
+                expr operation=(PLUS|MINUS) expr #masmenos
+                |
+                ID  #id
+                |
+                NUM #num
+                ;
 
-NUM         :   [0-9]+;
