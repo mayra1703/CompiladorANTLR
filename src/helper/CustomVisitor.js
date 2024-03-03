@@ -37,7 +37,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		const id = ctx.ID().getText();
 
 		if(!id){
-			error.innerHTML += `Error en la línea ${lineNumber}: Declracacion de variable incompleta "${id}". <br>`;
+			error.innerHTML += `Syntax error on line ${lineNumber}: Incomplete variable declaration "${id}". <br>`;
 			contenedorError.classList.remove('hidden');
 			return null;
 		}
@@ -52,17 +52,17 @@ export default class CustomVisitor extends CompilatorVisitor {
 		
 		if(regexInicioLetra.test(id)){
 			if (/[\+\-\*\/]/.test(id)) {
-				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${id}" no puede hacer operaciones con ids no declarados. <br>`;
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" can't do operations with undeclared ids. <br>`;
 				contenedorError.classList.remove('hidden');
 			}
 
 			else if(this.memory.has(id)){
-				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${id}" ya ha sido declarado. <br>`;
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
                 contenedorError.classList.remove('hidden');
 			}
 
 			else if(id === null){
-				error.innerHTML += `Error en la línea ${lineNumber}: No se declaro ningun identificador. <br>`;
+				error.innerHTML += `Syntax error on line ${lineNumber}: No identifier was declared. <br>`;
 				contenedorError.classList.remove('hidden');
 			}
 
@@ -73,7 +73,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		}
 
 		else{
-			error.innerHTML += `Error en la línea ${lineNumber}: El identificador debe comenzar con una letra. <br>`;
+			error.innerHTML += `Syntax error on line ${lineNumber}: The identifier must begin with a letter. <br>`;
 			contenedorError.classList.remove('hidden');
 		}
 
@@ -86,56 +86,9 @@ export default class CustomVisitor extends CompilatorVisitor {
 		const contenedorError = document.getElementById('contenedorError');
 		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
 
-		error.innerHTML += `Error en la línea ${lineNumber}: Declaración de variable invalida. <br>`;
+		error.innerHTML += `Error on line ${lineNumber}: Invalid variable declaration. <br>`;
 		contenedorError.classList.remove('hidden');
-
-		return null;
-	  }
-  
-  
-	  // Visit a parse tree produced by CompilatorParser#declaracion.
-	  visitDeclaracion(ctx) {
-		const error = document.getElementById('error');
-		const contenedorError = document.getElementById('contenedorError');
-		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
-
-		const id = ctx.ID(0) ? ctx.ID(0).getText() : null; //ctx.ID(0) se refiere al primer identificador
-		let value = 0;
-		const exprCtx = ctx.expr();
 		
-		if(exprCtx !== null){
-			value = parseInt(exprCtx.getText());
-		}
-		
-		const regexInicioLetra = /^[a-zA-Z]/;
-		
-		if(regexInicioLetra.test(id)){
-			if (/[\+\-\*\/]/.test(id)) {
-				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${id}" no puede hacer operaciones con ids no declarados. <br>`;
-				contenedorError.classList.remove('hidden');
-			}
-
-			else if(this.memory.has(id)){
-				error.innerHTML += `Error en la línea ${lineNumber}: El identificador "${id}" ya ha sido declarado. <br>`;
-                contenedorError.classList.remove('hidden');
-			}
-
-			else if(id === null){
-				error.innerHTML += `Error en la línea ${lineNumber}: No se declaro ningun identificador. <br>`;
-				contenedorError.classList.remove('hidden');
-			}
-
-			else{
-				this.memory.set(id, value);
-				console.log(`${id} = ${value}`);
-			}
-		}
-
-		else{
-			error.innerHTML += `Error en la línea ${lineNumber}: El identificador debe comenzar con una letra. <br>`;
-			contenedorError.classList.remove('hidden');
-		}
-
 		return null;
 	  }
 
@@ -187,7 +140,5 @@ export default class CustomVisitor extends CompilatorVisitor {
 		if(this.memory.has(id)) return this.memory.get(id);
 		return 0;
 	  }
-  
-  
   
   }

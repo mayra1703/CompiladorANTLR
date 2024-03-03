@@ -1,11 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { highlight, languages } from 'prismjs/components/prism-core';
 import CodeMirror from '@uiw/react-codemirror';
 import { createTheme } from '@uiw/codemirror-themes';import { calcular } from '@/module/generador';
-import { FaCirclePlay } from "react-icons/fa6";
-import { abyss, atomone, aura, dracula, duotoneDark, eclipse, githubDark, githubLight, materialLight, noctisLilac, solarizedDark, tokyoNight, whiteDark } from '@uiw/codemirror-themes-all';
+import { noctisLilac } from '@uiw/codemirror-themes-all';
 
 const Page = () => {
   const [expressions, setExpressions] = useState('');
@@ -16,7 +13,7 @@ const Page = () => {
     const input = e.target.value;
     setResult(e.target.value);
     setExpressions(input);
-    setCode(value);
+    setCode(e.target.value);
   };
   
   const analizador = () => {
@@ -66,12 +63,12 @@ const Page = () => {
   return (
     <main className='place-content-center h-screen bg-lightPurple'>
 
-      <div className='bg-darkBlue h-12 text-center'>
-        <p className='font-bold text-white p-2 text-xl'>Compilador ANTLR</p>
+      <div className='bg-darkBlue h-14 text-center'>
+        <p className='font-bold text-white p-2 text-2xl'>Compilador ANTLR</p>
       </div>
 
       <section className='relative mx-7 text-center m-4'>
-        <button type="button" onClick={analizador} className="text-white bg-darkYellow hover:bg-darkPurple focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700">
+        <button type="button" aria-label={'Run'} onClick={analizador} className="text-white bg-darkYellow hover:bg-darkPurple focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="w-8 h-8" aria-hidden="true" fill="#ffffff">
             <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/>
           </svg>
@@ -82,7 +79,7 @@ const Page = () => {
         <section className='relative h-full w-1/2 mx-4 my-2 overflow-hidden border border-slate rounded-md bg-white'>
         
           <div className="bg-white text-darkPurple text-sm p-2.5 text-center inline-flex items-center">
-            <button type="button" onClick={clearArea} className="inline-flex items-center">
+            <button type="button" onClick={clearArea} aria-label='Clean' className="inline-flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" className="w-5 h-5" aria-hidden="true" fill="#1f2135">
                 <path d="M290.7 57.4L57.4 290.7c-25 25-25 65.5 0 90.5l80 80c12 12 28.3 18.7 45.3 18.7H288h9.4H512c17.7 0 32-14.3 32-32s-14.3-32-32-32H387.9L518.6 285.3c25-25 25-65.5 0-90.5L381.3 57.4c-25-25-65.5-25-90.5 0zM297.4 416H288l-105.4 0-80-80L227.3 211.3 364.7 348.7 297.4 416z"/>
               </svg>
@@ -111,12 +108,10 @@ const Page = () => {
         </section>
 
         <section className='relative h-full w-1/2 mx-4 my-2 overflow-hidden border border-darkBlue rounded-md bg-darkBlue'>
-          <div className="bg-darkBlue text-white text-sm p-2.5 text-center inline-flex items-center">
-            <button type="button" onClick={clearArea} className="inline-flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-3 h-3" aria-hidden="true" fill="#fadc71">
-                <path d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z"/>
-              </svg>
-            </button>
+          <div className="bg-darkBlue text-white text-sm w-full p-2.5 text-center inline-flex items-center border-b border-lightPurple">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-3 h-3" aria-hidden="true" fill="#fadc71">
+              <path d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z"/>
+            </svg>
             <span className="ml-2 font-semibold text-lightYellow">Traducción</span>
           </div>
 
