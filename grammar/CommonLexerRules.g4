@@ -9,6 +9,8 @@ TIMES   :   '*';
 DIV     :   '/';
 
 SWEET       :       'Sweet';
+INITKEY     :       '{';
+FINALKEY    :       '}';
 PUNTITO     :       '.';
 NUM         :       [0-9]+;
 ID          :       [A-Za-z]+;

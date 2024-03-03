@@ -3,7 +3,7 @@ import CommonLexerRules;
 
 file        :   start+;
 
-start        :   SWEET '{' NEWLINE contenido '}';
+start        :   SWEET INITKEY NEWLINE contenido FINALKEY;
 
 contenido   :   expr | declaracion*;
 

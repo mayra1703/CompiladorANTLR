@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@uiw/codemirror-themes-all": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.23",
     "antlr4": "^4.13.1-patch-1",
+    "codemirror": "^5.65.16",
     "hashmap": "^2.4.0",
     "next": "14.0.3",
     "npx": "^10.2.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.0.1",
     "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
