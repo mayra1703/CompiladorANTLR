@@ -20,12 +20,19 @@ class CustomErrorListener extends antlr4.error.ErrorListener {
         
         const error = document.getElementById('error');
 		const contenedorError = document.getElementById('contenedorError');
-
+        const typeWrong = offendingSymbol.text;
+       
         if(msg.includes("no viable alternative at input")){
-            const typeWrong = offendingSymbol.text;
             error.innerHTML += `Incorrect data type "${typeWrong}" on line ${line} <br>`;
 		    contenedorError.classList.remove('hidden');
         }
+ 
+        else if (!typeWrong.startsWith("#")) {
+            error.innerHTML += `Syntax error on line ${line}: Declaration must start with '#'<br>`;
+            contenedorError.classList.remove('hidden');
+            // throw new Error(`Custom error: Declaration must start with '#' on line ${line}`);
+        }
+
         else{
             error.innerHTML += `Syntax error on line ${line}: ${msg} <br>`;
             contenedorError.classList.remove('hidden');
@@ -40,7 +47,7 @@ class CustomErrorListener extends antlr4.error.ErrorListener {
             error.innerHTML = '';
             // Remueve la clase después de limpiar el textarea
             contenedorError.classList.add('hidden');
-        }, 5000); // 5000 milisegundos = 5 segundos
+        }, 8000); // 5000 milisegundos = 5 segundos
     }
 }
 

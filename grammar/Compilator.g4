@@ -7,10 +7,10 @@ start        :   SWEET INITKEY NEWLINE contenido FINALKEY;
 
 contenido   :   expr | declaracion*;
 
-declaracion :   '#' TYPE ID PUNTITO NEWLINE  #validAssign
-            |   '#' TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
-            |   '#' TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
-            |   '#' TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
+declaracion :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
+            |   GATITO TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
+            |   GATITO TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
+            |   GATITO TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
             ;
 
 expr        :   '(' expr ')'  #parentesis
