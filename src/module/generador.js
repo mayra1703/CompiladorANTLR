@@ -34,6 +34,13 @@ class CustomErrorListener extends antlr4.error.ErrorListener {
             // Error que detiene el proceso
             // throw new Error(`Syntax error on line ${line}: ${msg}`);
         }
+
+        // Limpiar el contenido del textarea después de un tiempo determinado (por ejemplo, 5 segundos)
+        setTimeout(() => {
+            error.innerHTML = '';
+            // Remueve la clase después de limpiar el textarea
+            contenedorError.classList.add('hidden');
+        }, 5000); // 5000 milisegundos = 5 segundos
     }
 }
 

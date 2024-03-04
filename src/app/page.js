@@ -17,6 +17,9 @@ const Page = () => {
   };
   
   const analizador = () => {
+    const error = document.getElementById('error');
+    error.innerHTML = '';
+
     const inputWithOutComments = expressions.replace(/(\/\/[^\n]*)|\/\*[\s\S]*?\*\//g, '')
     const inputLines = inputWithOutComments.split('\n'); // Dividir el input en líneas
     const validLines = inputLines.filter(line => line.trim().length > 0); // Filtrar líneas vacías con trim(eliminar espacios en blanco)
@@ -63,8 +66,9 @@ const Page = () => {
   return (
     <main className='place-content-center h-screen bg-lightPurple'>
 
-      <div className='bg-darkBlue h-14 text-center'>
-        <p className='font-bold text-white p-2 text-2xl'>Compilador ANTLR</p>
+      <div className='flex flex-col bg-darkBlue h-20 text-center'>
+        <p className='font-extrabold text-white p-2 text-3xl'>Compilador ANTLR</p>
+        <p className='text-slate text-sm mb-2 font-extralight'>Agrega código en lenguaje SweetCode</p>
       </div>
 
       <section className='relative mx-7 text-center m-4'>
