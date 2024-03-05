@@ -1,6 +1,7 @@
 import CompilatorParser from "../grammar/CompilatorParser.js";
 import HashMap from 'hashmap';
 import CompilatorVisitor from "../grammar/CompilatorVisitor.js";
+import { experimental } from "../../next.config.js";
 
 // This class defines a complete generic visitor for a parse tree produced by CalculadoraParser.
 
@@ -35,6 +36,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
 
 		const id = ctx.ID().getText();
+		const exprText = ctx.expr().getText()
 
 		if(!id){
 			error.innerHTML += `Syntax error on line ${lineNumber}: Incomplete variable declaration "${id}". <br>`;
@@ -61,8 +63,8 @@ export default class CustomVisitor extends CompilatorVisitor {
                 contenedorError.classList.remove('hidden');
 			}
 
-			else if(id === null){
-				error.innerHTML += `Syntax error on line ${lineNumber}: No identifier was declared. <br>`;
+			else if(id === exprText){
+				error.innerHTML += `Syntax error on line ${lineNumber}: Invalid self-assignment "${id} = ${exprText}". <br>`;
 				contenedorError.classList.remove('hidden');
 			}
 
@@ -91,7 +93,6 @@ export default class CustomVisitor extends CompilatorVisitor {
 		
 		return null;
 	  }
-
 
 	  // Visit a parse tree produced by CompilatorParser#parentesis.
 	  visitParentesis(ctx) {
