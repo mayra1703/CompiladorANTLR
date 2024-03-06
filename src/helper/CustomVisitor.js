@@ -10,6 +10,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 	constructor() {
 		super();
 		this.memory = new HashMap();
+		this.declaredIds = {};
 	}
 
 	// Visit a parse tree produced by CompilatorParser#file.
@@ -36,7 +37,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
 
 		const id = ctx.ID().getText();
-		const exprText = ctx.expr().getText()
+		const exprText = ctx.expr() ? ctx.expr().getText() : '';
 
 		if(!id){
 			error.innerHTML += `Syntax error on line ${lineNumber}: Incomplete variable declaration "${id}". <br>`;
@@ -48,6 +49,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		if (ctx.expr()) {
 			value = this.visit(ctx.expr());
+			console.log(value);
 		}
 		
 		const regexInicioLetra = /^[a-zA-Z]/;
@@ -64,13 +66,15 @@ export default class CustomVisitor extends CompilatorVisitor {
 			}
 
 			else if(id === exprText){
-				error.innerHTML += `Syntax error on line ${lineNumber}: Invalid self-assignment "${id} = ${exprText}". <br>`;
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has not been declared. <br>`;
 				contenedorError.classList.remove('hidden');
 			}
 
 			else{
+				
 				this.memory.set(id, value);
 				console.log(`${id} = ${value}`);
+				
 			}
 		}
 
