@@ -18,6 +18,8 @@ const Page = () => {
   
   const analizador = () => {
     const error = document.getElementById('error');
+    const contenedorImpresion = document.getElementById('contenedorImpresion');
+    contenedorImpresion.classList.remove('hidden'); // Eliminar hidden del contenedor
     error.innerHTML = '';
 
     const inputWithOutComments = expressions.replace(/(\/\/[^\n]*)|\/\*[\s\S]*?\*\//g, '')
@@ -36,6 +38,13 @@ const Page = () => {
     const contenedorError = document.getElementById('contenedorError');
     contenedorError.classList.add('hidden'); // Agrega la clase hidden para ocultar el div si no hay error
     error.innerHTML = '';
+  }
+
+  const cerrar = ()=> {
+    const mensaje = document.getElementById('mensajeImpresion');
+    const contenedorImpresion = document.getElementById('contenedorImpresion');
+    contenedorImpresion.classList.add('hidden'); // Agrega la clase hidden para ocultar el div si no hay error
+    mensaje.innerHTML = '';
   }
 
   const clearArea= ()=>{
@@ -153,7 +162,6 @@ const Page = () => {
                   <div className='space-y-1 border-r'>
                     <p className='font-bold capitalize text-lg'>Error</p>
                     <p className='text-sm mr-4 text-justify' id='error' value=''> </p>
-
                   </div>
 
                   <div className='flex cursor-pointer items-center h-full'>
@@ -164,6 +172,25 @@ const Page = () => {
                     </button>
                   </div>
                 </div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <section className='flex justify-center'>
+        <div className='flex justify-center'>
+            <div className='rounded bg-darkPurple text-white overflow-hidden shadow-md shadow-darkPurple mx-4 my-32 lg:mx-64 lg:my-28 sm:mx-20 sm:my-28 fixed inset-0 hidden' id='contenedorImpresion'>
+              <div id='encabezado' className='flex items-end justify-end'>
+                  <div className='flex justify-end'>
+                    <button onClick={cerrar}>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill='#cb1b16'className='w-7 m-3'>
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+                      </svg>
+                    </button>
+                  </div>
+              </div>
+              <div id='impresion'>
+                <p className='text-md text-white m-5 text-justify' id='mensajeImpresion' value='Impresion'>Impresion </p>
               </div>
             </div>
         </div>

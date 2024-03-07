@@ -34,6 +34,8 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  visitValidAssign(ctx) {
 		const error = document.getElementById('error');
 		const contenedorError = document.getElementById('contenedorError');
+		const mensaje = document.getElementById('mensajeImpresion');
+    	const contenedorImpresion = document.getElementById('contenedorImpresion');
 		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
 
 		const id = ctx.ID().getText();
@@ -74,6 +76,8 @@ export default class CustomVisitor extends CompilatorVisitor {
 				
 				this.memory.set(id, value);
 				console.log(`${id} = ${value}`);
+				mensaje.innerHTML += `${id} = ${value} <br>`
+				contenedorImpresion.classList.remove('hidden');
 				
 			}
 		}
