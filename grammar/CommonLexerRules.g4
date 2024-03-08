@@ -10,7 +10,7 @@ DIV     :   '/';
 
 SWEET       :       'Sweet';
 ARROW       :       '->';
-SHOW        :       'Show';
+SHOW        :       'SHOW';
 INITKEY     :       '{';
 FINALKEY    :       '}';
 GATITO      :       '#';

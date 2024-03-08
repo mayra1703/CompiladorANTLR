@@ -37,7 +37,7 @@ public class CommonLexerRules extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'+'", "'-'", "'*'", "'/'", "'Sweet'", "'->'", "'Show'", 
+			null, null, "'+'", "'-'", "'*'", "'/'", "'Sweet'", "'->'", "'SHOW'", 
 			"'{'", "'}'", "'#'", "'.'"
 		};
 	}
@@ -158,8 +158,8 @@ public class CommonLexerRules extends Lexer {
 		"@\n\u0001\u0000\u0000\u0000AB\u0005S\u0000\u0000BC\u0005w\u0000\u0000"+
 		"CD\u0005e\u0000\u0000DE\u0005e\u0000\u0000EF\u0005t\u0000\u0000F\f\u0001"+
 		"\u0000\u0000\u0000GH\u0005-\u0000\u0000HI\u0005>\u0000\u0000I\u000e\u0001"+
-		"\u0000\u0000\u0000JK\u0005S\u0000\u0000KL\u0005h\u0000\u0000LM\u0005o"+
-		"\u0000\u0000MN\u0005w\u0000\u0000N\u0010\u0001\u0000\u0000\u0000OP\u0005"+
+		"\u0000\u0000\u0000JK\u0005S\u0000\u0000KL\u0005H\u0000\u0000LM\u0005O"+
+		"\u0000\u0000MN\u0005W\u0000\u0000N\u0010\u0001\u0000\u0000\u0000OP\u0005"+
 		"{\u0000\u0000P\u0012\u0001\u0000\u0000\u0000QR\u0005}\u0000\u0000R\u0014"+
 		"\u0001\u0000\u0000\u0000ST\u0005#\u0000\u0000T\u0016\u0001\u0000\u0000"+
 		"\u0000UV\u0005.\u0000\u0000V\u0018\u0001\u0000\u0000\u0000WY\u0007\u0000"+

@@ -39,7 +39,7 @@ public class CompilatorLexer extends Lexer {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'='", "'('", "')'", null, "'+'", "'-'", "'*'", "'/'", "'Sweet'", 
-			"'->'", "'Show'", "'{'", "'}'", "'#'", "'.'"
+			"'->'", "'SHOW'", "'{'", "'}'", "'#'", "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -166,7 +166,7 @@ public class CompilatorLexer extends Lexer {
 		"S\u0000\u0000NO\u0005w\u0000\u0000OP\u0005e\u0000\u0000PQ\u0005e\u0000"+
 		"\u0000QR\u0005t\u0000\u0000R\u0012\u0001\u0000\u0000\u0000ST\u0005-\u0000"+
 		"\u0000TU\u0005>\u0000\u0000U\u0014\u0001\u0000\u0000\u0000VW\u0005S\u0000"+
-		"\u0000WX\u0005h\u0000\u0000XY\u0005o\u0000\u0000YZ\u0005w\u0000\u0000"+
+		"\u0000WX\u0005H\u0000\u0000XY\u0005O\u0000\u0000YZ\u0005W\u0000\u0000"+
 		"Z\u0016\u0001\u0000\u0000\u0000[\\\u0005{\u0000\u0000\\\u0018\u0001\u0000"+
 		"\u0000\u0000]^\u0005}\u0000\u0000^\u001a\u0001\u0000\u0000\u0000_`\u0005"+
 		"#\u0000\u0000`\u001c\u0001\u0000\u0000\u0000ab\u0005.\u0000\u0000b\u001e"+
