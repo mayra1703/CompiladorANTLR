@@ -5,13 +5,15 @@ file        :   start+;
 
 start        :   SWEET INITKEY NEWLINE contenido FINALKEY;
 
-contenido   :   expr | declaracion*;
+contenido   :   expr | (declaracion | impresion)*;
 
 declaracion :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
-            |   GATITO TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
             |   GATITO TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
+            |   GATITO TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
             |   GATITO TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
             ;
+
+impresion   :   ARROW SHOW ID PUNTITO NEWLINE;
 
 expr        :   '(' expr ')'  #parentesis
                 |

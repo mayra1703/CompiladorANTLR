@@ -47,7 +47,7 @@ class CustomErrorListener extends antlr4.error.ErrorListener {
             error.innerHTML = '';
             // Remueve la clase después de limpiar el textarea
             contenedorError.classList.add('hidden');
-        }, 8000); // 5000 milisegundos = 5 segundos
+        }, 6000); // 5000 milisegundos = 5 segundos
     }
 }
 

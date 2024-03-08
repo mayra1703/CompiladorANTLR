@@ -27,7 +27,33 @@ export default class CustomVisitor extends CompilatorVisitor {
   
 	  // Visit a parse tree produced by CompilatorParser#contenido.
 	  visitContenido(ctx) {
-		return this.visitChildren(ctx);
+		const children = ctx.children;
+
+		for (const child of children){
+			if (child instanceof CompilatorParser.ImpresionContext){
+				const id = child.ID().getText();
+
+				if(this.memory.has(id)){
+					const value = this.memory.get(id);
+					const contenedorImpresion = document.getElementById('contenedorImpresion');
+					const mensaje = document.getElementById('mensajeImpresion');
+					mensaje.innerHTML += `${id} = ${value} <br>`;
+					contenedorImpresion.classList.remove('hidden');
+				}
+
+				else{
+					const error = document.getElementById('error');
+					const contenedorError = document.getElementById('contenedorError');
+					const lineNumber = child.start.line;
+					error.innerHTML += `Error on line ${lineNumber}: Variable "${id}" not found. <br>`;
+					contenedorError.classList.remove('hidden');
+				}
+			}
+			else{
+				this.visit(child);
+			}
+		}
+		return null;
 	  }
 
   	  // Visit a parse tree produced by CompilatorParser#validAssign.
@@ -40,13 +66,6 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		const id = ctx.ID().getText();
 		const exprText = ctx.expr() ? ctx.expr().getText() : '';
-
-		if(!id){
-			error.innerHTML += `Syntax error on line ${lineNumber}: Incomplete variable declaration "${id}". <br>`;
-			contenedorError.classList.remove('hidden');
-			return null;
-		}
-
 		let value = 0;
 
 		if (ctx.expr()) {
@@ -54,37 +73,29 @@ export default class CustomVisitor extends CompilatorVisitor {
 			console.log(value);
 		}
 		
-		const regexInicioLetra = /^[a-zA-Z]/;
-		
-		if(regexInicioLetra.test(id)){
-			if (/[\+\-\*\/]/.test(id)) {
-				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" can't do operations with undeclared ids. <br>`;
-				contenedorError.classList.remove('hidden');
-			}
+		if(!id){
+			error.innerHTML += `Syntax error on line ${lineNumber}: Incomplete variable declaration "${id}". <br>`;
+			contenedorError.classList.remove('hidden');
+			return null;
+		}
 
-			else if(this.memory.has(id)){
-				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
-                contenedorError.classList.remove('hidden');
-			}
-
-			else if(id === exprText){
-				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has not been declared. <br>`;
-				contenedorError.classList.remove('hidden');
-			}
-
-			else{
-				
-				this.memory.set(id, value);
-				console.log(`${id} = ${value}`);
-				mensaje.innerHTML += `${id} = ${value} <br>`
-				contenedorImpresion.classList.remove('hidden');
-				
-			}
+		if(this.memory.has(id)){
+			error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
+			contenedorError.classList.remove('hidden');
 		}
 
 		else{
-			error.innerHTML += `Syntax error on line ${lineNumber}: The identifier must begin with a letter. <br>`;
-			contenedorError.classList.remove('hidden');
+			if (id === exprText) {
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${value}" has not been declared. <br>`;
+				contenedorError.classList.remove('hidden');
+			}
+			
+			else {
+				this.memory.set(id, value);
+				console.log(`${id} = ${value}`);
+				//mensaje.innerHTML += `${id} = ${value} <br>`;
+				//contenedorImpresion.classList.remove('hidden');
+			}
 		}
 
 		return null;

@@ -9,6 +9,8 @@ TIMES   :   '*';
 DIV     :   '/';
 
 SWEET       :       'Sweet';
+ARROW       :       '->';
+SHOW        :       'Show';
 INITKEY     :       '{';
 FINALKEY    :       '}';
 GATITO      :       '#';

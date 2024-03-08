@@ -19,7 +19,7 @@ const Page = () => {
   const analizador = () => {
     const error = document.getElementById('error');
     const contenedorImpresion = document.getElementById('contenedorImpresion');
-    contenedorImpresion.classList.remove('hidden'); // Eliminar hidden del contenedor
+    //contenedorImpresion.classList.remove('hidden'); // Eliminar hidden del contenedor
     error.innerHTML = '';
 
     const inputWithOutComments = expressions.replace(/(\/\/[^\n]*)|\/\*[\s\S]*?\*\//g, '')
@@ -189,7 +189,7 @@ const Page = () => {
                     </button>
                   </div>
               </div>
-              <div id='impresion'>
+              <div id='impresion' className='h-full'>
                 <p className='text-md text-white m-5 text-justify' id='mensajeImpresion' value='Impresion'>Impresion </p>
               </div>
             </div>
