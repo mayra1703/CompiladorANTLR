@@ -27,7 +27,7 @@ class CustomErrorListener extends antlr4.error.ErrorListener {
 		    contenedorError.classList.remove('hidden');
         }
  
-        else if (!typeWrong.startsWith("#")) {
+        else if (recognizer._ctx.constructor.name === "CompilatorParser.DeclaracionContext" && !typeWrong.startsWith("#")) {
             error.innerHTML += `Syntax error on line ${line}: Declaration must start with '#'<br>`;
             contenedorError.classList.remove('hidden');
             // throw new Error(`Custom error: Declaration must start with '#' on line ${line}`);

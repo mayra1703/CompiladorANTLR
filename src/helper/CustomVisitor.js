@@ -65,19 +65,34 @@ export default class CustomVisitor extends CompilatorVisitor {
 		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
 
 		const id = ctx.ID().getText();
-		const exprText = ctx.expr() ? ctx.expr().getText() : '';
-		let value = 0;
 
-		if (ctx.expr()) {
+		//value
+		let value = ctx.expr() ? parseInt(ctx.expr().getText()) : 0;
+		//let value = 0;
+
+		/*if (ctx.expr()) {
 			value = this.visit(ctx.expr());
 			console.log(value);
-		}
+		}*/
 		
+		// Validar si el identificador comienza con una letra
+        if (!/^[a-zA-Z]/.test(id)) {
+            error.innerHTML += `Syntax error on line ${lineNumber}: El identificador "${id}" debe comenzar con una letra. <br>`;
+			contenedorError.classList.remove('hidden');
+			return null;
+        }
+
 		if(!id){
 			error.innerHTML += `Syntax error on line ${lineNumber}: Incomplete variable declaration "${id}". <br>`;
 			contenedorError.classList.remove('hidden');
 			return null;
 		}
+
+		// Validar si el identificador contiene operadores
+        if (/[\+\-\\/]/.test(id)) {
+			error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${value}" no debe contener operadores. <br>`;
+			contenedorError.classList.remove('hidden');
+        }
 
 		if(this.memory.has(id)){
 			error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
@@ -85,12 +100,14 @@ export default class CustomVisitor extends CompilatorVisitor {
 		}
 
 		else{
-			if (id === exprText) {
-				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${value}" has not been declared. <br>`;
+			// Verificar si la expresión es null
+			if (isNaN(value) || value < 0) {
+				
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has not been declared. <br>`;
 				contenedorError.classList.remove('hidden');
 			}
-			
-			else {
+
+			else{
 				this.memory.set(id, value);
 				console.log(`${id} = ${value}`);
 				//mensaje.innerHTML += `${id} = ${value} <br>`;
