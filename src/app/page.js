@@ -179,18 +179,26 @@ const Page = () => {
 
       <section className='flex justify-center'>
         <div className='flex justify-center'>
-            <div className='rounded bg-darkPurple text-white overflow-hidden shadow-md shadow-darkPurple mx-4 my-32 lg:mx-64 lg:my-28 sm:mx-20 sm:my-28 fixed inset-0 hidden' id='contenedorImpresion'>
-              <div id='encabezado' className='flex items-end justify-end'>
+            <div className='rounded bg-claro overflow-hidden shadow-md shadow-darkPurple mx-4 my-32 lg:mx-64 lg:my-28 sm:mx-20 sm:my-28 fixed inset-28 h-60' id='contenedorImpresion'>
+              
+              <div id='encabezado' className='border border-darkPurple flex h-14 items-end justify-start bg-gradient-to-r from-darkBlue to-darkPurple'>
                   <div className='flex justify-end'>
-                    <button onClick={cerrar}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill='#cb1b16'className='w-7 m-3'>
-                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
-                      </svg>
+                    <button onClick={cerrar} className=' ml-3 mb-3'>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill='#cc444b'className='w-5 mr-2'>
+                      <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                    </svg>
                     </button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill='#f7b538'className='w-5 mr-2 mb-3'>
+                      <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill='#73a580'className='w-5 mb-3'>
+                      <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                    </svg>
                   </div>
               </div>
-              <div id='impresion' className='h-full'>
-                <p className='text-md text-white m-5 text-justify' id='mensajeImpresion' value='Impresion'>Impresion </p>
+
+              <div id='impresion'>
+                <p className='text-md text-darkPurple m-5 text-justify font-semibold' id='mensajeImpresion'></p>
               </div>
             </div>
         </div>

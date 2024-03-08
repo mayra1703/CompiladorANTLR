@@ -37,7 +37,8 @@ export default class CustomVisitor extends CompilatorVisitor {
 					const value = this.memory.get(id);
 					const contenedorImpresion = document.getElementById('contenedorImpresion');
 					const mensaje = document.getElementById('mensajeImpresion');
-					mensaje.innerHTML += `${id} = ${value} <br>`;
+					mensaje.innerHTML += `• ${id} = ${value} <br>`;
+					
 					contenedorImpresion.classList.remove('hidden');
 				}
 
