@@ -1,7 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import { createTheme } from '@uiw/codemirror-themes';import { calcular } from '@/module/generador';
+import { createTheme } from '@uiw/codemirror-themes';
+import { calcular } from '@/module/generador';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 
 const Page = () => {
@@ -179,7 +180,7 @@ const Page = () => {
 
       <section className='flex justify-center'>
         <div className='flex justify-center'>
-            <div className='rounded bg-claro overflow-hidden shadow-md shadow-darkPurple mx-4 my-32 lg:mx-64 lg:my-28 sm:mx-20 sm:my-28 fixed inset-28 h-60' id='contenedorImpresion'>
+            <div className='rounded bg-claro overflow-hidden hidden shadow-md shadow-darkPurple mx-4 my-32 lg:mx-64 lg:my-28 sm:mx-20 sm:my-28 fixed inset-28 h-60' id='contenedorImpresion'>
               
               <div id='encabezado' className='border border-darkPurple flex h-14 items-end justify-start bg-gradient-to-r from-darkBlue to-darkPurple'>
                   <div className='flex justify-end'>
