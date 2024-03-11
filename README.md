@@ -2,8 +2,7 @@
 **Sweet Code** es un nuevo lenguaje creado por mí basado en el lenguaje C# pero con cambios en sintaxis y nuevos tipos de datos (mint, mintchar, minfloat). Por el momento, este nuevo lenguaje de programación permite realizar:
 
 - ### Declaracion de Variables
-Sweet Code permite realizar declaracion de variables con la sintaxis: `# tipo_dato identificador .`
-Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
+- Sweet Code permite realizar declaracion de variables con la sintaxis: `# tipo_dato identificador .` Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
 
 * ### Declaracion de Variables con Asignacion
 Sweet Code permite realizar declaracion de variables con asignacion siguiendo la siguiente sintaxis: `# tipo_dato identificador = asignacion .`
