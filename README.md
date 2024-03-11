@@ -3,7 +3,7 @@
 
 ### Declaracion de Variables
 Sweet Code permite realizar declaracion de variables con la sintaxis:
-'# mint a .'
+`# mint a .`
 
 ### Declaracion de Variables con Asignacion
 
