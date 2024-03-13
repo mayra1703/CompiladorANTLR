@@ -13,7 +13,8 @@ declaracion :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
             |   GATITO TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
             ;
 
-impresion   :   ARROW SHOW ID PUNTITO NEWLINE;
+impresion   :   ARROW SHOW '(' expr ')' PUNTITO NEWLINE #showExpr
+            ;
 
 expr        :   '(' expr ')'  #parentesis
                 |
@@ -26,5 +27,5 @@ expr        :   '(' expr ')'  #parentesis
                 ID  #id
                 |
                 NUM #num
-                ;
+            ;
 

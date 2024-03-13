@@ -36,8 +36,8 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#impresion.
-	visitImpresion(ctx) {
+	// Visit a parse tree produced by CompilatorParser#showExpr.
+	visitShowExpr(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
