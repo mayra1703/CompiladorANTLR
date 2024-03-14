@@ -38,7 +38,8 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		const id = ctx.ID().getText();
 
-		//let value = ctx.expr() ? parseInt(ctx.expr().getText()) : 0;
+		let valueToCheck = ctx.expr() ? parseInt(ctx.expr().getText()) : 0;
+
 		let value = 0;
 
 		if (ctx.expr()) {
@@ -65,24 +66,25 @@ export default class CustomVisitor extends CompilatorVisitor {
         }
 
 		if(this.memory.has(id)){
-			error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
-			contenedorError.classList.remove('hidden');
-		}
-
-		else{
 			// Verificar si la expresión es null
-			if (isNaN(value) || value < 0) {
+			if (isNaN(valueToCheck) || valueToCheck < 0) {
 				
 				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has not been declared. <br>`;
 				contenedorError.classList.remove('hidden');
 			}
 
 			else{
-				this.memory.set(id, value);
-				console.log(`${id} = ${value}`);
-				//mensaje.innerHTML += `${id} = ${value} <br>`;
-				//contenedorImpresion.classList.remove('hidden');
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
+				contenedorError.classList.remove('hidden');
 			}
+		}
+
+		else{
+			this.memory.set(id, value);
+			console.log(`${id} = ${value}`);
+			//mensaje.innerHTML += `${id} = ${value} <br>`;
+			//contenedorImpresion.classList.remove('hidden');
+			
 		}
 
 		return null;
@@ -102,25 +104,32 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 	  // Visit a parse tree produced by CompilatorParser#showExpr.
 	  visitShowExpr(ctx) {
-		const id = ctx.expr().getText();
+		const id = ctx.expr();
 		let value;
 
-		// Verificar si el ID está en la memoria
-		if (this.memory.has(id)) {
-			value = this.memory.get(id);
+		if (id) {
+			// Evaluar la expresión
+			value = this.visit(id);
+
+			// Verificar si el resultado es un identificador y está en la memoria
+			if (typeof value === 'string' && this.memory.has(value)) {
+				value = this.memory.get(value);
+			}
+
 			const contenedorImpresion = document.getElementById('contenedorImpresion');
 			const mensaje = document.getElementById('mensajeImpresion');
 			contenedorImpresion.classList.remove('hidden');
-			mensaje.innerHTML += `• ${id} = ${value} <br>`;
+			mensaje.innerHTML += `• ${id.getText()} = ${value} <br>`;
 		}
 		
 		else {
 			const error = document.getElementById('error');
 			const contenedorError = document.getElementById('contenedorError');
-			const lineNumber = child.start.line;
-			error.innerHTML += `Error on line ${lineNumber}: Variable "${id}" not found. <br>`;
+			const lineNumber = ctx.start.line;
+			error.innerHTML += `Error on line ${lineNumber}: Invalid expression. <br>`;
 			contenedorError.classList.remove('hidden');
 		}
+
 		return null;
 	  }
 
