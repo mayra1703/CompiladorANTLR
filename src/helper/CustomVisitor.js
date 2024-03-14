@@ -103,30 +103,32 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 	  // Visit a parse tree produced by CompilatorParser#showExpr.
 	  visitShowExpr(ctx) {
-		const id = ctx.expr();
-		let value;
+		const exprText = ctx.expr().getText();
+		const identifiers = exprText.match(/[a-zA-Z]+/g); // Extraer identificadores de la expresión
+		let allIdentifiersValid = true;
 
-		if (id) {
-			// Evaluar la expresión
-			value = this.visit(id);
-
-			// Verificar si el resultado es un identificador y está en la memoria
-			if (typeof value === 'string' && this.memory.has(value)) {
-				value = this.memory.get(value);
+		// Verificar si todos los identificadores están en la memoria
+		if (identifiers) {
+			for (const id of identifiers) {
+				if (!this.memory.has(id)) {
+					allIdentifiersValid = false;
+					const error = document.getElementById('error');
+					const contenedorError = document.getElementById('contenedorError');
+					const lineNumber = ctx.start.line;
+					error.innerHTML += `Error on line ${lineNumber}: Variable "${id}" not found. <br>`;
+					contenedorError.classList.remove('hidden');
+					break; // Detener el bucle si se encuentra un identificador no válido
+				}
 			}
+		}
 
+		// Si todos los identificadores son válidos, mostrar el mensaje de impresión
+		if (allIdentifiersValid) {
+			let value = this.visit(ctx.expr());
 			const contenedorImpresion = document.getElementById('contenedorImpresion');
 			const mensaje = document.getElementById('mensajeImpresion');
 			contenedorImpresion.classList.remove('hidden');
-			mensaje.innerHTML += `• ${id.getText()} = ${value} <br>`;
-		}
-		
-		else {
-			const error = document.getElementById('error');
-			const contenedorError = document.getElementById('contenedorError');
-			const lineNumber = ctx.start.line;
-			error.innerHTML += `Error on line ${lineNumber}: Invalid expression. <br>`;
-			contenedorError.classList.remove('hidden');
+			mensaje.innerHTML += `• ${exprText} = ${value} <br>`;
 		}
 
 		return null;
