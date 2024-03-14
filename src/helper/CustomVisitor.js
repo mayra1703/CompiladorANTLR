@@ -38,7 +38,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		const id = ctx.ID().getText();
 
-		let valueToCheck = ctx.expr() ? parseInt(ctx.expr().getText()) : 0;
+		let valueToCheck = ctx.expr() ? ctx.expr().getText() : null;
 
 		let value = 0;
 
@@ -66,25 +66,24 @@ export default class CustomVisitor extends CompilatorVisitor {
         }
 
 		if(this.memory.has(id)){
-			// Verificar si la expresión es null
-			if (isNaN(valueToCheck) || valueToCheck < 0) {
-				
-				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has not been declared. <br>`;
-				contenedorError.classList.remove('hidden');
-			}
-
-			else{
-				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
-				contenedorError.classList.remove('hidden');
-			}
+			error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${id}" has already been declared. <br>`;
+			contenedorError.classList.remove('hidden');
+			
 		}
 
 		else{
-			this.memory.set(id, value);
-			console.log(`${id} = ${value}`);
-			//mensaje.innerHTML += `${id} = ${value} <br>`;
-			//contenedorImpresion.classList.remove('hidden');
-			
+			// Verificar si la expresión es null
+			if (valueToCheck !== null && !this.memory.has(valueToCheck) && /^[a-zA-Z]+$/.test(valueToCheck)) {
+				
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${valueToCheck}" has not been declared. <br>`;
+				contenedorError.classList.remove('hidden');
+				return null
+			}
+
+			else{
+				this.memory.set(id, value);
+				console.log(`${id} = ${value}`);
+			}
 		}
 
 		return null;
