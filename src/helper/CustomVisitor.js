@@ -105,7 +105,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  visitShowExpr(ctx) {
 		const exprText = ctx.expr().getText();
 		const identifiers = exprText.match(/[a-zA-Z]+/g); // Extraer identificadores de la expresión
-		let allIdentifiersValid = true;
+		let allIdentifiersValid = true; // Bandera para verificar que todos los ids existen
 
 		// Verificar si todos los identificadores están en la memoria
 		if (identifiers) {
@@ -128,7 +128,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 			const contenedorImpresion = document.getElementById('contenedorImpresion');
 			const mensaje = document.getElementById('mensajeImpresion');
 			contenedorImpresion.classList.remove('hidden');
-			mensaje.innerHTML += `• ${exprText} = ${value} <br>`;
+			mensaje.innerHTML += `-> ${exprText} = ${value} <br>`;
 		}
 
 		return null;
