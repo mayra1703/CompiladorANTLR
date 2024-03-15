@@ -134,6 +134,69 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return null;
 	  }
 
+	  // Visit a parse tree produced by CompilatorParser#ifStatement.
+	  visitIfStatement(ctx) {
+		console.log('Visitando IfStatement');
+		let conditionResult = this.visit(ctx.condition())
+
+		if(conditionResult){
+			return this.visit(ctx.statement(0));
+		}
+
+		else if(ctx.ELSE()){
+			return this.visit(ctx.statement(1));
+		}
+
+		return null;
+	  }
+
+	  // Visit a parse tree produced by CompilatorParser#condition.
+	  visitCondition(ctx) {
+		console.log('Visitando visitCondition');
+		console.log(this.visitChildren(ctx));
+		const firstVal = this.visit(ctx.expr(0));
+		const secondVal = this.visit(ctx.expr(1));
+		let operator = ctx.operator.text;
+		let result;
+
+		switch(operator){
+			case '>':
+				result = firstVal > secondVal;
+				break;
+
+			case '<':
+				result = firstVal < secondVal;
+				break;
+
+			case '>=':
+				result = firstVal >= secondVal;
+				break;
+
+			case '<=':
+				result = firstVal <= secondVal;
+				break;
+			
+			case '==':
+				result = firstVal === secondVal;
+				break;
+
+			case '!=':
+				result = firstVal !== secondVal;
+				break;
+				
+			default:
+				result = false;
+				break;
+		}
+		return result;
+	  }
+  
+  
+	  // Visit a parse tree produced by CompilatorParser#statement.
+	  visitStatement(ctx) {
+		return this.visitChildren(ctx);
+	  }
+
 	  // Visit a parse tree produced by CompilatorParser#parentesis.
 	  visitParentesis(ctx) {
 		return this.visit(ctx.expr());
@@ -160,8 +223,8 @@ export default class CustomVisitor extends CompilatorVisitor {
 		if (ctx.operation.type === CompilatorParser.PLUS) return left + right;
 		return left - right;
 	  }
-  
-  
+
+	  
 	  // Visit a parse tree produced by CompilatorParser#impmulti.
 	  visitImpmulti(ctx) {
 		let results = this.visitChildren(ctx);

@@ -1,22 +1,34 @@
 lexer grammar CommonLexerRules;
 
 
-TYPE        :   'mint' | 'mintchar' | 'mintflot';
+TYPE                :   'mint' | 'mintchar' | 'mintflot';
 
-PLUS    :   '+';
-MINUS   :   '-';
-TIMES   :   '*';
-DIV     :   '/';
+PLUS                :   '+';
+MINUS               :   '-';
+TIMES               :   '*';
+DIV                 :   '/';
 
-SWEET       :       'Sweet';
-ARROW       :       '->';
-SHOW        :       'SHOW';
-INITKEY     :       '{';
-FINALKEY    :       '}';
-GATITO      :       '#';
-PUNTITO     :       '.';
-NUM         :       [0-9]+;
-ID          :       [A-Za-z]+;
-WRONGID     :       [a-zA-Z0-9_+\-*/]+;
-NEWLINE     :       '\r'? '\n' ;
-SPACES      :       [ \t\r\n]+ -> skip ;
+OC                  : ('<'|'>'|'<='|'>=');
+OL                  : ('||'|'&&'|'==');
+
+MAYORQUE            :   '>';
+MENORQUE            :   '<';
+MAYORIGUAL          :   '>=';
+MENORIGUAL          :   '<=';
+DOBLEIGUAL          :   '==';
+DIFERENTE           :   '!=';
+
+SWEET               :       'Sweet';
+SWEETCONDITION      :       'SweetCondition';
+ELSE                :       'Else';
+ARROW               :       '->';
+SHOW                :       'SHOW';
+INITKEY             :       '{';
+FINALKEY            :       '}';
+GATITO              :       '#';
+PUNTITO             :       '.';
+NUM                 :       [0-9]+;
+ID                  :       [A-Za-z]+;
+WRONGID             :       [a-zA-Z0-9_+\-*/]+;
+NEWLINE             :       '\r'? '\n' ;
+SPACES              :       [ \t\r\n]+ -> skip ;
