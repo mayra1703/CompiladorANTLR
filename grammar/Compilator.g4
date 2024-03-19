@@ -5,7 +5,10 @@ file        :   start+;
 
 start        :   SWEET INITKEY NEWLINE contenido FINALKEY;
 
-contenido   :   expr | (declaracion | impresion | ifStatement)*;
+contenido   :   expr
+            |   (declaracion | impresion | ifStatement)*
+            |   STRING
+            ;
 
 declaracion :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
             |   GATITO TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
@@ -14,12 +17,15 @@ declaracion :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
             ;
 
 impresion   :   ARROW SHOW '(' expr ')' PUNTITO NEWLINE #showExpr
+            |   ARROW SHOW '(' STRING ')' PUNTITO NEWLINE #showString
             ;
 
-ifStatement :   SWEETCONDITION '(' condition ')' INITKEY statement FINALKEY NEWLINE (ELSE INITKEY statement FINALKEY)? NEWLINE
+ifStatement :   SWEETCONDITION '(' condition ')' INITKEY statement FINALKEY (ELSE INITKEY statement FINALKEY)? NEWLINE
             ;
 
-condition   :   expr operator=(OL | OC) expr
+condition   :    expr OC expr   # comparisonExpr
+            |    expr OL expr   # logicalExpr
+            |    BOOL           # boolCondition
             ;
 
 statement   :   expr | declaracion | impresion | ifStatement

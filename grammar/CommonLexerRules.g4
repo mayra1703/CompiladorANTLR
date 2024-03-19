@@ -1,15 +1,17 @@
 lexer grammar CommonLexerRules;
 
 
-TYPE                :   'mint' | 'mintchar' | 'mintflot';
+TYPE                :       'mint' | 'mintchar' | 'mintflot';
+STRING              :       '"' .*? '"';
 
-PLUS                :   '+';
-MINUS               :   '-';
-TIMES               :   '*';
-DIV                 :   '/';
+PLUS                :       '+';
+MINUS               :       '-';
+TIMES               :       '*';
+DIV                 :       '/';
 
-OC                  : ('<'|'>'|'<='|'>='|'!=');
-OL                  : ('||'|'&&'|'==');
+OC                  :       ('<'|'>'|'<='|'>='|'!=');
+OL                  :       ('||'|'&&'|'==');
+BOOL                :       ('true'|'false');
 
 SWEET               :       'Sweet';
 SWEETCONDITION      :       'SweetCondition';

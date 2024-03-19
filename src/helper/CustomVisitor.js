@@ -128,8 +128,20 @@ export default class CustomVisitor extends CompilatorVisitor {
 			const contenedorImpresion = document.getElementById('contenedorImpresion');
 			const mensaje = document.getElementById('mensajeImpresion');
 			contenedorImpresion.classList.remove('hidden');
-			mensaje.innerHTML += `-> ${exprText} = ${value} <br>`;
+			mensaje.innerHTML += `-> ${value} <br>`;
 		}
+
+		return null;
+	  }
+
+	  // Visit a parse tree produced by CompilatorParser#showString.
+	  visitShowString(ctx) {
+		const string = ctx.STRING().getText();
+
+		const contenedorImpresion = document.getElementById('contenedorImpresion');
+		const mensaje = document.getElementById('mensajeImpresion');
+		contenedorImpresion.classList.remove('hidden');
+		mensaje.innerHTML += `-> ${string} <br>`;
 
 		return null;
 	  }
@@ -148,8 +160,73 @@ export default class CustomVisitor extends CompilatorVisitor {
 				return this.visit(ctx.statement(1));
 			}
 		}
-
+	
 		return null;
+	  }
+
+	  // Visit a parse tree produced by CompilatorParser#comparisonExpr.
+	  visitComparisonExpr(ctx) {
+		const firstVal = this.visit(ctx.expr(0));
+		const secondVal = this.visit(ctx.expr(1));
+		const firstValText = ctx.expr(0).getText();
+		const secondValText = ctx.expr(1).getText();
+		const operator = ctx.OC().getText();
+
+		// Verificar si los valores de las expresiones son identificadores y si están declarados en la memoria
+		if (!this.memory.has(firstValText)) {
+			error.innerHTML += `Syntax error: Identifier '${firstValText}' not found. Skipping evaluation. <br>`;
+			contenedorError.classList.remove('hidden');
+			return null;
+		}
+		
+		if (!this.memory.has(secondValText)) {
+			error.innerHTML += `Syntax error: Identifier '${secondValText}' not found. Skipping evaluation. <br>`;
+			contenedorError.classList.remove('hidden');
+			return null;
+		}
+
+		// Evaluar la expresión de comparación
+		switch (operator) {
+			case '==':
+			return firstVal === secondVal;
+			case '!=':
+			return firstVal !== secondVal;
+			case '>':
+			return firstVal > secondVal;
+			case '>=':
+			return firstVal >= secondVal;
+			case '<':
+			return firstVal < secondVal;
+			case '<=':
+			return firstVal <= secondVal;
+			default:
+			return false;
+		}
+	  }
+  
+  
+	  // Visit a parse tree produced by CompilatorParser#logicalExpr.
+	  visitLogicalExpr(ctx) {
+		const firstVal = this.visit(ctx.expr(0));
+		const secondVal = this.visit(ctx.expr(1));
+		const operator = ctx.OL().getText();
+
+		// Evaluar la expresión lógica
+		switch (operator) {
+			case '&&':
+			return firstVal && secondVal;
+			case '||':
+			return firstVal || secondVal;
+			default:
+			return false;
+		}
+	  }
+
+	  // Visit a parse tree produced by CompilatorParser#boolCondition.
+	  visitBoolCondition(ctx) {
+		const bool = ctx.BOOL().getText();
+		console.log('visitBool');
+		return this.visitChildren(ctx);
 	  }
 
 	  // Visit a parse tree produced by CompilatorParser#condition.
@@ -203,6 +280,14 @@ export default class CustomVisitor extends CompilatorVisitor {
 	
 				case '!=':
 					result = firstVal !== secondVal;
+					break;
+
+				case '&&':
+					result = firstVal && secondVal;
+					break;
+
+				case '||':
+					result = firstVal || secondVal;
 					break;
 					
 				default:
