@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { createTheme } from '@uiw/codemirror-themes';
 import { calcular } from '@/module/generador';
@@ -9,6 +9,7 @@ const Page = () => {
   const [expressions, setExpressions] = useState('');
   const [code, setCode] = useState('');
   const [result, setResult] = useState('');
+  const editorRef = useRef(null);
 
   const inputChange = (e) => {
     const input = e.target.value;
@@ -105,6 +106,7 @@ const Page = () => {
                     options={{
                         lineNumbers: true,
                         tabSize: 4,
+                        mode: 'sweet-custom',
                     }}
                     style={{
                         borderRadius: '0.375rem',

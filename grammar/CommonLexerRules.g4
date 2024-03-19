@@ -8,15 +8,8 @@ MINUS               :   '-';
 TIMES               :   '*';
 DIV                 :   '/';
 
-OC                  : ('<'|'>'|'<='|'>=');
+OC                  : ('<'|'>'|'<='|'>='|'!=');
 OL                  : ('||'|'&&'|'==');
-
-MAYORQUE            :   '>';
-MENORQUE            :   '<';
-MAYORIGUAL          :   '>=';
-MENORIGUAL          :   '<=';
-DOBLEIGUAL          :   '==';
-DIFERENTE           :   '!=';
 
 SWEET               :       'Sweet';
 SWEETCONDITION      :       'SweetCondition';

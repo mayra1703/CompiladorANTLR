@@ -139,12 +139,14 @@ export default class CustomVisitor extends CompilatorVisitor {
 		console.log('Visitando IfStatement');
 		let conditionResult = this.visit(ctx.condition())
 
-		if(conditionResult){
-			return this.visit(ctx.statement(0));
-		}
-
-		else if(ctx.ELSE()){
-			return this.visit(ctx.statement(1));
+		if(conditionResult !== null){
+			if(conditionResult){
+				return this.visit(ctx.statement(0));
+			}
+	
+			else if(ctx.ELSE()){
+				return this.visit(ctx.statement(1));
+			}
 		}
 
 		return null;
@@ -154,40 +156,61 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  visitCondition(ctx) {
 		console.log('Visitando visitCondition');
 		console.log(this.visitChildren(ctx));
+		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
 		const firstVal = this.visit(ctx.expr(0));
 		const secondVal = this.visit(ctx.expr(1));
+		const firstValText = ctx.expr(0).getText();
+		const secondValText = ctx.expr(1).getText();
+
 		let operator = ctx.operator.text;
 		let result;
 
-		switch(operator){
-			case '>':
-				result = firstVal > secondVal;
-				break;
-
-			case '<':
-				result = firstVal < secondVal;
-				break;
-
-			case '>=':
-				result = firstVal >= secondVal;
-				break;
-
-			case '<=':
-				result = firstVal <= secondVal;
-				break;
-			
-			case '==':
-				result = firstVal === secondVal;
-				break;
-
-			case '!=':
-				result = firstVal !== secondVal;
-				break;
-				
-			default:
-				result = false;
-				break;
+		// Verificar si los valores de las expresiones son identificadores y si están declarados en la memoria
+		if (!this.memory.has(firstValText)) {
+			error.innerHTML += `Syntax error on line ${lineNumber}: Identifier '${firstValText}' not found. Skipping evaluation. <br>`;
+			contenedorError.classList.remove('hidden');
+			return null;
 		}
+		  
+		else if (!this.memory.has(secondValText)) {
+			error.innerHTML += `Syntax error on line ${lineNumber}: Identifier '${secondValText}' not found. Skipping evaluation. <br>`;
+			contenedorError.classList.remove('hidden');
+			return null;
+		}
+
+		else{
+			switch(operator){
+				case '>':
+					result = firstVal > secondVal;
+					break;
+	
+				case '<':
+					result = firstVal < secondVal;
+					break;
+	
+				case '>=':
+					result = firstVal >= secondVal;
+					break;
+	
+				case '<=':
+					result = firstVal <= secondVal;
+					break;
+				
+				case '==':
+					result = firstVal === secondVal;
+					break;
+	
+				case '!=':
+					result = firstVal !== secondVal;
+					break;
+					
+				default:
+					result = false;
+					break;
+			}
+		}
+		
 		return result;
 	  }
   
