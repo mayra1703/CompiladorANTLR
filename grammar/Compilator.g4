@@ -5,7 +5,7 @@ file        :   start+;
 
 start       :   SWEET INITKEY NEWLINE block FINALKEY;
 
-block       :   contenido*?
+block       :   contenido*
             ;
 
 contenido   :   declaracion
@@ -26,7 +26,7 @@ impresion   :   ARROW SHOW '(' expr ')' PUNTITO NEWLINE #showExpr
             |   ARROW SHOW '(' STRING ')' PUNTITO NEWLINE #showString
             ;
 
-ifStatement :   SWEETCONDITION '(' condition ')' INITKEY NEWLINE contenido* FINALKEY NEWLINE
+ifStatement :   SWEETCONDITION '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE (ELSE INITKEY NEWLINE block FINALKEY)? 
             ;
 
 condition   :    cond_value = (OC | OL)

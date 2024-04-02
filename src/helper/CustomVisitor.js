@@ -152,14 +152,17 @@ export default class CustomVisitor extends CompilatorVisitor {
 		let conditionResult = this.visit(ctx.condition())
 
 		if(conditionResult){
-			if(conditionResult){
-				this.visit(ctx.contenido())
-			}
+			return this.visit(ctx.block(0));
+		}
+
+		else if (ctx.ELSE()){
+			console.log('Si hay else');
+			return this.visit(ctx.block(1))
 		}
 	
 		return null;
 	  }
-
+	  
 	  // Visit a parse tree produced by CompilatorParser#condition.
 	  visitCondition(ctx) {
 		console.log('Visitando visitCondition');
