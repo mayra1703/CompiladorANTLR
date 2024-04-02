@@ -8,12 +8,14 @@ start        :   SWEET INITKEY NEWLINE contenido FINALKEY;
 contenido   :   expr
             |   (declaracion | impresion | ifStatement)*
             |   STRING
+            |   COMMENT
+            |   LINECOMMENT
             ;
 
-declaracion :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
-            |   GATITO TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
-            |   GATITO TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
-            |   GATITO TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
+declaracion :   GATITO TYPE ID PUNTITO (LINECOMMENT)? NEWLINE  #validAssign
+            |   GATITO TYPE VALORID = (WRONGID | NUM) PUNTITO (LINECOMMENT)? NEWLINE    #invalidAssign
+            |   GATITO TYPE ID '=' expr PUNTITO (LINECOMMENT)? NEWLINE    #validAssign
+            |   GATITO TYPE VALORID = (WRONGID | NUM) '=' expr (LINECOMMENT)? PUNTITO NEWLINE    #invalidAssign
             ;
 
 impresion   :   ARROW SHOW '(' expr ')' PUNTITO NEWLINE #showExpr
