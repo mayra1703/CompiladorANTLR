@@ -19,7 +19,7 @@
     <li>
       <a href="#impresion-de-variables">Impresion de variables</a>
     </li>
-    <li><a href="#usage">Condicionales</a></li>
+    <li><a href="#condicionales">Condicionales</a></li>
     <ul>
         <li><a href="#built-with">SweetCondition</a></li>
         <li><a href="#built-with">Else if</a></li>
