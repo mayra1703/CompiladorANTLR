@@ -9,7 +9,7 @@
     <li>
       <a href="#declaracion-de-variables">Declaracion de Variables</a>
       <ul>
-        <li><a href="#built-with">Declaracion de Variables con Asignación</a></li>
+        <li><a href="#declaracion-de-variables-con-asignacion">Declaracion de Variables con Asignación</a></li>
       </ul>
     </li>
     <li>
