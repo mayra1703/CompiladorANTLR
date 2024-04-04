@@ -23,7 +23,7 @@
     <ul>
         <li><a href="#sweetcondition">SweetCondition</a></li>
         <li><a href="#else-if">Else if</a></li>
-        <li><a href="#built-with">Else</a></li>
+        <li><a href="#else">Else</a></li>
     </ul>
   </ol>
 </details>
