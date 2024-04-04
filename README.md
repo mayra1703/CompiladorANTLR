@@ -6,9 +6,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#declaracion-de-variables">About The Project</a>
+      <a href="#declaracion-de-variables">Declaracion de Variables</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Declaracion de Variables con Asignación</a></li>
       </ul>
     </li>
     <li>
