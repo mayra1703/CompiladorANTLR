@@ -34,6 +34,7 @@
 Este proyecto fue hecho con las siguientes librerias
 * [![Next][Next.js]][Next-url]
 * [![Tailwind][Tailwind.css]][Tailwind-url]
+* [![antlr][antlr]][antlr-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -64,3 +65,5 @@ Sweet Code permite realizar impresion de variables para mostar el identificador 
 [Next-url]: https://nextjs.org/
 [Tailwind.css]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 [Tailwind-url]: https://tailwindcss.com
+[antlr]: https://img.shields.io/badge/ANTLR-FF0000?style=for-the-badge&logo=antlr&logoColor=white
+[antlr-url]: https://www.antlr.org
