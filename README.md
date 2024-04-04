@@ -32,7 +32,7 @@
 
 ### Hecho Con
 This section should list any major frameworks/libraries used to bootstrap your project.
-* [![Next][Next.js]][https://nextjs.org]
+* [![Next][Next.js]][Next-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -56,3 +56,8 @@ Sweet Code permite realizar impresion de variables para mostar el identificador 
 ### Else if
 
 ### Else
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
