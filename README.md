@@ -7,7 +7,7 @@
   <ol>
     <li><a href="#acerca-del-proyecto">Acerca del proyecto</a></li>
     <ul>
-        <li><a href="#declaracion-de-variables-con-asignacion">Hecho con</a></li>
+        <li><a href="#hecho-con">Hecho con</a></li>
     </ul>
     <li><a href="#usage">Estructura Basica</a></li>
     <li>
