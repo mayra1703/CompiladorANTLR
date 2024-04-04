@@ -5,7 +5,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#usage">Acerca del proyecto</a></li>
+    <li><a href="#acerca-del-proyecto">Acerca del proyecto</a></li>
     <ul>
         <li><a href="#declaracion-de-variables-con-asignacion">Hecho con</a></li>
     </ul>
