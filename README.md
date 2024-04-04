@@ -31,7 +31,7 @@
 ### Acerca del Proyecto
 
 ### Hecho Con
-This section should list any major frameworks/libraries used to bootstrap your project.
+Este proyecto fue hecho con las siguientes librerias
 * [![Next][Next.js]][Next-url]
 * [![Tailwind][Tailwind.css]][Tailwind-url]
 
