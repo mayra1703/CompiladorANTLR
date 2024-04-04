@@ -32,7 +32,7 @@
 
 ### Hecho Con
 This section should list any major frameworks/libraries used to bootstrap your project.
-* [![Next][Next.js]][Next-url]
+* [![Next][Next.js]][https://nextjs.org]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
