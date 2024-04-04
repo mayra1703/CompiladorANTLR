@@ -5,6 +5,10 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#usage">Acerca del proyecto</a></li>
+    <ul>
+        <li><a href="#declaracion-de-variables-con-asignacion">Hecho con</a></li>
+    </ul>
     <li><a href="#usage">Estructura Basica</a></li>
     <li>
       <a href="#declaracion-de-variables">Declaracion de Variables</a>
