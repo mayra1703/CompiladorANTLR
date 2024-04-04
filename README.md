@@ -28,6 +28,12 @@
   </ol>
 </details>
 
+- ### Acerca del Proyecto
+
+* ### Hecho Con
+
++ ### Estructura Basica
+  
 - ### Declaracion de Variables
   Sweet Code permite realizar declaracion de variables con la sintaxis: `# tipo_dato identificador .` Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
 
@@ -37,3 +43,5 @@ Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el iden
 
 + ### Impresion de Variables
   Sweet Code permite realizar impresion de variables para mostar el identificador junto a su valor, siguiendo la siguiente sintaxis: `-> SHOW identificador .` Donde se debe comenzar con una flecha '->', seguido de la palabra **SHOW** en mayuscula, despues el identificador que se quiere mostrar y terminar con un punto.
+
+- ### Declaracion de Variables
