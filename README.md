@@ -9,7 +9,7 @@
     <ul>
         <li><a href="#hecho-con">Hecho con</a></li>
     </ul>
-    <li><a href="#usage">Estructura Basica</a></li>
+    <li><a href="#estructura-basica">Estructura Basica</a></li>
     <li>
       <a href="#declaracion-de-variables">Declaracion de Variables</a>
       <ul>
