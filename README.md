@@ -32,10 +32,9 @@
 
 * ### Hecho Con
   Este proyecto fue hecho con las siguientes librerias
-* [![Next][Next.js]][Next-url]
-* [![Tailwind][Tailwind.css]][Tailwind-url]
-* [![antlr][antlr]][antlr-url]
-
+  * [![Next][Next.js]][Next-url]
+  * [![Tailwind][Tailwind.css]][Tailwind-url]
+  * [![antlr][antlr]][antlr-url]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
