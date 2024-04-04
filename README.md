@@ -13,7 +13,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Impresion de variables</a>
+      <a href="#impresion-de-variables">Impresion de variables</a>
     </li>
     <li><a href="#usage">Condicionales</a></li>
     <ul>
