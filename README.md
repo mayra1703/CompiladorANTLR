@@ -5,6 +5,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#usage">Estructura Basica</a></li>
     <li>
       <a href="#declaracion-de-variables">Declaracion de Variables</a>
       <ul>
@@ -13,17 +14,13 @@
     </li>
     <li>
       <a href="#getting-started">Impresion de variables</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#usage">Condicionales</a></li>
+    <ul>
+        <li><a href="#built-with">SweetCondition</a></li>
+        <li><a href="#built-with">Else if</a></li>
+        <li><a href="#built-with">Else</a></li>
+    </ul>
   </ol>
 </details>
 
