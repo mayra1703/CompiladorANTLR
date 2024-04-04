@@ -33,6 +33,7 @@
 ### Hecho Con
 This section should list any major frameworks/libraries used to bootstrap your project.
 * [![Next][Next.js]][Next-url]
+* [![Tailwind][Tailwind.css]][Tailwind-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
