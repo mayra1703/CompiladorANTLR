@@ -44,4 +44,10 @@ Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el iden
 + ### Impresion de Variables
   Sweet Code permite realizar impresion de variables para mostar el identificador junto a su valor, siguiendo la siguiente sintaxis: `-> SHOW identificador .` Donde se debe comenzar con una flecha '->', seguido de la palabra **SHOW** en mayuscula, despues el identificador que se quiere mostrar y terminar con un punto.
 
-- ### Declaracion de Variables
+- ### Condicionales
+  
+* ### SweetCondition
+
++ ### Else if
+
+- ### Else
