@@ -43,7 +43,7 @@
 ## Declaracion de Variables
   Sweet Code permite realizar declaracion de variables con la sintaxis: `# tipo_dato identificador .` Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
 
-* ## Declaracion de Variables con Asignacion
+* ### Declaracion de Variables con Asignacion
   Sweet Code permite realizar declaracion de variables con asignacion siguiendo la siguiente sintaxis: `# tipo_dato identificador = asignacion .`
 Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador, un signo de igual '=', una asignacion y, de igual forma, debe terminar con un punto.
 
