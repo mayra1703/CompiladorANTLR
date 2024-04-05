@@ -52,11 +52,11 @@ Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el iden
 
 ## Condicionales
   
-* ## SweetCondition
+* ### SweetCondition
 
-* ## Else if
+* ### Else if
 
-* ## Else
+* ### Else
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
