@@ -35,13 +35,15 @@
   * [![Next][Next.js]][Next-url]
   * [![Tailwind][Tailwind.css]][Tailwind-url]
   * [![antlr][antlr]][antlr-url]
-<p align="right">(<a href="#compilador-antlr">back to top</a>)</p>
+<p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
 
 ## Estructura Basica
+<p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
   
 ## Declaracion de Variables
-  Sweet Code permite realizar declaracion de variables con la sintaxis: `# tipo_dato identificador .` Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
+Sweet Code permite realizar declaracion de variables con la sintaxis: `# tipo_dato identificador .` Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
+<p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
 * ### Declaracion de Variables con Asignacion
   Sweet Code permite realizar declaracion de variables con asignacion siguiendo la siguiente sintaxis: `# tipo_dato identificador = asignacion .`
