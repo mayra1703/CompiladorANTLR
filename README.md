@@ -29,7 +29,7 @@
 </details>
 
 ## Acerca del Proyecto
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://compilador-antlr.vercel.app)
 
 * ### Built With
   Este proyecto fue hecho con las siguientes librerias
@@ -82,3 +82,4 @@ Versel: https://compilador-antlr.vercel.app
 [Tailwind-url]: https://tailwindcss.com
 [antlr]: https://img.shields.io/badge/ANTLR-FF0000?style=for-the-badge&logo=antlr&logoColor=white
 [antlr-url]: https://www.antlr.org
+[product-screenshot]: public/screenshot.png
