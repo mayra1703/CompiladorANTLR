@@ -7,7 +7,7 @@
   <ol>
     <li><a href="#acerca-del-proyecto">Acerca del proyecto</a></li>
     <ul>
-        <li><a href="#hecho-con">Hecho con</a></li>
+        <li><a href="#built-with">Built With</a></li>
     </ul>
     <li><a href="#estructura-basica">Estructura Basica</a></li>
     <li>
