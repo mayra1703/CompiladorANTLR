@@ -30,7 +30,7 @@
 
 ## Acerca del Proyecto
 
-* ### Hecho Con
+* ### Built With
   Este proyecto fue hecho con las siguientes librerias
   * [![Next][Next.js]][Next-url]
   * [![Tailwind][Tailwind.css]][Tailwind-url]
