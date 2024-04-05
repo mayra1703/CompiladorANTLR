@@ -66,9 +66,9 @@ Sweet Code permite realizar impresion de variables para mostar el identificador 
 <!-- CONTACT -->
 ## Contact
 
-Mayra Dayana Méndez Robles - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Mayra D. Méndez Robles - maymendez3666@gmail.com
 
-Project Link: [https://github.com/mayra1703/CompiladorANTLR](https://github.com/mayra1703/CompiladorANTLR)
+Project Link: https://github.com/mayra1703/CompiladorANTLR
 
 Versel: https://compilador-antlr.vercel.app
 
