@@ -35,7 +35,7 @@
   * [![Next][Next.js]][Next-url]
   * [![Tailwind][Tailwind.css]][Tailwind-url]
   * [![antlr][antlr]][antlr-url]
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#compilador-antlr">back to top</a>)</p>
 
 
 ## Estructura Basica
