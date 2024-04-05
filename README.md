@@ -25,6 +25,7 @@
         <li><a href="#else-if">Else if</a></li>
         <li><a href="#else">Else</a></li>
     </ul>
+    <li><a href="#contact">Estructura Basica</a></li>
   </ol>
 </details>
 
@@ -65,14 +66,11 @@ Sweet Code permite realizar impresion de variables para mostar el identificador 
 
 <!-- CONTACT -->
 ## Contact
-
 Mayra D. Méndez Robles - maymendez3666@gmail.com
-
 Project Link: https://github.com/mayra1703/CompiladorANTLR
-
 Versel: https://compilador-antlr.vercel.app
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
