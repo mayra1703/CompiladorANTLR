@@ -114,13 +114,16 @@ Este lenguaje se compone de tres tipos de datos:
 
   * ### Impresion de Variables
     Sweet Code permite realizar impresion de variables para mostar el identificador junto a su valor, siguiendo la siguiente sintaxis:
-    >-> SHOW identificador .
+    >-> SHOW (identificador) .
     
     Donde se debe comenzar con una flecha '->', seguido de la palabra **SHOW** en mayuscula, despues el identificador que se quiere mostrar y terminar con un punto.
 
   * ### Condicionales
   
     * ### SweetCondition
+      >SweetCondition(condition) {
+      > // block
+      >}
 
     * ### Else if
 
