@@ -60,7 +60,8 @@
     ```sh
     npm i antlr4
     ```
-
+  <p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
+  
   ### Installation
   Para poder ejecutar correctamente el proyecto, es necesitario clonar el repositorio e instalar los correspondientes paquetes de npm y antlr.
 
@@ -80,7 +81,7 @@
      ```sh
      npm run dev
      ```
-  <p align="right">(<a href="#readme-top">back to top</a>)</p>
+  <p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
 
 ## Estructura Basica
