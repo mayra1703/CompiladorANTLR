@@ -136,7 +136,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 	  // Visit a parse tree produced by CompilatorParser#showString.
 	  visitShowString(ctx) {
-		const string = ctx.STRING().getText();
+		const string = ctx.STARSTRING().getText();
 
 		const contenedorImpresion = document.getElementById('contenedorImpresion');
 		const mensaje = document.getElementById('mensajeImpresion');
@@ -156,12 +156,12 @@ export default class CustomVisitor extends CompilatorVisitor {
 		}
 
 		else if (ctx.elseIfStatement()){
-			console.log('Si hay else if');
+			console.log('else if condition');
 			return this.visit(ctx.elseIfStatement())
 		}
 
 		else if (ctx.elseStatement()){
-			console.log('Si hay else');
+			console.log('else condition');
 			return this.visit(ctx.elseStatement())
 		}
 	
@@ -230,10 +230,10 @@ export default class CustomVisitor extends CompilatorVisitor {
 				result = firstVal || secondVal;
 				break;
 
-			case 'true':
+			case 'peaceful':
 				return true
 
-			case 'false':
+			case 'chaotic':
 				return false
 					
 			default:

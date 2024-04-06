@@ -1,8 +1,8 @@
 lexer grammar CommonLexerRules;
 
 
-TYPE                :       'mint' | 'mintchar' | 'mintflot';
-STRING              :       '"' .*? '"';
+TYPE                :       'relaxint' | 'nightchar' | 'skyfloat';
+STARSTRING          :       '"' .*? '"';
 
 PLUS                :       '+';
 MINUS               :       '-';
@@ -10,15 +10,14 @@ TIMES               :       '*';
 DIV                 :       '/';
 
 OC                  :       ('<'|'>'|'<='|'>='|'!=');
-OL                  :       ('||'|'&&'|'=='|'true'|'false');
-BOOL                :       ('true'|'false');
+OL                  :       ('||'|'&&'|'=='|'peaceful'|'chaotic');
 
-SWEET               :       'Sweet';
-SWEETCONDITION      :       'SweetCondition';
-ELSE                :       'Else';
-IF                  :       'if';
+SERENITYCLASS       :       'SerenityClass';
+COZYCONDITION       :       'CozyCondition';
+TWILIGHTOPTION      :       'TwilightOption';
+DREAMYELSE          :       'DreamElse';
 ARROW               :       '->';
-SHOW                :       'SHOW';
+WHISPER             :       'WHISPER';
 INITKEY             :       '{';
 FINALKEY            :       '}';
 GATITO              :       '#';
