@@ -32,7 +32,7 @@
         <li><a href="#else-if">Else if</a></li>
         <li><a href="#else">Else</a></li>
     </ul>
-    <li><a href="#contact">Estructura Basica</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
