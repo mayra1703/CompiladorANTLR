@@ -130,6 +130,15 @@ Este lenguaje se compone de tres tipos de datos:
     * ### Else if
 
     * ### Else
+      >SweetCondition(condition) {
+      >
+      > // block
+      >
+      >}
+      >
+      >Else {
+      >
+      >}
   <p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
 <!-- CONTACT -->
