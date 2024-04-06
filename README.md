@@ -121,15 +121,12 @@ Este lenguaje se compone de tres tipos de datos:
     * ### SweetCondition
       >SweetCondition(condition) {
       >
-      > // block
-      >
       >}
 
     * ### Else if
 
     * ### Else
       >SweetCondition(condition) {
-      >
       >
       >}
       >
