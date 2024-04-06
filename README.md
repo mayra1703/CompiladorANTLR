@@ -62,30 +62,29 @@
     ```
 
 * ### Installation
- _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+  Para poder ejecutar correctamente el proyecto, es necesitario clonar el repositorio e instalar los correspondientes paquetes de npm y antlr.
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Install ANTLR
-   ```sh
-   npm i antlr4
-   ```
-4. Install HashMap (Memory for ANTLR)
-   ```sh
-   npm i hashmap
-   ```
-5. Run server
-   ```sh
-   npm run dev
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+  1. Clone the repo
+     ```sh
+     git clone https://github.com/your_username_/Project-Name.git
+     ```
+  2. Install NPM packages
+     ```sh
+     npm install
+     ```
+  3. Install ANTLR
+     ```sh
+     npm i antlr4
+     ```
+  4. Install HashMap (Memory for ANTLR)
+     ```sh
+     npm i hashmap
+     ```
+  5. Run server
+     ```sh
+     npm run dev
+     ```
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Estructura Basica
