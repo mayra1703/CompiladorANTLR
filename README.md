@@ -49,7 +49,7 @@
 
 ## Getting Started
   
-* ### Prerequisites
+  ### Prerequisites
   Para poder utilizar correctamente este proyecto es necesario contar con la instación de node.js ya que se utilizará npm, al igual que la instalación de antlr4.
   * npm
     ```sh
@@ -61,7 +61,7 @@
     npm i antlr4
     ```
 
-* ### Installation
+  ### Installation
   Para poder ejecutar correctamente el proyecto, es necesitario clonar el repositorio e instalar los correspondientes paquetes de npm y antlr.
 
   1. Clone the repo
