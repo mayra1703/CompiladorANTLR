@@ -3,7 +3,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  ### <summary>Table of Contents</summary>
+  <summary>### Table of Contents</summary>
   <ol>
     <li><a href="#acerca-del-proyecto">Acerca del proyecto</a></li>
     <ul>
