@@ -16,6 +16,7 @@ BOOL                :       ('true'|'false');
 SWEET               :       'Sweet';
 SWEETCONDITION      :       'SweetCondition';
 ELSE                :       'Else';
+IF                  :       'if';
 ARROW               :       '->';
 SHOW                :       'SHOW';
 INITKEY             :       '{';

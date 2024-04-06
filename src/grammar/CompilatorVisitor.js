@@ -60,6 +60,18 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by CompilatorParser#elseIfStatement.
+	visitElseIfStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#elseStatement.
+	visitElseStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by CompilatorParser#condition.
 	visitCondition(ctx) {
 	  return this.visitChildren(ctx);

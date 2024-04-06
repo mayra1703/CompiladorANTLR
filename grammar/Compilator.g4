@@ -26,8 +26,12 @@ impresion   :   ARROW SHOW '(' expr ')' PUNTITO NEWLINE #showExpr
             |   ARROW SHOW '(' STRING ')' PUNTITO NEWLINE #showString
             ;
 
-ifStatement :   SWEETCONDITION '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE (ELSE INITKEY NEWLINE block FINALKEY)? 
+ifStatement :   SWEETCONDITION '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE (elseIfStatement | elseStatement)?
             ;
+
+elseIfStatement :   ELSE IF '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE;
+
+elseStatement : ELSE INITKEY NEWLINE block FINALKEY NEWLINE;
 
 condition   :    cond_value = (OC | OL)
             |    expr cond_value = (OC | OL) expr

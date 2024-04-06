@@ -155,14 +155,40 @@ export default class CustomVisitor extends CompilatorVisitor {
 			return this.visit(ctx.block(0));
 		}
 
-		else if (ctx.ELSE()){
+		else if (ctx.elseIfStatement()){
+			console.log('Si hay else if');
+			return this.visit(ctx.elseIfStatement())
+		}
+
+		else if (ctx.elseStatement()){
 			console.log('Si hay else');
-			return this.visit(ctx.block(1))
+			return this.visit(ctx.elseStatement())
 		}
 	
 		return null;
 	  }
 	  
+
+	  // Visit a parse tree produced by CompilatorParser#elseIfStatement.
+	  visitElseIfStatement(ctx) {
+		console.log('Visitando ElseIfStatement');
+		let conditionResult = this.visit(ctx.condition());
+
+		if (conditionResult) {
+			return this.visit(ctx.block());
+		}
+
+		return null;
+	  }
+  
+  
+	  // Visit a parse tree produced by CompilatorParser#elseStatement.
+	  visitElseStatement(ctx) {
+		console.log('Visitando ElseStatement');
+    	return this.visit(ctx.block());
+	  }
+  
+  
 	  // Visit a parse tree produced by CompilatorParser#condition.
 	  visitCondition(ctx) {
 		console.log('Visitando visitCondition');
