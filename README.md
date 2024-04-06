@@ -93,10 +93,9 @@ Este lenguaje se compone de tres tipos de datos:
 
 ## Estructura Basica
   * ### Bloque de código
+    Para iniciar un bloque de codigo es necesario iniciar con la palabra reservada Sweet seguido de llaves; dentro de estas se encontrará el contenido deseado
     `Sweet {
-    
-    // Contenido
-    
+      // contenido
     }`
 
   * ### Declaracion de Variables
