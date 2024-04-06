@@ -1,6 +1,4 @@
 # Compilador ANTLR
-**Sweet Code** es un nuevo lenguaje creado por mí basado en el lenguaje C# pero con cambios en sintaxis y nuevos tipos de datos (mint, mintchar, minfloat). Por el momento, este nuevo lenguaje de programación permite realizar:
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary><b>Table of Contents<b></summary>
@@ -92,7 +90,7 @@ Este lenguaje se compone de tres tipos de datos:
 
 
 ## Estructura Basica
-  * ### **Bloque de código**
+  * ### Bloque de código
     Para iniciar un bloque de codigo es necesario iniciar con la palabra reservada Sweet seguido de llaves; dentro de estas se encontrará el contenido deseado
     >Sweet {
     >
