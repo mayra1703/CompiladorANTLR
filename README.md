@@ -39,7 +39,14 @@
 ## Acerca del Proyecto
 [![Product Name Screen Shot][product-screenshot]](https://compilador-antlr.vercel.app)
 
-* ### Built With
+Sweet Code tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
+
+Este lenguaje se compone de tres tipos de datos:
+  *Mint: Tipo de dato entero.
+  *Mintchar: Tipo de dato decimal.
+  *Mintflot: Tipo de dato flotante
+  
+### Built With
   Este proyecto fue hecho con las siguientes librerias
   * [![Next][Next.js]][Next-url]
   * [![antlr][antlr]][antlr-url]
@@ -85,6 +92,12 @@
 
 
 ## Estructura Basica
+Sweet Code tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
+
+Este lenguaje se compone de tres tipos de datos:
+  *Mint: Tipo de dato entero.
+  *Mintchar: Tipo de dato decimal.
+  *Mintflot: Tipo de dato flotante
 <p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
   
 ## Declaracion de Variables
