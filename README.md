@@ -42,9 +42,9 @@
 Sweet Code tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
 
 Este lenguaje se compone de tres tipos de datos:
-  * ### Mint: Tipo de dato entero.
-  * ### Mintchar: Tipo de dato decimal.
-  * ### Mintflot: Tipo de dato flotante
+  * **Mint**: Tipo de dato entero.
+  * **Mintchar**: Tipo de dato decimal.
+  * **Mintflot**: Tipo de dato flotante
   
 ### Built With
   Este proyecto fue hecho con las siguientes librerias
