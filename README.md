@@ -66,7 +66,7 @@
 
   1. Clone the repo
      ```sh
-     git clone https://github.com/your_username_/Project-Name.git
+     git clone https://github.com/mayra1703/CompiladorANTLR.git
      ```
   2. Install NPM packages
      ```sh
@@ -76,11 +76,7 @@
      ```sh
      npm i antlr4
      ```
-  4. Install HashMap (Memory for ANTLR)
-     ```sh
-     npm i hashmap
-     ```
-  5. Run server
+  4. Run server
      ```sh
      npm run dev
      ```
