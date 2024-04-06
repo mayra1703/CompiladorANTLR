@@ -42,9 +42,9 @@
 Sweet Code tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
 
 Este lenguaje se compone de tres tipos de datos:
-  * Mint: Tipo de dato entero.
-  * Mintchar: Tipo de dato decimal.
-  * Mintflot: Tipo de dato flotante
+  * ### Mint: Tipo de dato entero.
+  * ### Mintchar: Tipo de dato decimal.
+  * ### Mintflot: Tipo de dato flotante
   
 ### Built With
   Este proyecto fue hecho con las siguientes librerias
@@ -100,11 +100,9 @@ Este lenguaje se compone de tres tipos de datos:
   * ### Declaracion de Variables con Asignacion
     Sweet Code permite realizar declaracion de variables con asignacion siguiendo la siguiente sintaxis: `# tipo_dato identificador = asignacion .`
 Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador, un signo de igual '=', una asignacion y, de igual forma, debe terminar con un punto.
-<p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
   * ### Impresion de Variables
     Sweet Code permite realizar impresion de variables para mostar el identificador junto a su valor, siguiendo la siguiente sintaxis: `-> SHOW identificador .` Donde se debe comenzar con una flecha '->', seguido de la palabra **SHOW** en mayuscula, despues el identificador que se quiere mostrar y terminar con un punto.
-<p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
   * ### Condicionales
   
