@@ -132,7 +132,7 @@ Este lenguaje se compone de tres tipos de datos:
     * ### Else
       >SweetCondition(condition) {
       >
-      > // block
+      > ---
       >
       >}
       >
