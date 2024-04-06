@@ -94,6 +94,9 @@ Este lenguaje se compone de tres tipos de datos:
 ## Estructura Basica
   * ### Bloque de código
     `Sweet {
+    
+    // Contenido
+    
     }`
 
   * ### Declaracion de Variables
