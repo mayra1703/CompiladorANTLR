@@ -49,10 +49,15 @@
 ## Getting Started
   
 * ### Prerequisites
-This is an example of how to list things you need to use the software and how to install them.
+Para poder utilizar correctamente este proyecto es necesario contar con la instación de node.js ya que se utilizará npm, al igual que la instalación de antlr4.
 * npm
   ```sh
   npm i npx
+  ```
+
+* antlr
+  ```sh
+  npm i antlr4
   ```
 
 * ### Installation
