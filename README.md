@@ -42,8 +42,9 @@
 * ### Built With
   Este proyecto fue hecho con las siguientes librerias
   * [![Next][Next.js]][Next-url]
-  * [![Tailwind][Tailwind.css]][Tailwind-url]
   * [![antlr][antlr]][antlr-url]
+  * [![node.js][node.js]][node-url] 
+  * [![Tailwind][Tailwind.css]][Tailwind-url]
 <p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
 
 ## Getting Started
@@ -102,4 +103,6 @@ Versel Link: https://compilador-antlr.vercel.app
 [Tailwind-url]: https://tailwindcss.com
 [antlr]: https://img.shields.io/badge/ANTLR-FF0000?style=for-the-badge&logo=antlr&logoColor=white
 [antlr-url]: https://www.antlr.org
+[node.js]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white
+[node-url]: https://nodejs.org/en
 [product-screenshot]: public/screenshot.png
