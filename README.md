@@ -50,19 +50,44 @@
 ## Getting Started
   
 * ### Prerequisites
-Para poder utilizar correctamente este proyecto es necesario contar con la instación de node.js ya que se utilizará npm, al igual que la instalación de antlr4.
-* npm
-  ```sh
-  npm i npx
-  ```
-
-* antlr
-  ```sh
-  npm i antlr4
-  ```
+  Para poder utilizar correctamente este proyecto es necesario contar con la instación de node.js ya que se utilizará npm, al igual que la instalación de antlr4.
+  * npm
+    ```sh
+    npm i npx
+    ```
+  
+  * antlr
+    ```sh
+    npm i antlr4
+    ```
 
 * ### Installation
- 
+ _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Install ANTLR
+   ```sh
+   npm i antlr4
+   ```
+4. Install HashMap (Memory for ANTLR)
+   ```sh
+   npm i hashmap
+   ```
+5. Run server
+   ```sh
+   npm run dev
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 ## Estructura Basica
 <p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
   
