@@ -115,7 +115,7 @@ Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el iden
 
 <!-- CONTACT -->
 ## Contact
-Mayra D. Méndez Robles - maymendez3666@gmail.com
+Mayra D. Méndez Robles - <maymendez3666@gmail.com>
 
 Versel Link: https://compilador-antlr.vercel.app
 
