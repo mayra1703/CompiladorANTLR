@@ -96,6 +96,8 @@ Este lenguaje se compone de tres tipos de datos:
     >
     >}
 
+---
+
   * ### Declaracion de Variables
     Moonlight Code permite realizar declaracion de variables con la sintaxis:
     >\# tipo_dato identificador .
