@@ -1,4 +1,4 @@
-# Compilador ANTLR
+# Moonlight Code: Compilador ANTLR
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary><b>Table of Contents<b></summary>
@@ -26,9 +26,9 @@
     </li>
     <li><a href="#condicionales">Condicionales</a></li>
     <ul>
-        <li><a href="#sweetcondition">SweetCondition</a></li>
-        <li><a href="#else-if">Else if</a></li>
-        <li><a href="#else">Else</a></li>
+        <li><a href="#sweetcondition">CozyCondition</a></li>
+        <li><a href="#else-if">TwilightOption</a></li>
+        <li><a href="#else">DreamElse</a></li>
     </ul>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -37,12 +37,12 @@
 ## Acerca del Proyecto
 [![Product Name Screen Shot][product-screenshot]](https://compilador-antlr.vercel.app)
 
-Sweet Code tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
+Moonlight Code tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
 
 Este lenguaje se compone de tres tipos de datos:
-  * **Mint**: Tipo de dato entero.
-  * **Mintchar**: Tipo de dato decimal.
-  * **Mintflot**: Tipo de dato flotante
+  * **Relaxint**: Tipo de dato entero.
+  * **Nightchar**: Tipo de dato decimal.
+  * **Skyfloat**: Tipo de dato flotante
   
 ### Built With
   Este proyecto fue hecho con las siguientes librerias
@@ -91,44 +91,44 @@ Este lenguaje se compone de tres tipos de datos:
 
 ## Estructura Basica
   * ### Bloque de código
-    Para iniciar un bloque de codigo es necesario iniciar con la palabra reservada Sweet seguido de llaves; dentro de estas se encontrará el contenido deseado
-    >Sweet {
+    Para iniciar un bloque de codigo es necesario iniciar con la palabra reservada SerenityClass seguido de llaves; dentro de estas se encontrará el contenido deseado
+    >SerenityClass {
     >
     >}
 
   * ### Declaracion de Variables
-    Sweet Code permite realizar declaracion de variables con la sintaxis:
+    Moonlight Code permite realizar declaracion de variables con la sintaxis:
     >\# tipo_dato identificador .
     
     Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
 
   * ### Declaracion de Variables con Asignacion
-    Sweet Code permite realizar declaracion de variables con asignacion siguiendo la siguiente sintaxis:
+    Moonlight Code permite realizar declaracion de variables con asignacion siguiendo la siguiente sintaxis:
     >\# tipo_dato identificador = asignacion .
     
     Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador, un signo de igual '=', una asignacion y, de igual forma, debe terminar con un punto.
 
   * ### Impresion de Variables
-    Sweet Code permite realizar impresion de variables para mostar el identificador junto a su valor, siguiendo la siguiente sintaxis:
-    >-> SHOW (identificador) .
+    Moonlight Code permite realizar impresion de variables para mostar el identificador junto a su valor, siguiendo la siguiente sintaxis:
+    >-> Whisper (identificador) .
     
-    Donde se debe comenzar con una flecha '->', seguido de la palabra **SHOW** en mayuscula, despues el identificador que se quiere mostrar y terminar con un punto.
+    Donde se debe comenzar con una flecha '->', seguido de la palabra **Whisper**, despues el identificador que se quiere mostrar y terminar con un punto.
 
   * ### Condicionales
   
-    * ### SweetCondition
-      >SweetCondition(condition) {
+    * ### CozyCondition
+      >CozyCondition (condition) {
       >
       >}
 
-    * ### Else if
-
-    * ### Else
-      >SweetCondition(condition) {
+    * ### TwilightOption
+      >TwilightOption (condition) {
       >
       >}
-      >
-      >Else {
+
+
+    * ### DreamElse
+      >DreamElse {
       >
       >}
   <p align="right">(<a href="#compilador-antlr">Back to Top</a>)</p>
