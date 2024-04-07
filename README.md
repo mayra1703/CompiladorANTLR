@@ -104,7 +104,7 @@ Este lenguaje se compone de tres tipos de datos:
     
     Donde siempre debe comenzar con un gatito '#', seguido del tipo de dato, el identificador y debe terminar con un punto.
 
-  ---
+    ##
   
   * ### Declaracion de Variables con Asignacion
     Moonlight Code permite realizar declaracion de variables con asignacion siguiendo la siguiente sintaxis:
