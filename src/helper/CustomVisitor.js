@@ -1,7 +1,6 @@
 import CompilatorParser from "../grammar/CompilatorParser.js";
 import HashMap from 'hashmap';
 import CompilatorVisitor from "../grammar/CompilatorVisitor.js";
-import { experimental } from "../../next.config.js";
 
 // This class defines a complete generic visitor for a parse tree produced by CalculadoraParser.
 

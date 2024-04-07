@@ -78,8 +78,8 @@ const Page = () => {
     <main className='place-content-center h-screen bg-lightPurple'>
 
       <div className='flex flex-col bg-darkBlue h-20 text-center'>
-        <p className='font-extrabold text-white p-2 text-3xl'>Compilador ANTLR</p>
-        <p className='text-slate text-sm mb-2 font-extralight'>Agrega código en lenguaje SweetCode</p>
+        <p className='font-extrabold text-white p-2 text-3xl'>Moonlight Code</p>
+        <p className='text-slate text-sm mb-2 font-extralight'>Agrega código en lenguaje Moonlight Code</p>
       </div>
 
       <section className='relative mx-7 text-center m-4'>
