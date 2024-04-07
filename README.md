@@ -26,7 +26,7 @@
     </li>
     <li><a href="#condicionales">Condicionales</a></li>
     <ul>
-        <li><a href="#sweetcondition">CozyCondition</a></li>
+        <li><a href="#cozycondition">CozyCondition</a></li>
         <li><a href="#else-if">TwilightOption</a></li>
         <li><a href="#else">DreamElse</a></li>
     </ul>
