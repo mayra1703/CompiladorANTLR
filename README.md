@@ -1,4 +1,4 @@
-# **Moonlight Code**: Compilador ANTLR
+# Moonlight Code: Compilador ANTLR
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary><b>Table of Contents<b></summary>
