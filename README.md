@@ -1,4 +1,5 @@
-# **Moonlight Code**: Compilador ANTLR
+# Moonlight Code: Compilador ANTLR
+Moonlight Code es un lenguaje de programación 
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary><b>Table of Contents<b></summary>
@@ -37,7 +38,7 @@
 ## Acerca del Proyecto
 [![Product Name Screen Shot][product-screenshot]](https://compilador-antlr.vercel.app)
 
-Moonlight Code tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
+***Moonlight Code*** tiene una estructura similar al lenguaje C#, por lo que se compone de bloques de código en donde se podrá encontrar declaración e impresión de variables, condicionales y comentarios.
 
 Este lenguaje se compone de tres tipos de datos:
   * **Relaxint**: Tipo de dato entero.
