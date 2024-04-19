@@ -1,18 +1,21 @@
 'use client'
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { createTheme } from '@uiw/codemirror-themes';
 import { calcular } from '@/module/generador';
+import { cambiar } from '@/module/generador2';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 
 const Page = () => {
   const [expressions, setExpressions] = useState('');
+  const [expressions2, setExpressions2] = useState('');
   const [code, setCode] = useState('');
   const [result, setResult] = useState('');
   const editorRef = useRef(null);
 
   const inputChange = (e) => {
     const input = e.target.value;
+
     setResult(e.target.value);
     setExpressions(input);
     setCode(e.target.value);
@@ -32,9 +35,30 @@ const Page = () => {
 
     const calculatedResult = calcular(cleanInput);
     //setResult(calculatedResult.toString()); MOSTRAR EN TEXTAREA
-
+    const originalCode = expressions;
+    setExpressions2(originalCode);
   };
-  
+
+  const analizadorC = () => {
+    console.log('analizadorC');
+    
+    const error = document.getElementById('error');
+    const contenedorImpresion = document.getElementById('contenedorImpresion');
+    //contenedorImpresion.classList.remove('hidden'); // Eliminar hidden del contenedor
+    error.innerHTML = '';
+
+    const inputWithOutComments = expressions.replace(/(\/\/[^\n]*)|\/\*[\s\S]*?\*\//g, '')
+    const inputLines = inputWithOutComments.split('\n'); // Dividir el input en líneas
+    const validLines = inputLines.filter(line => line.trim().length > 0); // Filtrar líneas vacías con trim(eliminar espacios en blanco)
+    const cleanInput = validLines.join('\n'); // Unir las líneas limpias nuevamente
+    console.log(cleanInput);
+
+    const calculatedResult = cambiar(cleanInput);
+    //setResult(calculatedResult.toString()); MOSTRAR EN TEXTAREA
+    const originalCode = expressions;
+    setExpressions2(originalCode);
+  };
+
   const error = ()=> {
     const error = document.getElementById('error');
     const contenedorError = document.getElementById('contenedorError');
@@ -54,6 +78,7 @@ const Page = () => {
     const contenedorError = document.getElementById('contenedorError');
     
     setExpressions('');
+    setExpressions2('');
     setResult('');
     error.innerHTML = '';
     contenedorError.classList.add('hidden'); // Agrega la clase hidden para ocultar el div si no hay error
@@ -83,7 +108,7 @@ const Page = () => {
       </div>
 
       <section className='relative mx-7 text-center m-4'>
-        <button type="button" aria-label={'Run'} onClick={analizador} className="text-white bg-darkYellow hover:bg-darkPurple focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700">
+        <button type="button" aria-label={'Run'} id='analizar' onClick={analizador} className="text-white bg-darkYellow hover:bg-darkPurple focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="w-8 h-8" aria-hidden="true" fill="#ffffff">
             <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/>
           </svg>
@@ -122,15 +147,18 @@ const Page = () => {
 
         <section className='relative h-full w-1/2 mx-4 my-2 overflow-hidden border border-darkBlue rounded-md bg-darkBlue'>
             <div className="bg-darkBlue text-white text-sm w-full p-2.5 text-center inline-flex items-center border-b border-lightPurple">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-3 h-3" aria-hidden="true" fill="#fadc71">
+                <button type="button" onClick={analizadorC} id='cambiarLenguaje' aria-label='Clean' className="inline-flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-3 h-3" aria-hidden="true" fill="#fadc71">
                     <path d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z"/>
-                </svg>
+                  </svg>
+                </button>
+                
                 <span className="ml-2 font-semibold text-lightYellow">Traducción</span>
             </div>
 
             <div className="overflow-y-auto max-h-[calc(100%-2rem)]">
                 <CodeMirror
-                    value={expressions}
+                    value={expressions2}
                     theme={myTheme}
                     options={{
                         lineNumbers: true,
@@ -143,6 +171,8 @@ const Page = () => {
                         fontSize: '1rem',
                         fontWeight: '600',
                     }}
+                    onChange={(text) => inputChange({target:{value: text}})}
+                    ref={editorRef}
                 />
             </div>
         </section>
