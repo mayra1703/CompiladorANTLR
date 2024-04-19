@@ -172,7 +172,6 @@ const Page = () => {
                         fontWeight: '600',
                     }}
                     onChange={(text) => inputChange({target:{value: text}})}
-                    ref={editorRef}
                 />
             </div>
         </section>

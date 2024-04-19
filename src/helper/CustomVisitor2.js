@@ -100,6 +100,40 @@ export default class CustomVisitor2 extends CVisitor {
 		return null;
 	  }
 
+	  // Visit a parse tree produced by CParser#assign.
+	  visitAssign(ctx) {
+		console.log('visitando Assign');
+		const error = document.getElementById('error');
+		const contenedorError = document.getElementById('contenedorError');
+		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+		const id = ctx.ID().getText();
+
+		let valueToCheck = ctx.expr() ? ctx.expr().getText() : null;
+
+		let value = 0;
+
+		if (ctx.expr()) {
+			value = this.visit(ctx.expr());
+		}
+		
+		// Verificar si la expresión es null
+			if (valueToCheck !== null && !this.memory.has(valueToCheck) && /^[a-zA-Z]+$/.test(valueToCheck)) {
+				
+				error.innerHTML += `Syntax error on line ${lineNumber}: The identifier "${valueToCheck}" has not been declared. <br>`;
+				contenedorError.classList.remove('hidden');
+				return null
+			}
+
+			else{
+				this.memory.set(id, value);
+				console.log(`${id} = ${value}`);
+			}
+		
+
+		return null;
+	  }
+
 	  // Visit a parse tree produced by CompilatorParser#showExpr.
 	  visitShowExpr(ctx) {
 		const exprText = ctx.expr().getText();

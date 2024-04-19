@@ -9,6 +9,7 @@ block           :   contenido*
                 ;
 
 contenido       :   declaracion
+                |   asignacion
                 |   impresion
                 |   ifStatement
                 |   STRING
@@ -19,7 +20,10 @@ contenido       :   declaracion
 declaracion     :   TYPE ID SEMI NEWLINE  #validAssign
                 |   TYPE VALORID = (WRONGID | NUM) SEMI NEWLINE    #invalidAssign
                 |   TYPE ID '=' expr SEMI NEWLINE    #validAssign
-                |   TYPE VALORID = (WRONGID | NUM) '=' expr SEMI NEWLINE    #invalidAssign
+                |   VALORID = (WRONGID | NUM) '=' expr SEMI NEWLINE    #invalidAssign
+                ;
+
+asignacion      :   ID '=' expr SEMI NEWLINE    #assign
                 ;
 
 impresion       :   PRINTF '(' expr ')' SEMI NEWLINE #showExpr
