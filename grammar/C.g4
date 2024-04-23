@@ -24,8 +24,7 @@ declaracion     :   TYPE ID (IGUAL expr)? SEMI NEWLINE
 asignacion      :   ID '=' expr SEMI NEWLINE
                 ;
 
-impresion       :   PRINTF '(' expr ')' SEMI NEWLINE #showExpr
-                |   PRINTF '(' STRING ')' SEMI NEWLINE #showString
+impresion       :   PRINTF '(' expr ')' SEMI NEWLINE
                 ;
 
 condicional     :   ifStatement elseIfStatement* elseStatement?
@@ -34,7 +33,8 @@ condicional     :   ifStatement elseIfStatement* elseStatement?
 ifStatement     :   IF '(' expr ')' INITKEY NEWLINE block FINALKEY NEWLINE
                 ;
 
-elseIfStatement :   ELSEIF '(' expr ')' INITKEY NEWLINE block FINALKEY NEWLINE;
+elseIfStatement :   ELSEIF ifStatement
+                ;
 
 elseStatement   :   ELSE INITKEY NEWLINE block FINALKEY NEWLINE;
 
@@ -46,6 +46,7 @@ expr            :   '(' expr ')'
                 |   expr cond_value = (OC | OL) expr
                 |   ID
                 |   INT
+                |   STRING
                 ;
 
 

@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { createTheme } from '@uiw/codemirror-themes';
 import { calcular } from '@/module/generador';
-import { cambiar } from '@/module/generador2';
+import traduccion from '@/module/generador2';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 import Traductor from './componentes/Traductor';
 

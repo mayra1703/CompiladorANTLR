@@ -42,14 +42,8 @@ export default class CVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CParser#showExpr.
-	visitShowExpr(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#showString.
-	visitShowString(ctx) {
+	// Visit a parse tree produced by CParser#impresion.
+	visitImpresion(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

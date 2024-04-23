@@ -29,11 +29,24 @@ export default class CustomVisitor2 extends CVisitor {
 		}
 	}
 
+	translateBool(bool){
+		switch(bool){
+			case 'true':
+				return 'peaceful';
+
+			case 'false':
+				return 'chaotic';
+			
+			default:
+				return bool;
+		}
+	}
+
 	isElseif(){
 		let state = this.translatedCode
 		let len = this.translatedCode.length
 
-		return 'Else' == state[len-4] + state[len-3] + state[len-2] + state[len-1]
+		return 'else' == state[len-4] + state[len-3] + state[len-2] + state[len-1]
 	}
 
 	// Visit a parse tree produced by CParser#file.
@@ -89,20 +102,13 @@ export default class CustomVisitor2 extends CVisitor {
 
 		return;
 	  }
-  
-	  // Visit a parse tree produced by CParser#showExpr.
-	  visitShowExpr(ctx) {
+
+	  // Visit a parse tree produced by CParser#impresion.
+	  visitImpresion(ctx) {
 		let content = this.visit(ctx.expr())
-		this.translatedCode += `\n-> WHISPER (${content})`;
+		this.translatedCode += `\n-> WHISPER (${content}) .`;
 
 		return ctx.getText();
-	  }
-  
-  
-	  // Visit a parse tree produced by CParser#showString.
-	  visitShowString(ctx) {
-		const string = ctx.STRING().getText();
-		return this.visitChildren(ctx);
 	  }
   
   
@@ -111,7 +117,6 @@ export default class CustomVisitor2 extends CVisitor {
 		this.visit(ctx.ifStatement())
 		if(ctx.elseIfStatement()) this.visit(ctx.elseIfStatement())
 		if(ctx.elseStatement()) this.visit(ctx.elseStatement())
-		this.translatedCode += `!`;
 	  }
   
   
@@ -119,7 +124,7 @@ export default class CustomVisitor2 extends CVisitor {
 	  visitIfStatement(ctx) {
 		let condition = this.visit(ctx.expr());
 
-		this.translatedCode += `${this.isElseif() ? " TwilightOption" : "\nif"}(${condition}){`;
+		this.translatedCode += `${this.isElseif() ? " if" : "\nCozyCondition"}(${condition}){`;
 		this.visit(ctx.block())
 		this.translatedCode += `\n}`;
 
@@ -129,7 +134,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#elseIfStatement.
 	  visitElseIfStatement(ctx) {
-		this.translatedCode += `\TwilightOption`;
+		this.translatedCode += `\nElse`;
 		this.visit(ctx.ifStatement())
 		return
 	  }
