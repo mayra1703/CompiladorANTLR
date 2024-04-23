@@ -28,7 +28,7 @@ impresion       :   PRINTF '(' expr ')' SEMI NEWLINE
 condicional     :   ifStatement elseIfStatement* elseStatement?
                 ;
 
-ifStatement     :   IF '(' expr ')' INITKEY NEWLINE block FINALKEY NEWLINE
+ifStatement     :   IF '(' expr ')' INITKEY NEWLINE block FINALKEY
                 ;
 
 elseIfStatement :   ELSEIF ifStatement
