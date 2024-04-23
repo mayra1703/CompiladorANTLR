@@ -30,20 +30,14 @@ export default class CVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CParser#validAssign.
-	visitValidAssign(ctx) {
+	// Visit a parse tree produced by CParser#declaracion.
+	visitDeclaracion(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by CParser#invalidAssign.
-	visitInvalidAssign(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#assign.
-	visitAssign(ctx) {
+	// Visit a parse tree produced by CParser#asignacion.
+	visitAsignacion(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -56,6 +50,12 @@ export default class CVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by CParser#showString.
 	visitShowString(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CParser#condicional.
+	visitCondicional(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -78,44 +78,8 @@ export default class CVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CParser#condition.
-	visitCondition(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#parentesis.
-	visitParentesis(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#multidiv.
-	visitMultidiv(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#masmenos.
-	visitMasmenos(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#impmulti.
-	visitImpmulti(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#num.
-	visitNum(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CParser#id.
-	visitId(ctx) {
+	// Visit a parse tree produced by CParser#expr.
+	visitExpr(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

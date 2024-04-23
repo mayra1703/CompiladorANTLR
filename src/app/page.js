@@ -5,10 +5,12 @@ import { createTheme } from '@uiw/codemirror-themes';
 import { calcular } from '@/module/generador';
 import { cambiar } from '@/module/generador2';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
+import Traductor from './componentes/Traductor';
 
 const Page = () => {
   const [expressions, setExpressions] = useState('');
   const [expressions2, setExpressions2] = useState('');
+  const [moonlight, setMoonlight] = useState("")
   const [code, setCode] = useState('');
   const [result, setResult] = useState('');
   const editorRef = useRef(null);
@@ -43,8 +45,6 @@ const Page = () => {
     console.log('analizadorC');
     
     const error = document.getElementById('error');
-    const contenedorImpresion = document.getElementById('contenedorImpresion');
-    //contenedorImpresion.classList.remove('hidden'); // Eliminar hidden del contenedor
     error.innerHTML = '';
 
     const inputWithOutComments = expressions.replace(/(\/\/[^\n]*)|\/\*[\s\S]*?\*\//g, '')
@@ -233,6 +233,7 @@ const Page = () => {
           </div>
         </div>
       </section>
+      <Traductor codeState={[moonlight, setMoonlight]}/>
     </main>
   );
 };

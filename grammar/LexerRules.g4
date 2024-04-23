@@ -1,13 +1,12 @@
 lexer grammar LexerRules;
 
-
-TYPE                :       'int' | 'char' | 'float';
 STRING              :       '"' .*? '"';
 
 PLUS                :       '+';
 MINUS               :       '-';
-TIMES               :       '*';
+MULT               :       '*';
 DIV                 :       '/';
+IGUAL               :       '=';
 
 OC                  :       ('<'|'>'|'<='|'>='|'!=');
 OL                  :       ('||'|'&&'|'=='|'true'|'false');
@@ -23,8 +22,9 @@ PRINTF              :       'printf';
 INITKEY             :       '{';
 FINALKEY            :       '}';
 SEMI                :       ';';
-NUM                 :       [0-9]+;
-ID                  :       [A-Za-z]+;
+INT                 :       [0-9]+;
+ID				    :       [a-zA-Z]([a-zA-Z0-9_]+)?;
+INV_ID 			    :       [A-Za-z0-9+\-]+;
 WRONGID             :       [a-zA-Z0-9_+\-*/]+;
 LINECOMMENT         :       '//' .*? '\r'? '\n'-> skip ;
 COMMENT             :       '/*' .*? '*/'-> skip ;

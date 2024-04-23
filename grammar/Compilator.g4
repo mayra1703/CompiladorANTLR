@@ -10,7 +10,7 @@ block           :   contenido*
 
 contenido       :   declaracion
                 |   impresion
-                |   ifStatement
+                |   condicional
                 |   STARSTRING
                 |   COMMENT
                 |   LINECOMMENT
@@ -26,23 +26,24 @@ impresion       :   ARROW WHISPER '(' expr ')' PUNTITO NEWLINE #showExpr
                 |   ARROW WHISPER '(' STARSTRING ')' PUNTITO NEWLINE #showString
                 ;
 
-ifStatement     :   COZYCONDITION '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE (elseIfStatement | elseStatement)?
+condicional     :   ifStatement elseIfStatement* elseStatement?
                 ;
 
-elseIfStatement :   TWILIGHTOPTION '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE;
-
-elseStatement   :   DREAMYELSE INITKEY NEWLINE block FINALKEY NEWLINE;
-
-condition       :   cond_value = (OC | OL)
-                |   expr cond_value = (OC | OL) expr
-                |   condition cond_value = (OC | OL) condition
+ifStatement     :   COZYCONDITION '(' expr ')' INITKEY NEWLINE block FINALKEY NEWLINE
                 ;
 
-expr            :   '(' expr ')'  #parentesis
-                |   expr expr  #impmulti
-                |   expr operation=(TIMES|DIV) expr  #multidiv
-                |   expr operation=(PLUS|MINUS) expr #masmenos
-                |   ID  #id
-                |   NUM #num
+elseIfStatement :   ELSE ifStatement
                 ;
 
+elseStatement   :   DREAMYELSE INITKEY NEWLINE block FINALKEY NEWLINE
+                ;
+
+expr            :   '(' expr ')'                                #parentesis
+                |   expr expr                                   #impmulti
+                |   expr operation=(MULT|DIV) expr              #multidiv
+                |   expr operation=(PLUS|MINUS) expr            #masmenos
+                |   cond_value = (OC | OL)                      #condition
+                |   expr cond_value = (OC | OL) expr            #condition
+                |   ID                                          #id
+                |   NUM                                         #num
+                ;

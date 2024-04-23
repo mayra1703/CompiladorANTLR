@@ -11,42 +11,42 @@ block           :   contenido*
 contenido       :   declaracion
                 |   asignacion
                 |   impresion
-                |   ifStatement
+                |   condicional
                 |   STRING
                 |   COMMENT
                 |   LINECOMMENT
                 ;
 
-declaracion     :   TYPE ID SEMI NEWLINE  #validAssign
-                |   TYPE VALORID = (WRONGID | NUM) SEMI NEWLINE    #invalidAssign
-                |   TYPE ID '=' expr SEMI NEWLINE    #validAssign
-                |   VALORID = (WRONGID | NUM) '=' expr SEMI NEWLINE    #invalidAssign
-                ;
+declaracion     :   TYPE ID (IGUAL expr)? SEMI NEWLINE
+			    |	TYPE id=(INV_ID|INT) (IGUAL expr)? SEMI NEWLINE
+			    ;   
 
-asignacion      :   ID '=' expr SEMI NEWLINE    #assign
+asignacion      :   ID '=' expr SEMI NEWLINE
                 ;
 
 impresion       :   PRINTF '(' expr ')' SEMI NEWLINE #showExpr
                 |   PRINTF '(' STRING ')' SEMI NEWLINE #showString
                 ;
 
-ifStatement     :   IF '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE (elseIfStatement | elseStatement)?
+condicional     :   ifStatement elseIfStatement* elseStatement?
                 ;
 
-elseIfStatement :   ELSEIF '(' condition ')' INITKEY NEWLINE block FINALKEY NEWLINE;
+ifStatement     :   IF '(' expr ')' INITKEY NEWLINE block FINALKEY NEWLINE
+                ;
+
+elseIfStatement :   ELSEIF '(' expr ')' INITKEY NEWLINE block FINALKEY NEWLINE;
 
 elseStatement   :   ELSE INITKEY NEWLINE block FINALKEY NEWLINE;
 
-condition       :   cond_value = (OC | OL)
+expr            :   '(' expr ')'
+                |   expr expr
+                |   expr operation=(MULT|DIV) expr
+                |   expr operation=(PLUS|MINUS) expr
+                |   cond_value = (OC | OL)
                 |   expr cond_value = (OC | OL) expr
-                |   condition cond_value = (OC | OL) condition
+                |   ID
+                |   INT
                 ;
 
-expr            :   '(' expr ')'  #parentesis
-                |   expr expr  #impmulti
-                |   expr operation=(TIMES|DIV) expr  #multidiv
-                |   expr operation=(PLUS|MINUS) expr #masmenos
-                |   ID  #id
-                |   NUM #num
-                ;
 
+TYPE            :   'int' | 'char' | 'float';

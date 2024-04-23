@@ -12,18 +12,22 @@ export default class CustomVisitor extends CompilatorVisitor {
 		this.declaredIds = {};
 	}
 
-	// Visit a parse tree produced by CompilatorParser#file.
-	visitFile(ctx) {
+	  // Visit a parse tree produced by CompilatorParser#file.
+	  visitFile(ctx) {
 		return this.visitChildren(ctx);
 	  }
   
   
-	// Visit a parse tree produced by CompilatorParser#start.
-	visitStart(ctx) {
+	  // Visit a parse tree produced by CompilatorParser#start.
+	  visitStart(ctx) {
 		return this.visitChildren(ctx);
 	  }
   
-  
+      // Visit a parse tree produced by CompilatorParser#block.
+	  visitBlock(ctx) {
+		return this.visitChildren(ctx);
+	  }
+
 	  // Visit a parse tree produced by CompilatorParser#contenido.
 	  visitContenido(ctx) {
 		return this.visitChildren(ctx);
@@ -145,55 +149,75 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return null;
 	  }
 
-	  // Visit a parse tree produced by CompilatorParser#ifStatement.
-	  visitIfStatement(ctx) {
-		console.log('Visitando IfStatement');
-		let conditionResult = this.visit(ctx.condition())
+	  // Visit a parse tree produced by CompilatorParser#condicional.
+	  visitCondicional(ctx) {
+		console.log("visitCondicional");
+		let isIfTrue = this.visit(ctx.ifStatement())
 
-		if(conditionResult){
-			return this.visit(ctx.block(0));
-		}
+		if(!isIfTrue){
+			const elseif = ctx.elseIfStatement();
+			let isElseifTrue = false;
 
-		else if (ctx.elseIfStatement()){
-			console.log('else if condition');
-			return this.visit(ctx.elseIfStatement())
-		}
+			for(let i=0 ; i<elseif.length ; i++){
+				isElseifTrue = this.visit(elseif[i]);
+				if(isElseifTrue){
+					break;
+				}
+			}
 
-		else if (ctx.elseStatement()){
-			console.log('else condition');
-			return this.visit(ctx.elseStatement())
+			if(!isElseifTrue && ctx.elseStatement()){
+				this.visit(ctx.elseStatement());
+			}
 		}
-	
 		return null;
 	  }
 	  
+	  // Visit a parse tree produced by CompilatorParser#ifStatement.
+	  visitIfStatement(ctx) {
+		console.log('Visitando IfStatement');
+		if(!ctx.expr()){
+			return false
+		}
+
+		let conditionResult = this.visit(ctx.expr())
+		if (conditionResult){
+			this.visit(ctx.block())
+		}
+
+		return conditionResult
+	  }
 
 	  // Visit a parse tree produced by CompilatorParser#elseIfStatement.
 	  visitElseIfStatement(ctx) {
 		console.log('Visitando ElseIfStatement');
-		let conditionResult = this.visit(ctx.condition());
-
-		if (conditionResult) {
-			return this.visit(ctx.block());
-		}
-
-		return null;
+		return this.visit(ctx.ifStatement());
 	  }
   
   
 	  // Visit a parse tree produced by CompilatorParser#elseStatement.
 	  visitElseStatement(ctx) {
 		console.log('Visitando ElseStatement');
-    	return this.visit(ctx.block());
+    	this.visit(ctx.block());
+		return null
 	  }
-  
-  
+
+
+	  // Visit a parse tree produced by CompilatorParser#parentesis.
+	  visitParentesis(ctx) {
+		console.log("visitParentesis");
+		let visit = this.visitChildren(ctx);
+		return visit[1];
+	  }
+	  
+
 	  // Visit a parse tree produced by CompilatorParser#condition.
 	  visitCondition(ctx) {
 		console.log('Visitando visitCondition');
 		let [firstVal, secondVal] = this.visit(ctx.expr());
 		let operator = ctx.cond_value.text;
+		console.log(firstVal);
 		console.log(operator);
+		console.log(secondVal);
 		let result;
 
 		switch(operator){
@@ -242,17 +266,19 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  }
   
   
-	  // Visit a parse tree produced by CompilatorParser#statement.
-	  visitStatement(ctx) {
-		return this.visitChildren(ctx);
+	  // Visit a parse tree produced by CompilatorParser#impmulti.
+	  visitImpmulti(ctx) {
+		let results = this.visitChildren(ctx);
+		return results[0] * results[1];
 	  }
+  
+  
+	  // Visit a parse tree produced by CompilatorParser#num.
+	  visitNum(ctx) {
+		return parseInt(ctx.NUM().getText());
+	  }
+  
 
-	  // Visit a parse tree produced by CompilatorParser#parentesis.
-	  visitParentesis(ctx) {
-		return this.visit(ctx.expr());
-	  }
-  
-  
 	  // Visit a parse tree produced by CompilatorParser#multidiv.
 	  visitMultidiv(ctx) {
 		const left = this.visit(ctx.expr(0));
@@ -274,19 +300,6 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return left - right;
 	  }
 
-	  
-	  // Visit a parse tree produced by CompilatorParser#impmulti.
-	  visitImpmulti(ctx) {
-		let results = this.visitChildren(ctx);
-		return results[0] * results[1];
-	  }
-  
-  
-	  // Visit a parse tree produced by CompilatorParser#num.
-	  visitNum(ctx) {
-		return parseInt(ctx.NUM().getText());
-	  }
-  
   
 	  // Visit a parse tree produced by CompilatorParser#id.
 	  visitId(ctx) {
