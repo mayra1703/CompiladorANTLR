@@ -11,6 +11,7 @@ block           :   contenido*
 contenido       :   declaracion
                 |   impresion
                 |   condicional
+                |   asignacion
                 |   STARSTRING
                 |   COMMENT
                 |   LINECOMMENT
@@ -20,6 +21,9 @@ declaracion     :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
                 |   GATITO TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
                 |   GATITO TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
                 |   GATITO TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
+                ;
+
+asignacion      :   ARROW ID IGUAL '(' expr ')' PUNTITO NEWLINE
                 ;
 
 impresion       :   ARROW WHISPER '(' expr ')' PUNTITO NEWLINE #showExpr

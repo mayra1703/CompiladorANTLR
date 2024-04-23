@@ -13,8 +13,6 @@ contenido       :   declaracion
                 |   impresion
                 |   condicional
                 |   STRING
-                |   COMMENT
-                |   LINECOMMENT
                 ;
 
 declaracion     :   TYPE ID (IGUAL expr)? SEMI NEWLINE
@@ -42,8 +40,8 @@ expr            :   '(' expr ')'
                 |   expr expr
                 |   expr operation=(MULT|DIV) expr
                 |   expr operation=(PLUS|MINUS) expr
-                |   cond_value = (OC | OL)
-                |   expr cond_value = (OC | OL) expr
+                |   cond_value = (OC | OL | BOOL)
+                |   expr cond_value = (OC | OL | BOOL) expr
                 |   ID
                 |   INT
                 |   STRING
@@ -51,3 +49,4 @@ expr            :   '(' expr ')'
 
 
 TYPE            :   'int' | 'char' | 'float';
+BOOL            :   'true' | 'false';

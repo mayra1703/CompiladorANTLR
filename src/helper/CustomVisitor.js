@@ -32,6 +32,17 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  visitContenido(ctx) {
 		return this.visitChildren(ctx);
 	  }
+  
+	  // Visit a parse tree produced by CompilatorParser#asignacion.
+	  visitAsignacion(ctx) {
+		console.log("visitAsignacion");
+		const id = ctx.ID().getText();
+		const expr = this.visit(ctx.expr());
+
+		this.memory.set(id, expr);
+		console.log(`Asignación: ${id} = ${expr}`);
+        return;
+	  }
 
   	  // Visit a parse tree produced by CompilatorParser#validAssign.
 	  visitValidAssign(ctx) {
@@ -285,7 +296,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		console.log(left);
 		const right = this.visit(ctx.expr(1));
 		console.log(right);
-		if (ctx.operation.type === CompilatorParser.TIMES) return left * right ;
+		if (ctx.operation.type === CompilatorParser.MULT) return left * right ;
 		return Math.floor(left / right);
 	  }
   
