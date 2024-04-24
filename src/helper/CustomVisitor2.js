@@ -72,9 +72,9 @@ export default class CustomVisitor2 extends CVisitor {
 			let VALUE = this.visit(ctx.expr());
 			this.translatedCode += `\n# ${this.translateType(
 				TYPE
-			)} ${ID} = ${VALUE} .`;
+			)} ${ID} = ${VALUE} .\n`;
 		} else {
-			this.translatedCode += `\n# ${this.translateType(TYPE)} ${ID} .`;
+			this.translatedCode += `\n# ${this.translateType(TYPE)} ${ID} .\n`;
 		}
 
 		return;
@@ -135,10 +135,16 @@ export default class CustomVisitor2 extends CVisitor {
 		return
 	  }
   
-	  
+
 	  // Visit a parse tree produced by CParser#whileStatement.
 	  visitWhileStatement(ctx) {
-		return this.visitChildren(ctx);
+		let condition = this.visit(ctx.expr());
+		
+		this.translatedCode += `\nDreamLoop(${condition}){`;
+		this.visit(ctx.block())
+		this.translatedCode += `\n}`;
+
+		return
 	  }
   
   

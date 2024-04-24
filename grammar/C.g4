@@ -12,6 +12,8 @@ contenido           :   declaracion
                     |   asignacion
                     |   impresion
                     |   condicional
+                    |   whileStatement
+                    |   doWhileStatement
                     |   STRING
                     ;
 

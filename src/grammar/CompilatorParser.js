@@ -22,10 +22,10 @@ const serializedATN = [4,1,30,164,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 0,34,35,5,20,0,0,35,36,5,29,0,0,36,37,3,4,2,0,37,38,5,21,0,0,38,3,1,0,0,
 0,39,41,3,6,3,0,40,39,1,0,0,0,41,44,1,0,0,0,42,40,1,0,0,0,42,43,1,0,0,0,
 43,5,1,0,0,0,44,42,1,0,0,0,45,53,3,8,4,0,46,53,3,12,6,0,47,53,3,14,7,0,48,
-53,3,10,5,0,49,53,5,24,0,0,50,53,5,28,0,0,51,53,5,27,0,0,52,45,1,0,0,0,52,
-46,1,0,0,0,52,47,1,0,0,0,52,48,1,0,0,0,52,49,1,0,0,0,52,50,1,0,0,0,52,51,
-1,0,0,0,53,7,1,0,0,0,54,55,5,22,0,0,55,56,5,3,0,0,56,57,5,26,0,0,57,58,5,
-23,0,0,58,68,5,29,0,0,59,60,5,22,0,0,60,61,5,3,0,0,61,62,5,26,0,0,62,63,
+53,3,10,5,0,49,53,5,24,0,0,50,53,3,22,11,0,51,53,3,24,12,0,52,45,1,0,0,0,
+52,46,1,0,0,0,52,47,1,0,0,0,52,48,1,0,0,0,52,49,1,0,0,0,52,50,1,0,0,0,52,
+51,1,0,0,0,53,7,1,0,0,0,54,55,5,22,0,0,55,56,5,3,0,0,56,57,5,26,0,0,57,58,
+5,23,0,0,58,68,5,29,0,0,59,60,5,22,0,0,60,61,5,3,0,0,61,62,5,26,0,0,62,63,
 5,8,0,0,63,64,3,26,13,0,64,65,5,23,0,0,65,66,5,29,0,0,66,68,1,0,0,0,67,54,
 1,0,0,0,67,59,1,0,0,0,68,9,1,0,0,0,69,70,5,18,0,0,70,71,5,26,0,0,71,72,5,
 8,0,0,72,73,5,1,0,0,73,74,3,26,13,0,74,75,5,2,0,0,75,76,5,23,0,0,76,77,5,
@@ -182,7 +182,7 @@ export default class CompilatorParser extends antlr4.Parser {
 	        this.state = 42;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 423890944) !== 0)) {
+	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 21434368) !== 0)) {
 	            this.state = 39;
 	            this.contenido();
 	            this.state = 44;
@@ -246,13 +246,13 @@ export default class CompilatorParser extends antlr4.Parser {
 	        case 6:
 	            this.enterOuterAlt(localctx, 6);
 	            this.state = 50;
-	            this.match(CompilatorParser.COMMENT);
+	            this.whileStatement();
 	            break;
 
 	        case 7:
 	            this.enterOuterAlt(localctx, 7);
 	            this.state = 51;
-	            this.match(CompilatorParser.LINECOMMENT);
+	            this.doWhileStatement();
 	            break;
 
 	        }
@@ -986,12 +986,12 @@ class ContenidoContext extends antlr4.ParserRuleContext {
 	    return this.getToken(CompilatorParser.STARSTRING, 0);
 	};
 
-	COMMENT() {
-	    return this.getToken(CompilatorParser.COMMENT, 0);
+	whileStatement() {
+	    return this.getTypedRuleContext(WhileStatementContext,0);
 	};
 
-	LINECOMMENT() {
-	    return this.getToken(CompilatorParser.LINECOMMENT, 0);
+	doWhileStatement() {
+	    return this.getTypedRuleContext(DoWhileStatementContext,0);
 	};
 
 	accept(visitor) {

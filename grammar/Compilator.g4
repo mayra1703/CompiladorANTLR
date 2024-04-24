@@ -13,8 +13,8 @@ contenido           :   declaracion
                     |   condicional
                     |   asignacion
                     |   STARSTRING
-                    |   COMMENT
-                    |   LINECOMMENT
+                    |   whileStatement
+                    |   doWhileStatement
                     ;
 
 declaracion         :   GATITO TYPE ID PUNTITO NEWLINE                      #validAssign
