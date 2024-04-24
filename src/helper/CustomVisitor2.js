@@ -29,19 +29,6 @@ export default class CustomVisitor2 extends CVisitor {
 		}
 	}
 
-	translateBool(bool){
-		switch(bool){
-			case 'true':
-				return 'peaceful';
-
-			case 'false':
-				return 'chaotic';
-
-			default:
-				return bool;
-		}
-	}
-
 	isElseif(){
 		let state = this.translatedCode
 		let len = this.translatedCode.length
@@ -123,10 +110,7 @@ export default class CustomVisitor2 extends CVisitor {
 	  // Visit a parse tree produced by CParser#ifStatement.
 	  visitIfStatement(ctx) {
 		let condition = this.visit(ctx.expr());
-
-		// Traduce las palabras booleanas en la condición
-		condition = this.translateBool(condition);
-
+		
 		this.translatedCode += `${this.isElseif() ? " CozyCondition" : "CozyCondition"}(${condition}){`;
 		this.visit(ctx.block())
 		this.translatedCode += `\n}`;
@@ -153,7 +137,10 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#expr.
 	  visitExpr(ctx) {
-		return ctx.getText()
+		let exprText = ctx.getText();
+
+		exprText = exprText.replace(/\btrue\b/g, "peaceful").replace(/\bfalse\b/g, "chaotic");
+		return exprText;
 	  }
   
   }
