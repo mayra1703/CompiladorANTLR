@@ -229,40 +229,40 @@ export default class CustomVisitor extends CompilatorVisitor {
 		console.log(firstVal);
 		console.log(operator);
 		console.log(secondVal);
-		let result;
+		//let result;
 
 		switch(operator){
 			case '>':
-				result = firstVal > secondVal;
-				break;
+				return firstVal > secondVal;
+				
 	
 			case '<':
-				result = firstVal < secondVal;
-				break;
+				return firstVal < secondVal;
+				
 	
 			case '>=':
-				result = firstVal >= secondVal;
-				break;
+				return firstVal >= secondVal;
+				
 	
 			case '<=':
-				result = firstVal <= secondVal;
-				break;
+				return firstVal <= secondVal;
+				
 				
 			case '==':
-				result = firstVal === secondVal;
-				break;
+				return firstVal === secondVal;
+				
 	
 			case '!=':
-				result = firstVal !== secondVal;
-				break;
+				return firstVal !== secondVal;
+				
 
 			case '&&':
-				result = firstVal && secondVal;
-				break;
+				return firstVal && secondVal;
+				
 
 			case '||':
-				result = firstVal || secondVal;
-				break;
+				return firstVal || secondVal;
+				
 
 			case 'peaceful':
 				return true
