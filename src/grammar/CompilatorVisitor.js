@@ -78,6 +78,18 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by CompilatorParser#whileStatement.
+	visitWhileStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#doWhileStatement.
+	visitDoWhileStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by CompilatorParser#parentesis.
 	visitParentesis(ctx) {
 	  return this.visitChildren(ctx);

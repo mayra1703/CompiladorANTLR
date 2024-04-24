@@ -135,6 +135,19 @@ export default class CustomVisitor2 extends CVisitor {
 		return
 	  }
   
+	  
+	  // Visit a parse tree produced by CParser#whileStatement.
+	  visitWhileStatement(ctx) {
+		return this.visitChildren(ctx);
+	  }
+  
+  
+	  // Visit a parse tree produced by CParser#doWhileStatement.
+	  visitDoWhileStatement(ctx) {
+		return this.visitChildren(ctx);
+	  }
+
+
 	  // Visit a parse tree produced by CParser#expr.
 	  visitExpr(ctx) {
 		let exprText = ctx.getText();

@@ -17,6 +17,8 @@ INITPAR             :       '(';
 FINALPAR            :       ')';
 IF                  :       'if';
 ELSE                :       'else';
+DO                  :       'do';
+WHILE               :       'while';
 PRINTF              :       'printf';
 INITKEY             :       '{';
 FINALKEY            :       '}';

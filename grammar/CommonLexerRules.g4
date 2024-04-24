@@ -17,6 +17,8 @@ COZYCONDITION       :       'CozyCondition';
 TWILIGHTOPTION      :       'TwilightOption';
 ELSE                :       'else';
 DREAMYELSE          :       'DreamElse';
+DREAMLOOP           :       'DreamLoop';
+DO                  :       'do';
 ARROW               :       '->';
 WHISPER             :       'WHISPER';
 INITKEY             :       '{';
