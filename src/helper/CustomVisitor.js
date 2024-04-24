@@ -186,17 +186,6 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  // Visit a parse tree produced by CompilatorParser#ifStatement.
 	  visitIfStatement(ctx) {
 		console.log('Visitando IfStatement');
-		/*
-		let conditionResult = this.visit(ctx.expr())
-
-		if(conditionResult){
-			if(conditionResult){
-				this.visit(ctx.block())
-			}
-		}
-	
-		return null;
- 		*/
 		
 		if(!ctx.expr()){
 			return false
