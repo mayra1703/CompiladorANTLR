@@ -31,7 +31,7 @@ condicional     :   ifStatement elseIfStatement* elseStatement?
 ifStatement     :   IF '(' expr ')' INITKEY NEWLINE block FINALKEY
                 ;
 
-elseIfStatement :   ELSE IF ifStatement
+elseIfStatement :   ELSE ifStatement
                 ;
 
 elseStatement   :   ELSE INITKEY NEWLINE block FINALKEY NEWLINE;
