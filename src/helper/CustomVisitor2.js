@@ -58,7 +58,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#start.
 	  visitStart(ctx) {
-		this.translatedCode += "SerenityClass{";
+		this.translatedCode += "SerenityClass{\n";
 		this.visit(ctx.block());
 		this.translatedCode += "\n}";
 		return;
@@ -127,7 +127,7 @@ export default class CustomVisitor2 extends CVisitor {
 		// Traduce las palabras booleanas en la condición
 		condition = this.translateBool(condition);
 
-		this.translatedCode += `${this.isElseif() ? " if" : "\nCozyCondition"}(${condition}){`;
+		this.translatedCode += `${this.isElseif() ? " CozyCondition" : "CozyCondition"}(${condition}){`;
 		this.visit(ctx.block())
 		this.translatedCode += `\n}`;
 
@@ -137,7 +137,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#elseIfStatement.
 	  visitElseIfStatement(ctx) {
-		this.translatedCode += `\nElse`;
+		this.translatedCode += `\nelse`;
 		this.visit(ctx.ifStatement())
 		return
 	  }

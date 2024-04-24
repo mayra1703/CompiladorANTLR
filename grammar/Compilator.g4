@@ -18,9 +18,7 @@ contenido       :   declaracion
                 ;
 
 declaracion     :   GATITO TYPE ID PUNTITO NEWLINE  #validAssign
-                |   GATITO TYPE VALORID = (WRONGID | NUM) PUNTITO NEWLINE    #invalidAssign
                 |   GATITO TYPE ID '=' expr PUNTITO NEWLINE    #validAssign
-                |   GATITO TYPE VALORID = (WRONGID | NUM) '=' expr PUNTITO NEWLINE    #invalidAssign
                 ;
 
 asignacion      :   ARROW ID IGUAL '(' expr ')' PUNTITO NEWLINE

@@ -16,7 +16,6 @@ MAIN                :       'main';
 INITPAR             :       '(';
 FINALPAR            :       ')';
 IF                  :       'if';
-ELSEIF              :       'else if';
 ELSE                :       'else';
 PRINTF              :       'printf';
 INITKEY             :       '{';
