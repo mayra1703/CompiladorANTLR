@@ -41,9 +41,7 @@ elseStatement   :   DREAMYELSE INITKEY NEWLINE block FINALKEY NEWLINE
                 ;
 
 expr            :   '(' expr ')'                                #parentesis
-                |   expr expr                                   #impmulti
-                |   expr operation=(MULT|DIV) expr              #multidiv
-                |   expr operation=(PLUS|MINUS) expr            #masmenos
+                |	expr operation=(MULT|DIV|PLUS|MINUS) expr	#arithmetic
                 |   cond_value = (OC | OL)                      #condition
                 |   expr cond_value = (OC | OL) expr            #condition
                 |   ID                                          #id

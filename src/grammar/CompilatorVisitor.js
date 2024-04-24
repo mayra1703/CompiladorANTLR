@@ -84,32 +84,20 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#multidiv.
-	visitMultidiv(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by CompilatorParser#condition.
 	visitCondition(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#masmenos.
-	visitMasmenos(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by CompilatorParser#impmulti.
-	visitImpmulti(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by CompilatorParser#num.
 	visitNum(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#arithmetic.
+	visitArithmetic(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

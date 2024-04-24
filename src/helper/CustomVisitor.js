@@ -186,6 +186,18 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  // Visit a parse tree produced by CompilatorParser#ifStatement.
 	  visitIfStatement(ctx) {
 		console.log('Visitando IfStatement');
+		/*
+		let conditionResult = this.visit(ctx.expr())
+
+		if(conditionResult){
+			if(conditionResult){
+				this.visit(ctx.block())
+			}
+		}
+	
+		return null;
+ 		*/
+		
 		if(!ctx.expr()){
 			return false
 		}
@@ -196,6 +208,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		}
 
 		return conditionResult
+
 	  }
 
 	  // Visit a parse tree produced by CompilatorParser#elseIfStatement.
@@ -224,45 +237,49 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  // Visit a parse tree produced by CompilatorParser#condition.
 	  visitCondition(ctx) {
 		console.log('Visitando visitCondition');
+
+		console.log(ctx.expr())
+		
 		let [firstVal, secondVal] = this.visit(ctx.expr());
 		let operator = ctx.cond_value.text;
 		console.log(firstVal);
 		console.log(operator);
 		console.log(secondVal);
-		//let result;
+
+		let result;
 
 		switch(operator){
 			case '>':
-				return firstVal > secondVal;
-				
+				result = firstVal > secondVal;
+				break;
 	
 			case '<':
-				return firstVal < secondVal;
-				
+				result = firstVal < secondVal;
+				break;
 	
 			case '>=':
-				return firstVal >= secondVal;
-				
+				result = firstVal >= secondVal;
+				break;
 	
 			case '<=':
-				return firstVal <= secondVal;
-				
+				result = firstVal <= secondVal;
+				break;
 				
 			case '==':
-				return firstVal === secondVal;
-				
+				result = firstVal === secondVal;
+				break;
 	
 			case '!=':
-				return firstVal !== secondVal;
-				
+				result = firstVal !== secondVal;
+				break;
 
 			case '&&':
-				return firstVal && secondVal;
-				
+				result = firstVal && secondVal;
+				break;
 
 			case '||':
-				return firstVal || secondVal;
-				
+				result = firstVal || secondVal;
+				break;
 
 			case 'peaceful':
 				return true
@@ -277,38 +294,32 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  }
   
   
-	  // Visit a parse tree produced by CompilatorParser#impmulti.
-	  visitImpmulti(ctx) {
-		let results = this.visitChildren(ctx);
-		return results[0] * results[1];
-	  }
-  
-  
 	  // Visit a parse tree produced by CompilatorParser#num.
 	  visitNum(ctx) {
-		return parseInt(ctx.NUM().getText());
+		console.log("visitNum");
+		return Number(ctx.getText())
 	  }
   
+	  // Visit a parse tree produced by CompilatorParser#arithmetic.
+	  visitArithmetic(ctx) {
+		console.log("visitArithmetic");
+		const operation = this.visitChildren(ctx);
+		let simbolo = ctx.operation.type;
 
-	  // Visit a parse tree produced by CompilatorParser#multidiv.
-	  visitMultidiv(ctx) {
-		const left = this.visit(ctx.expr(0));
-		console.log(left);
-		const right = this.visit(ctx.expr(1));
-		console.log(right);
-		if (ctx.operation.type === CompilatorParser.MULT) return left * right ;
-		return Math.floor(left / right);
-	  }
-  
-  
-	  // Visit a parse tree produced by CompilatorParser#masmenos.
-	  visitMasmenos(ctx) {
-		const left = this.visit(ctx.expr(0));
-		console.log(left);
-		const right = this.visit(ctx.expr(1));
-		console.log(right);
-		if (ctx.operation.type === CompilatorParser.PLUS) return left + right;
-		return left - right;
+		switch(simbolo){
+			case CompilatorParser.MULT:
+				return operation[0] * operation[2];
+
+			case CompilatorParser.DIV:
+				return operation[0] / operation[2];
+
+			case CompilatorParser.PLUS:
+				return operation[0] + operation[2];
+
+			case CompilatorParser.MINUS:
+				return operation[0] - operation[2];
+		}
+		
 	  }
 
   
