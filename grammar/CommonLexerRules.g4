@@ -28,7 +28,7 @@ PUNTITO             :       '.';
 
 STARSTRING          :       '"' .*? '"';
 NUM 			    :       [0-9]+ ;
-ID                  :       [A-Za-z]+;
+ID                  :       [A-Za-z0-9]+;
 LINECOMMENT         :       '//' .*? '\r'? '\n'-> skip ;
 COMMENT             :       '/*' .*? '*/'-> skip ;
 NEWLINE             :       '\r'? '\n' ;
