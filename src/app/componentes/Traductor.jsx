@@ -5,6 +5,7 @@ import { createTheme } from '@uiw/codemirror-themes';
 import { calcular } from '@/module/generador';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 import generador2 from '@/module/generador2.js'
+import Lector from './Lector';
 
 const Traductor = ({ codeState=["", () => {}] }) => {
     const [inputText, setInputText] = codeState;
@@ -13,6 +14,19 @@ const Traductor = ({ codeState=["", () => {}] }) => {
     const [code, setCode] = useState('');
     const [result, setResult] = useState('');
 
+    const handleFileChange = (e) => {
+      const file = e.target.files[0];
+      readFile(file);
+    }
+
+    const readFile = (file) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+          const fileContent = e.target.result;
+          setInputTextCLang(fileContent);
+      };
+      reader.readAsText(file);
+    };
 
     const inputChange = (e) => {
         const input = e.target.value;
@@ -80,6 +94,12 @@ const Traductor = ({ codeState=["", () => {}] }) => {
           </svg>
         </button>
       </section>
+
+      <div className = 'flex m-5 items-center justify-center'>
+        <div className = 'mt-5 flex'>
+          <input onChange = {handleFileChange} className = 'text-lightYellow border p-2 rounded-md' type="file" />
+        </div>
+      </div>
 
       <section id='editores' className='flex-initial w-full h-80 p-1 flex'>
       <section className='relative h-full w-1/2 mx-4 my-2 overflow-hidden border border-slate rounded-md bg-white'>
