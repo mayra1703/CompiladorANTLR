@@ -25,7 +25,7 @@ asignacion          :   ARROW ID IGUAL '(' expr ')' PUNTITO NEWLINE
 
 impresion           :   ARROW WHISPER '(' expr ')' PUNTITO NEWLINE          #showExpr
                     |   ARROW WHISPER '(' STARSTRING ')' PUNTITO NEWLINE    #showString
-                        ;
+                    ;
 
 condicional         :   ifStatement elseIfStatement* elseStatement?
                     ;
@@ -49,7 +49,6 @@ expr                :   '(' expr ')'                                        #par
                     |	expr operation=(MULT|DIV|PLUS|MINUS) expr	        #arithmetic
                     |   cond_value = (OC | OL)                              #condition
                     |   expr cond_value = (OC | OL) expr                    #condition
-                    |   STARSTRING                                          #valueAsChar
                     |   CHAR                                                #valueAsChar
                     |   FLOAT                                               #num
                     |   NUM                                                 #num

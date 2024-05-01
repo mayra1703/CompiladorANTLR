@@ -293,7 +293,11 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return result;
 	  }
   
-  
+	  visitValueAsChar(ctx) {
+		console.log("visitValueAsChar");
+		return ctx.getText();
+	  }
+
 	  // Visit a parse tree produced by CompilatorParser#num.
 	  visitNum(ctx) {
 		console.log("visitNum");
