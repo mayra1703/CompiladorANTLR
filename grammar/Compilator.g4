@@ -3,7 +3,7 @@ import CommonLexerRules;
 
 file                :   start+;
 
-start               :   SERENITYCLASS INITKEY block FINALKEY;
+start               :   SERENITYCLASS INITKEY NEWLINE block FINALKEY;
 
 block               :   (contenido NEWLINE?)+
                     ;
@@ -16,7 +16,7 @@ contenido           :   declaracion
                     |   incremento
                     ;
 
-declaracion         :   GATITO TYPE ID (IGUAL expr)? PUNTITO 
+declaracion         :   GATITO TYPE ID (IGUAL expr)? PUNTITO NEWLINE
                     ;
 
 asignacion          :   ARROW ID IGUAL '(' expr ')' PUNTITO 
@@ -40,7 +40,7 @@ elseStatement       :   DREAMYELSE INITKEY NEWLINE contenido* FINALKEY NEWLINE
 incremento          :   ARROW ID (PLUS PLUS | MINUS MINUS)
                     ;
 
-whileStatement      :   DREAMLOOP '(' expr ')' INITKEY contenido* FINALKEY
+whileStatement      :   DREAMLOOP '(' expr ')' INITKEY NEWLINE contenido* FINALKEY
                     ;
 
 expr                :   '(' expr ')'                                        #parentesis
