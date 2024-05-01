@@ -41,7 +41,7 @@ elseStatement       :   DREAMYELSE INITKEY NEWLINE block FINALKEY NEWLINE
 incremento          :   ID (PLUS PLUS | MINUS MINUS) PUNTITO NEWLINE
                     ;
 
-whileStatement      :   DREAMLOOP '(' expr ')' INITKEY block FINALKEY
+whileStatement      :   DREAMLOOP '(' expr ')' INITKEY contenido* FINALKEY
                     ;
 
 expr                :   '(' expr ')'                                        #parentesis
