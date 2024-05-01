@@ -211,33 +211,14 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  // Visit a parse tree produced by CompilatorParser#showExpr.
 	  visitShowExpr(ctx) {
 		console.log("visitShowExpr");
-		const exprText = ctx.expr().getText();
-		const identifiers = exprText.match(/[a-zA-Z]+/g); // Extraer identificadores de la expresión
-		let allIdentifiersValid = true; // Bandera para verificar que todos los ids existen
+		const valueText = ctx.expr().getText();
+		const value = this.visit(ctx.expr());
 
-		// Verificar si todos los identificadores están en la memoria
-		if (identifiers) {
-			for (const id of identifiers) {
-				if (!this.memory.has(id)) {
-					allIdentifiersValid = false;
-					const error = document.getElementById('error');
-					const contenedorError = document.getElementById('contenedorError');
-					const lineNumber = ctx.start.line;
-					error.innerHTML += `Error on line ${lineNumber}: Variable "${id}" not found. <br>`;
-					contenedorError.classList.remove('hidden');
-					break; // Detener el bucle si se encuentra un identificador no válido
-				}
-			}
-		}
+		const contenedorImpresion = document.getElementById('contenedorImpresion');
+		const mensaje = document.getElementById('mensajeImpresion');
+		contenedorImpresion.classList.remove('hidden');
+		mensaje.innerHTML += `-> ${value} <br>`;
 
-		// Si todos los identificadores son válidos, mostrar el mensaje de impresión
-		if (allIdentifiersValid) {
-			let value = this.visit(ctx.expr());
-			const contenedorImpresion = document.getElementById('contenedorImpresion');
-			const mensaje = document.getElementById('mensajeImpresion');
-			contenedorImpresion.classList.remove('hidden');
-			mensaje.innerHTML += `-> ${value} <br>`;
-		}
 
 		return null;
 	  }
@@ -463,6 +444,9 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 			case CompilatorParser.MINUS:
 				return operation[0] - operation[2];
+
+			case CompilatorParser.MOD:
+            	return operation[0] % operation[2];
 		}
 		
 	  }

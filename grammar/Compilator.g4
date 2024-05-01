@@ -3,9 +3,9 @@ import CommonLexerRules;
 
 file                :   start+;
 
-start               :   SERENITYCLASS INITKEY NEWLINE block FINALKEY;
+start               :   SERENITYCLASS INITKEY block FINALKEY;
 
-block               :   contenido*?
+block               :   (contenido NEWLINE?)+
                     ;
 
 contenido           :   declaracion
@@ -16,20 +16,20 @@ contenido           :   declaracion
                     |   incremento
                     ;
 
-declaracion         :   GATITO TYPE ID (IGUAL expr)? PUNTITO NEWLINE
+declaracion         :   GATITO TYPE ID (IGUAL expr)? PUNTITO 
                     ;
 
-asignacion          :   ARROW ID IGUAL '(' expr ')' PUNTITO NEWLINE
+asignacion          :   ARROW ID IGUAL '(' expr ')' PUNTITO 
                     ;
 
-impresion           :   ARROW WHISPER '(' expr ')' PUNTITO NEWLINE          #showExpr
-                    |   ARROW WHISPER '(' STARSTRING ')' PUNTITO NEWLINE    #showString
+impresion           :   ARROW WHISPER '(' expr ')' PUNTITO           #showExpr
+                    |   ARROW WHISPER '(' STARSTRING ')' PUNTITO     #showString
                     ;
 
 condicional         :   ifStatement elseIfStatement* elseStatement?
                     ;
 
-ifStatement         :   COZYCONDITION '(' expr ')' INITKEY NEWLINE contenido* FINALKEY NEWLINE
+ifStatement         :   COZYCONDITION '(' expr ')' INITKEY NEWLINE contenido* FINALKEY 
                     ;
 
 elseIfStatement     :   ELSE ifStatement
@@ -38,16 +38,17 @@ elseIfStatement     :   ELSE ifStatement
 elseStatement       :   DREAMYELSE INITKEY NEWLINE contenido* FINALKEY NEWLINE
                     ;
 
-incremento          :   ID (PLUS PLUS | MINUS MINUS) PUNTITO NEWLINE
+incremento          :   ARROW ID (PLUS PLUS | MINUS MINUS)
                     ;
 
 whileStatement      :   DREAMLOOP '(' expr ')' INITKEY contenido* FINALKEY
                     ;
 
 expr                :   '(' expr ')'                                        #parentesis
-                    |	expr operation=(MULT|DIV|PLUS|MINUS) expr	        #arithmetic
+                    |	expr operation=(MULT|DIV|PLUS|MINUS|MOD) expr	    #arithmetic
                     |   cond_value = (OC | OL)                              #condition
                     |   expr cond_value = (OC | OL) expr                    #condition
+                    |   STARSTRING                                          #valueAsChar
                     |   CHAR                                                #valueAsChar
                     |   FLOAT                                               #num
                     |   NUM                                                 #num

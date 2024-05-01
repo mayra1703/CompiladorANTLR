@@ -3,9 +3,9 @@ import LexerRules;
 
 file                :   start+;
 
-start               :   VOID MAIN INITPAR FINALPAR INITKEY NEWLINE block FINALKEY;
+start               :   VOID MAIN INITPAR FINALPAR INITKEY block FINALKEY;
 
-block               :   contenido*
+block               :   (contenido NEWLINE?)+
                     ;
 
 contenido           :   declaracion
@@ -16,43 +16,43 @@ contenido           :   declaracion
                     |   incremento
                     ;
 
-declaracion         :   TYPE ID (IGUAL expr)? SEMI NEWLINE
-			        |	TYPE id=(INV_ID|INT) (IGUAL expr)? SEMI NEWLINE
+declaracion         :   TYPE ID (IGUAL expr)? SEMI 
+			        |	TYPE id=(INV_ID|INT) (IGUAL expr)? SEMI 
 			        ;   
 
-asignacion          :   ID '=' expr SEMI NEWLINE
+asignacion          :   ID '=' expr SEMI 
                     ;
 
-impresion           :   PRINTF '(' expr ')' SEMI NEWLINE
+impresion           :   PRINTF '(' expr ')' SEMI 
                     ;
 
 condicional         :   ifStatement elseIfStatement* elseStatement?
                     ;
 
-ifStatement         :   IF '(' expr ')' INITKEY NEWLINE block FINALKEY
+ifStatement         :   IF '(' expr ')' INITKEY contenido* FINALKEY
                     ;
 
 elseIfStatement     :   ELSE ifStatement
                     ;
 
-elseStatement       :   ELSE INITKEY NEWLINE block FINALKEY NEWLINE
+elseStatement       :   ELSE INITKEY contenido* FINALKEY NEWLINE
                     ;
 
-whileStatement      :   WHILE '(' expr ')' INITKEY block FINALKEY
+incremento          :   ID (PLUS PLUS | MINUS MINUS) (SPACES)* SEMI 
                     ;
 
-incremento          :   ID (PLUS PLUS | MINUS MINUS) SEMI NEWLINE
+whileStatement      :   WHILE '(' expr ')' INITKEY contenido* FINALKEY
                     ;
 
-expr                :   '(' expr ')'
-                    |   expr expr
-                    |   expr operation=(MULT|DIV) expr
-                    |   expr operation=(PLUS|MINUS) expr
-                    |   cond_value = (OC | OL | BOOL)
-                    |   expr cond_value = (OC | OL | BOOL) expr
-                    |   ID
-                    |   INT
-                    |   STRING
+expr                :   '(' expr ')'                                        
+                    |	expr operation=(MULT|DIV|PLUS|MINUS|MOD) expr	    
+                    |   cond_value = (OC | OL)                              
+                    |   expr cond_value = (OC | OL) expr        
+                    |   STRING            
+                    |   CHAR                                                
+                    |   FLOAT                                               
+                    |   INT                                                
+                    |   ID                                                
                     ;
 
 TYPE            :   'int' | 'char' | 'float';

@@ -60,6 +60,8 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#contenido.
 	  visitContenido(ctx) {
+		console.log("visitContenido");
+		
 		return this.visitChildren(ctx);
 	  }
   
@@ -111,8 +113,8 @@ export default class CustomVisitor2 extends CVisitor {
 	  visitIfStatement(ctx) {
 		let condition = this.visit(ctx.expr());
 		
-		this.translatedCode += `${this.isElseif() ? " CozyCondition" : "CozyCondition"}(${condition}){`;
-		this.visit(ctx.block())
+		this.translatedCode += `${this.isElseif() ? " CozyCondition" : "\nCozyCondition"}(${condition}){`;
+		this.visit(ctx.contenido())
 		this.translatedCode += `\n}`;
 
 		return
@@ -130,7 +132,7 @@ export default class CustomVisitor2 extends CVisitor {
 	  // Visit a parse tree produced by CParser#elseStatement.
 	  visitElseStatement(ctx) {
 		this.translatedCode += `\nDreamElse{`;
-		this.visit(ctx.block())
+		this.visit(ctx.contenido())
 		this.translatedCode += `\n}`;
 		return
 	  }
@@ -139,11 +141,13 @@ export default class CustomVisitor2 extends CVisitor {
 	  // Visit a parse tree produced by CParser#incremento.
 	  visitIncremento(ctx) {
 		console.log("incremento");
-		let ID = ctx.ID().getText();
-		let operator = ctx.children[1].getText();
+		let id = ctx.ID().getText();
+		let operator = ctx.getChild(1).getText();
 
-		this.translatedCode += `\n${ID}${operator} .`;
-		
+		if (operator === "++" || operator === "--") {
+			this.translatedCode += `\n${id}${operator} ;`;
+		}
+
 		return
 	  }
 
@@ -153,7 +157,7 @@ export default class CustomVisitor2 extends CVisitor {
 		let condition = this.visit(ctx.expr());
 		
 		this.translatedCode += `\nDreamLoop(${condition}){`;
-		this.visit(ctx.block())
+		this.visit(ctx.contenido())
 		this.translatedCode += `\n}`;
 
 		return
