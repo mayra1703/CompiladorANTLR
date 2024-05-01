@@ -48,12 +48,6 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#showString.
-	visitShowString(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by CompilatorParser#condicional.
 	visitCondicional(ctx) {
 	  return this.visitChildren(ctx);

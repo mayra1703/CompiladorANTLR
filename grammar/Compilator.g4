@@ -23,7 +23,6 @@ asignacion          :   ARROW ID IGUAL '(' expr ')' PUNTITO
                     ;
 
 impresion           :   ARROW WHISPER '(' expr ')' PUNTITO           #showExpr
-                    |   ARROW WHISPER '(' STARSTRING ')' PUNTITO     #showString
                     ;
 
 condicional         :   ifStatement elseIfStatement* elseStatement?
