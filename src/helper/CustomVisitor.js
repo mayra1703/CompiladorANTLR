@@ -94,12 +94,15 @@ export default class CustomVisitor extends CompilatorVisitor {
 	declare(ctx){
 		const id = ctx.ID().getText();
 		const type = ctx.TYPE().getText();
+		const value = 0;
 
 		if (!this.variableExist(id)) {
 			this.memory.set(id, 0); // Almacenar la variable en la memoria con valor nulo
-			console.log(`Variable declared: ${type} ${id}`);
+			console.log(`${type} ${id} = ${value} `);
 			this.declaredIds[type].push({ id: id, value: 0 }); // Agregar el ID al objeto declaredIds con valor nulo
-		} else {
+		}
+		
+		else {
 			const error = document.getElementById('error');
 			const contenedorError = document.getElementById('contenedorError');
 			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
@@ -119,7 +122,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		if (!this.variableExist(id)) {
 			this.memory.set(id, value); // Almacenar la variable en la memoria con el valor asignado
-			console.log(`Variable declared and assigned: ${type} ${id} = ${value}`);
+			console.log(`${type} ${id} = ${value}`);
 			this.declaredIds[type].push({ id: id, value: value }); // Agregar el ID al objeto declaredIds con el valor asignado
 		} else {
 			const error = document.getElementById('error');
