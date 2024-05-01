@@ -9,7 +9,28 @@ export default class CustomVisitor extends CompilatorVisitor {
 	constructor() {
 		super();
 		this.memory = new HashMap();
-		this.declaredIds = {};
+		this.declaredIds = {
+			relaxint: [],
+			nightchar: [],
+			skyfloat: [],
+		};
+		this.max_loop_time = 500;
+	}
+
+	// HELPER METHODS
+	variableExist(variableName) {
+		let isVariableDefined = false;
+		for (let key in this.declaredIds) {
+			if (isVariableDefined) {
+				break;
+			} else {
+				isVariableDefined = !!this.declaredIds[key].find(
+					(variable) => variable.id === variableName
+				);
+			}
+		}
+
+		return isVariableDefined;
 	}
 
 	  // Visit a parse tree produced by CompilatorParser#file.
@@ -30,6 +51,10 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 	  // Visit a parse tree produced by CompilatorParser#contenido.
 	  visitContenido(ctx) {
+		console.log("visitContenido");
+		if(ctx.whileStatement()){
+			return this.visitChildren(ctx);
+		}
 		return this.visitChildren(ctx);
 	  }
   
@@ -222,7 +247,29 @@ export default class CustomVisitor extends CompilatorVisitor {
   
 	  // Visit a parse tree produced by CompilatorParser#whileStatement.
 	  visitWhileStatement(ctx) {
-		return this.visitChildren(ctx);
+		console.log("visitWhileStatement");
+
+		if(!ctx.expr()){
+			return false;
+		}
+
+		let condicion = this.visit(ctx.expr());
+		let time = performance.now()
+
+		while(condicion){
+			this.visit(ctx.contenido());
+			condicion = this.visit(ctx.expr());
+
+			if(performance.now() - time > this.max_loop_time){
+				const error = document.getElementById('error');
+				const contenedorError = document.getElementById('contenedorError');
+				const lineNumber = ctx.start.line;
+				error.innerHTML += `Error on line ${lineNumber}: Posible infinite loop detected, stopping loop... <br>`;
+				contenedorError.classList.remove('hidden');
+				break; 
+			}
+		}
+		return condicion;
 	  }
   
 
