@@ -5,7 +5,7 @@ file                :   start+;
 
 start               :   SERENITYCLASS INITKEY NEWLINE block FINALKEY;
 
-block               :   contenido*
+block               :   contenido*?
                     ;
 
 contenido           :   declaracion
@@ -16,8 +16,7 @@ contenido           :   declaracion
                     |   incremento
                     ;
 
-declaracion         :   GATITO TYPE ID PUNTITO NEWLINE                      #validAssign
-                    |   GATITO TYPE ID '=' expr PUNTITO NEWLINE             #validAssign
+declaracion         :   GATITO TYPE ID (IGUAL expr)? PUNTITO NEWLINE
                     ;
 
 asignacion          :   ARROW ID IGUAL '(' expr ')' PUNTITO NEWLINE

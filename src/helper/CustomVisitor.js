@@ -90,6 +90,49 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return isValid;
 	}
 
+	// Método para la declaración de una variable sin asignación
+	declare(ctx){
+		const id = ctx.ID().getText();
+		const type = ctx.TYPE().getText();
+
+		if (!this.variableExist(id)) {
+			this.memory.set(id, 0); // Almacenar la variable en la memoria con valor nulo
+			console.log(`Variable declared: ${type} ${id}`);
+			this.declaredIds[type].push({ id: id, value: 0 }); // Agregar el ID al objeto declaredIds con valor nulo
+		} else {
+			const error = document.getElementById('error');
+			const contenedorError = document.getElementById('contenedorError');
+			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+			error.innerHTML += `Syntax error on line ${lineNumber}: Error id declare. <br>`;
+			contenedorError.classList.remove('hidden');
+		}
+
+		return [type, id];
+	}
+
+	// Método para la declaración de una variable con asignación
+	declareAndAssign(ctx) {
+		const id = ctx.ID().getText();
+		const type = ctx.TYPE().getText();
+		const value = this.visit(ctx.expr());
+
+		if (!this.variableExist(id)) {
+			this.memory.set(id, value); // Almacenar la variable en la memoria con el valor asignado
+			console.log(`Variable declared and assigned: ${type} ${id} = ${value}`);
+			this.declaredIds[type].push({ id: id, value: value }); // Agregar el ID al objeto declaredIds con el valor asignado
+		} else {
+			const error = document.getElementById('error');
+			const contenedorError = document.getElementById('contenedorError');
+			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+			error.innerHTML += `Syntax error on line ${lineNumber}: Error id declareAndAssign. <br>`;
+			contenedorError.classList.remove('hidden');
+		}
+
+		return [type, id];
+	}
+
 	  // Visit a parse tree produced by CompilatorParser#file.
 	  visitFile(ctx) {
 		console.log(this.declaredIds);
@@ -116,7 +159,36 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return this.visitChildren(ctx);
 	  }
   
-	  // Visit a parse tree produced by CompilatorParser#asignacion.
+	  // Visit a parse tree produced by CompilatorParser#declaracion.
+	  visitDeclaracion(ctx) {
+		console.log("visitDeclaracion");
+		
+		let id = ctx.ID().getText();
+
+		let VARIABLE_PATTERN = /^[A-Za-z]([A-Za-z0-9-_]+)?/;
+		if (VARIABLE_PATTERN.test(id)) {
+			let result;
+			if (ctx.IGUAL()) {
+				result = this.declareAndAssign(ctx);
+			} else {
+				result = this.declare(ctx);
+			}
+
+			return result;
+		} else {
+			const TYPE = ctx.TYPE().getText();
+			const error = document.getElementById('error');
+			const contenedorError = document.getElementById('contenedorError');
+			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+			error.innerHTML += `Syntax error on line ${lineNumber}: ID "${id}" is not a valid identifier. <br>`;
+			contenedorError.classList.remove('hidden');
+
+			return [TYPE, id];
+		}
+	  }
+  
+  	  // Visit a parse tree produced by CompilatorParser#asignacion.
 	  visitAsignacion(ctx) {
 		console.log("visitAsignacion");
 		const id = ctx.ID().getText();
@@ -128,7 +200,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  }
 
   	  // Visit a parse tree produced by CompilatorParser#validAssign.
-	  visitValidAssign(ctx) {
+	  /*visitValidAssign(ctx) {
 		const error = document.getElementById('error');
 		const contenedorError = document.getElementById('contenedorError');
 		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
@@ -186,6 +258,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		return null;
 	  }
+	  
 
 	  // Visit a parse tree produced by CompilatorParser#invalidAssign.
 	  visitInvalidAssign(ctx) {
@@ -198,6 +271,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		
 		return null;
 	  }
+	 */
 
 	  // Visit a parse tree produced by CompilatorParser#showExpr.
 	  visitShowExpr(ctx) {
