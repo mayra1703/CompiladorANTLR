@@ -160,6 +160,10 @@ export default class CustomVisitor extends CompilatorVisitor {
 		if(ctx.whileStatement()){
 			return this.visitChildren(ctx)
 		}
+
+		if(ctx.condicional()){
+			return this.visitChildren(ctx);
+		}
 		
 		return this.visitChildren(ctx);
 	  }
@@ -284,7 +288,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 
 		let conditionResult = this.visit(ctx.expr())
 		if (conditionResult){
-			this.visit(ctx.block())
+			this.visit(ctx.contenido())
 		}
 
 		return conditionResult
@@ -301,12 +305,36 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  // Visit a parse tree produced by CompilatorParser#elseStatement.
 	  visitElseStatement(ctx) {
 		console.log('Visitando ElseStatement');
-    	this.visit(ctx.block());
+    	this.visit(ctx.contenido());
 		return null
 	  }
 
 	  // Visit a parse tree produced by CompilatorParser#incremento.
 	  visitIncremento(ctx) {
+		console.log("visitIncremento");
+		const id = ctx.ID().getText();
+		const type = this.getVariableType(id);
+
+		console.log(ctx.PLUS().length > 0);
+		if (type) {
+			let variable = this.declaredIds[type].find(
+				(variable) => variable.id === id
+			);
+			if (ctx.PLUS().length > 0) {
+				variable.value = variable.value + 1;
+			} else {
+				variable.value = variable.value - 1;
+			}
+		} else {
+			const error = document.getElementById('error');
+			const contenedorError = document.getElementById('contenedorError');
+			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+			error.innerHTML += `Syntax error on line ${lineNumber}: Variable "${id}" is not defined. <br>`;
+			contenedorError.classList.remove('hidden');
+
+		}
+
 		return this.visitChildren(ctx);
 	  }
   

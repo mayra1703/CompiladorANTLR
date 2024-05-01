@@ -29,13 +29,13 @@ impresion           :   ARROW WHISPER '(' expr ')' PUNTITO NEWLINE          #sho
 condicional         :   ifStatement elseIfStatement* elseStatement?
                     ;
 
-ifStatement         :   COZYCONDITION '(' expr ')' INITKEY NEWLINE block FINALKEY NEWLINE
+ifStatement         :   COZYCONDITION '(' expr ')' INITKEY NEWLINE contenido* FINALKEY NEWLINE
                     ;
 
 elseIfStatement     :   ELSE ifStatement
                     ;
 
-elseStatement       :   DREAMYELSE INITKEY NEWLINE block FINALKEY NEWLINE
+elseStatement       :   DREAMYELSE INITKEY NEWLINE contenido* FINALKEY NEWLINE
                     ;
 
 incremento          :   ID (PLUS PLUS | MINUS MINUS) PUNTITO NEWLINE
