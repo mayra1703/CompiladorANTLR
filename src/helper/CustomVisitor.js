@@ -33,8 +33,66 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return isVariableDefined;
 	}
 
+	getVariableType(variableName) {
+		let variableType = undefined;
+
+		for (let key in this.declaredIds) {
+			for (let variable of this.declaredIds[key]) {
+				if (variable.id == variableName) {
+					variableType = key;
+					break;
+				}
+			}
+
+			if (variableType) {
+				break;
+			}
+		}
+
+		return variableType;
+	}
+
+	getVariableValue(variableName, variableType) {
+		for (let variable of this.variables[variableType]) {
+			if (variable.id == variableName) {
+				return variable.value;
+			}
+		}
+
+		return 0;
+	}
+
+	assertTypeWithValue(type, value) {
+		let isValid = false;
+		switch (type) {
+			case "relaxint":
+				isValid = /(^[0-9]+$)|(^-[0-9]+$)/.test(value);
+				break;
+
+			case "skyfloat":
+				isValid = /[0-9]+\.[0-9]+/.test(value);
+				break;
+
+			case "nightchar":
+				isValid = /^[a-zA-Z]$/.test(value);
+				break;
+
+			default:
+				const error = document.getElementById('error');
+				const contenedorError = document.getElementById('contenedorError');
+				const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+				error.innerHTML += `Syntax error on line ${lineNumber}: El tipo de dato "${type}" no existe. <br>`;
+				contenedorError.classList.remove('hidden');
+				break;
+		}
+
+		return isValid;
+	}
+
 	  // Visit a parse tree produced by CompilatorParser#file.
 	  visitFile(ctx) {
+		console.log(this.declaredIds);
 		return this.visitChildren(ctx);
 	  }
   
@@ -76,6 +134,7 @@ export default class CustomVisitor extends CompilatorVisitor {
 		const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
 
 		const id = ctx.ID().getText();
+		const type = this.visit(ctx.expr());
 
 		let valueToCheck = ctx.expr() ? ctx.expr().getText() : null;
 
@@ -376,8 +435,20 @@ export default class CustomVisitor extends CompilatorVisitor {
   
 	  // Visit a parse tree produced by CompilatorParser#id.
 	  visitId(ctx) {
+		console.log("visitId");
 		const id = ctx.ID().getText();
-		if(this.memory.has(id)) return this.memory.get(id);
+
+		if (this.variableExist(id)) {
+			const type = this.getVariableType(id);
+			return this.getVariableValue(id, type);
+		}
+
+		const error = document.getElementById('error');
+		const contenedorError = document.getElementById('contenedorError');
+		const lineNumber = ctx.start.line;
+		error.innerHTML += `Error on line ${lineNumber}: Variable "${id}" is not defined. <br>`;
+		contenedorError.classList.remove('hidden');
+		//if(this.memory.has(id)) return this.memory.get(id);
 		return 0;
 	  }
   
