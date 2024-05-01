@@ -78,14 +78,14 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#whileStatement.
-	visitWhileStatement(ctx) {
+	// Visit a parse tree produced by CompilatorParser#incremento.
+	visitIncremento(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by CompilatorParser#doWhileStatement.
-	visitDoWhileStatement(ctx) {
+	// Visit a parse tree produced by CompilatorParser#whileStatement.
+	visitWhileStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -98,6 +98,12 @@ export default class CompilatorVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by CompilatorParser#condition.
 	visitCondition(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CompilatorParser#valueAsChar.
+	visitValueAsChar(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

@@ -27,7 +27,9 @@ GATITO              :       '#';
 PUNTITO             :       '.';
 
 STARSTRING          :       '"' .*? '"';
-NUM 			    :       [0-9]+ ;
+NUM 			    :       MINUS?[0-9]+ ;
+CHAR                :       '"'[a-zA-Z ]?'"';
+FLOAT 			    :       [0-9]+[.][0-9]+;
 ID                  :       [A-Za-z0-9]+;
 LINECOMMENT         :       '//' .*? '\r'? '\n'-> skip ;
 COMMENT             :       '/*' .*? '*/'-> skip ;

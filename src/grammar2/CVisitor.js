@@ -78,8 +78,8 @@ export default class CVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CParser#doWhileStatement.
-	visitDoWhileStatement(ctx) {
+	// Visit a parse tree produced by CParser#incremento.
+	visitIncremento(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

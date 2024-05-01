@@ -135,9 +135,21 @@ export default class CustomVisitor2 extends CVisitor {
 		return
 	  }
   
+	  
+	  // Visit a parse tree produced by CParser#incremento.
+	  visitIncremento(ctx) {
+		console.log("incremento");
+		let ID = ctx.ID().getText();
+		let operator = ctx.children[1].getText();
+
+		this.translatedCode += `\n${ID}${operator} .`;
+		
+		return
+	  }
 
 	  // Visit a parse tree produced by CParser#whileStatement.
 	  visitWhileStatement(ctx) {
+		console.log('While');
 		let condition = this.visit(ctx.expr());
 		
 		this.translatedCode += `\nDreamLoop(${condition}){`;
@@ -146,13 +158,6 @@ export default class CustomVisitor2 extends CVisitor {
 
 		return
 	  }
-  
-  
-	  // Visit a parse tree produced by CParser#doWhileStatement.
-	  visitDoWhileStatement(ctx) {
-		return this.visitChildren(ctx);
-	  }
-
 
 	  // Visit a parse tree produced by CParser#expr.
 	  visitExpr(ctx) {

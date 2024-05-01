@@ -12,9 +12,8 @@ contenido           :   declaracion
                     |   impresion
                     |   condicional
                     |   asignacion
-                    |   STARSTRING
                     |   whileStatement
-                    |   doWhileStatement
+                    |   incremento
                     ;
 
 declaracion         :   GATITO TYPE ID PUNTITO NEWLINE                      #validAssign
@@ -40,16 +39,19 @@ elseIfStatement     :   ELSE ifStatement
 elseStatement       :   DREAMYELSE INITKEY NEWLINE block FINALKEY NEWLINE
                     ;
 
-whileStatement      :   DREAMLOOP '(' expr ')' INITKEY block FINALKEY
+incremento          :   ID (PLUS PLUS | MINUS MINUS) PUNTITO NEWLINE
                     ;
 
-doWhileStatement    :   DO '(' block ')' DREAMLOOP '(' expr ')'
+whileStatement      :   DREAMLOOP '(' expr ')' INITKEY block FINALKEY
                     ;
 
 expr                :   '(' expr ')'                                        #parentesis
                     |	expr operation=(MULT|DIV|PLUS|MINUS) expr	        #arithmetic
                     |   cond_value = (OC | OL)                              #condition
                     |   expr cond_value = (OC | OL) expr                    #condition
-                    |   ID                                                  #id
+                    |   STARSTRING                                          #valueAsChar
+                    |   CHAR                                                #valueAsChar
+                    |   FLOAT                                               #num
                     |   NUM                                                 #num
+                    |   ID                                                  #id
                     ;

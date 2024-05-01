@@ -10,11 +10,10 @@ block               :   contenido*
 
 contenido           :   declaracion
                     |   asignacion
-                    |   impresion
                     |   condicional
                     |   whileStatement
-                    |   doWhileStatement
-                    |   STRING
+                    |   impresion
+                    |   incremento
                     ;
 
 declaracion         :   TYPE ID (IGUAL expr)? SEMI NEWLINE
@@ -42,7 +41,7 @@ elseStatement       :   ELSE INITKEY NEWLINE block FINALKEY NEWLINE
 whileStatement      :   WHILE '(' expr ')' INITKEY block FINALKEY
                     ;
 
-doWhileStatement    :   DO '(' block ')' WHILE '(' expr ')'
+incremento          :   ID (PLUS PLUS | MINUS MINUS) SEMI NEWLINE
                     ;
 
 expr                :   '(' expr ')'
@@ -55,7 +54,6 @@ expr                :   '(' expr ')'
                     |   INT
                     |   STRING
                     ;
-
 
 TYPE            :   'int' | 'char' | 'float';
 BOOL            :   'true' | 'false';

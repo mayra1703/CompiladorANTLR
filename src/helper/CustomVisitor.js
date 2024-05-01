@@ -214,6 +214,17 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return null
 	  }
 
+	  // Visit a parse tree produced by CompilatorParser#incremento.
+	  visitIncremento(ctx) {
+		return this.visitChildren(ctx);
+	  }
+  
+  
+	  // Visit a parse tree produced by CompilatorParser#whileStatement.
+	  visitWhileStatement(ctx) {
+		return this.visitChildren(ctx);
+	  }
+  
 
 	  // Visit a parse tree produced by CompilatorParser#parentesis.
 	  visitParentesis(ctx) {
