@@ -23,7 +23,7 @@ declaracion         :   TYPE ID (IGUAL expr)? SEMI
 asignacion          :   ID '=' expr SEMI 
                     ;
 
-impresion           :   PRINTF '(' expr ')' SEMI 
+impresion           :   PRINTF '(' expr (COMA expr)* ')' SEMI 
                     ;
 
 condicional         :   ifStatement elseIfStatement* elseStatement?
@@ -38,16 +38,13 @@ elseIfStatement     :   ELSE ifStatement
 elseStatement       :   ELSE INITKEY contenido* FINALKEY NEWLINE
                     ;
 
-incremento          :   ID (PLUS PLUS | MINUS MINUS) (SPACES)* SEMI 
-                    ;
-
 whileStatement      :   WHILE '(' expr ')' INITKEY contenido* FINALKEY
                     ;
 
 expr                :   '(' expr ')'                                        
                     |	expr operation=(MULT|DIV|PLUS|MINUS|MOD) expr	    
-                    |   cond_value = (OC | OL)                              
-                    |   expr cond_value = (OC | OL) expr        
+                    |   cond_value = (OC | OL | BOOL)                              
+                    |   expr cond_value = (OC | OL | BOOL) expr        
                     |   STRING            
                     |   CHAR                                                
                     |   FLOAT                                               
@@ -55,5 +52,11 @@ expr                :   '(' expr ')'
                     |   ID                                                
                     ;
 
-TYPE            :   'int' | 'char' | 'float';
-BOOL            :   'true' | 'false';
+incremento          :   ID SPACES? PLUSPLUS SEMI 
+                    |   ID SPACES? MINUSMINUS SEMI
+                    ;
+
+TYPE                :   'int' | 'char' | 'float'
+                    ;
+BOOL                :   'true' | 'false'
+                    ;

@@ -36,3 +36,4 @@ LINECOMMENT         :       '//' .*? '\r'? '\n'-> skip ;
 COMMENT             :       '/*' .*? '*/'-> skip ;
 NEWLINE             :       '\r'? '\n' ;
 SPACES              :       [ \t\r\n]+ -> skip ;
+COMA                :       ',';

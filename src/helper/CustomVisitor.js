@@ -211,15 +211,37 @@ export default class CustomVisitor extends CompilatorVisitor {
 	  // Visit a parse tree produced by CompilatorParser#showExpr.
 	  visitShowExpr(ctx) {
 		console.log("visitShowExpr");
-		const valueText = ctx.expr().getText();
+		
 		const value = this.visit(ctx.expr());
 
 		const contenedorImpresion = document.getElementById('contenedorImpresion');
 		const mensaje = document.getElementById('mensajeImpresion');
 		contenedorImpresion.classList.remove('hidden');
 		mensaje.innerHTML += `-> ${value} <br>`;
+		
 
+		/*
+		// Obtenemos la cadena de formato de la expresión (si existe)
+		let formatString = "";
 
+		if (ctx.expr().length > 0) {
+			formatString = ctx.expr(0).getText().slice(1, -1); // Eliminamos las comillas de la cadena
+		}
+	
+		// Inicializamos la cadena de resultado con la cadena de formato
+		let resultado = formatString;
+	
+		// Reemplazamos "%d" por el valor del ID o la expresión en las expresiones restantes
+		for (let i = 1; i < ctx.expr().length; i++) {
+			const value = this.visit(ctx.expr(i)); // Obtenemos el valor de la expresión
+			resultado = resultado.replace(/%d/, value); // Reemplazamos "%d" por el valor de la expresión
+		}
+	
+		const contenedorImpresion = document.getElementById('contenedorImpresion');
+		const mensaje = document.getElementById('mensajeImpresion');
+		contenedorImpresion.classList.remove('hidden');
+		mensaje.innerHTML += `-> ${resultado} <br>`;
+ 		*/
 		return null;
 	  }
 

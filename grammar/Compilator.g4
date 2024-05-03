@@ -16,13 +16,13 @@ contenido           :   declaracion
                     |   incremento
                     ;
 
-declaracion         :   GATITO TYPE ID (IGUAL expr)? PUNTITO NEWLINE
+declaracion         :   GATITO TYPE ID (IGUAL expr)? PUNTITO
                     ;
 
 asignacion          :   ARROW ID IGUAL '(' expr ')' PUNTITO 
                     ;
 
-impresion           :   ARROW WHISPER '(' expr ')' PUNTITO           #showExpr
+impresion           :   ARROW WHISPER '(' expr (COMA expr)* ')' PUNTITO           #showExpr
                     ;
 
 condicional         :   ifStatement elseIfStatement* elseStatement?

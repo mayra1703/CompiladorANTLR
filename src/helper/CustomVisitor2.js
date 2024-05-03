@@ -67,6 +67,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#declaracion.
 	  visitDeclaracion(ctx) {
+		console.log("visitDeclaracion");
 		const TYPE = ctx.TYPE().getText();
 		let ID = ctx.ID() ? ctx.ID().getText() : ctx.id.text;
 
@@ -85,6 +86,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#asignacion.
 	  visitAsignacion(ctx) {
+		console.log("visitAsignacion");
 		let ID = ctx.ID() ? ctx.ID().getText() : "";
 		let VALUE = this.visit(ctx.expr());
 		this.translatedCode += `\n-> ${ID} = (${VALUE}) .`;
@@ -94,6 +96,7 @@ export default class CustomVisitor2 extends CVisitor {
 
 	  // Visit a parse tree produced by CParser#impresion.
 	  visitImpresion(ctx) {
+		console.log("visitImpresion");
 		let content = this.visit(ctx.expr())
 		this.translatedCode += `\n-> WHISPER (${content}) .`;
 
@@ -111,6 +114,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#ifStatement.
 	  visitIfStatement(ctx) {
+		console.log("visitIfStatement");
 		let condition = this.visit(ctx.expr());
 		
 		this.translatedCode += `${this.isElseif() ? " CozyCondition" : "\nCozyCondition"}(${condition}){`;
@@ -123,6 +127,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#elseIfStatement.
 	  visitElseIfStatement(ctx) {
+		console.log("visitElseIfStatement");
 		this.translatedCode += `\nelse`;
 		this.visit(ctx.ifStatement())
 		return
@@ -131,6 +136,7 @@ export default class CustomVisitor2 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#elseStatement.
 	  visitElseStatement(ctx) {
+		console.log("visitElseStatement");
 		this.translatedCode += `\nDreamElse{`;
 		this.visit(ctx.contenido())
 		this.translatedCode += `\n}`;
@@ -140,20 +146,17 @@ export default class CustomVisitor2 extends CVisitor {
 	  
 	  // Visit a parse tree produced by CParser#incremento.
 	  visitIncremento(ctx) {
-		console.log("incremento");
-		let id = ctx.ID().getText();
-		let operator = ctx.getChild(1).getText();
+		console.log("visitIncremento");
+		const id = ctx.ID().getText();
 
-		if (operator === "++" || operator === "--") {
-			this.translatedCode += `\n${id}${operator} ;`;
-		}
+		this.translatedCode += `\n-> ${id}++`;
 
-		return
+		return 
 	  }
 
 	  // Visit a parse tree produced by CParser#whileStatement.
 	  visitWhileStatement(ctx) {
-		console.log('While');
+		console.log('visitWhileStatement');
 		let condition = this.visit(ctx.expr());
 		
 		this.translatedCode += `\nDreamLoop(${condition}){`;

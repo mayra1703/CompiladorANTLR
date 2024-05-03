@@ -2,6 +2,9 @@ lexer grammar LexerRules;
 
 STRING              :       '"' .*? '"';
 
+PLUSPLUS            :       PLUS PLUS;
+MINUSMINUS          :       MINUS MINUS;
+
 PLUS                :       '+';
 MINUS               :       '-';
 MULT                :       '*';
@@ -10,7 +13,7 @@ MOD                 :       '%';
 IGUAL               :       '=';
 
 OC                  :       ('<'|'>'|'<='|'>='|'!=');
-OL                  :       ('||'|'&&'|'==');
+OL                  :       ('||'|'&&'|'=='|'true'|'false');
 
 VOID                :       'void';
 MAIN                :       'main';
@@ -31,3 +34,7 @@ ID				    :       [a-zA-Z]([a-zA-Z0-9_]+)?;
 INV_ID 			    :       [A-Za-z0-9+\-]+;
 NEWLINE             :       '\r'? '\n' ;
 SPACES              :       [ \t\r\n]+ -> skip ;
+
+LINE_COMMENT        :       '//' ~[\r\n]* -> skip; 
+
+COMA                :       ',';
