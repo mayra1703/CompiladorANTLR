@@ -1,16 +1,18 @@
 'use client';
-import React, { useState } from 'react'
-import CodeMirror from '@uiw/react-codemirror';
-import { createTheme } from '@uiw/codemirror-themes';
-import { calcular } from '@/module/generador';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
-import generador2 from '@/module/generador2.js'
-import Lector from './Lector';
+import { createTheme } from '@uiw/codemirror-themes';
+import generador2 from '@/module/generador2.js';
+import CodeMirror from '@uiw/react-codemirror';
+import { calcular } from '@/module/generador';
+import ButtonChange from './ButtonChange';
+import React, { useState } from 'react'
 
 const Traductor = ({ codeState=["", () => {}] }) => {
     const [inputText, setInputText] = codeState;
     const [inputTextCLang, setInputTextCLang] = useState("");
     const [expressions, setExpressions] = useState('');
+    const [selectedText, setSelectedText] = useState('Lenguaje C');
+    const [selectedText2, setSelectedText2] = useState('Moonlight Code');
     const [code, setCode] = useState('');
     const [result, setResult] = useState('');
 
@@ -80,7 +82,7 @@ const Traductor = ({ codeState=["", () => {}] }) => {
     })
 
   return (
-    <main className='place-content-center h-screen bg-lightPurple'>
+    <main className='place-content-center items-center h-screen bg-lightPurple'>
 
       <div className='flex flex-col bg-darkBlue h-20 text-center'>
         <p className='font-extrabold text-white p-2 text-3xl'>Moonlight Code</p>
@@ -94,6 +96,8 @@ const Traductor = ({ codeState=["", () => {}] }) => {
           </svg>
         </button>
       </section>
+
+      <ButtonChange SelectionChange={setSelectedText} SelectionChange2={setSelectedText2}/>
 
       <div className = 'flex m-5 items-center justify-center'>
         <div className = 'mt-5 flex'>
@@ -109,7 +113,7 @@ const Traductor = ({ codeState=["", () => {}] }) => {
                         <path d="M290.7 57.4L57.4 290.7c-25 25-25 65.5 0 90.5l80 80c12 12 28.3 18.7 45.3 18.7H288h9.4H512c17.7 0 32-14.3 32-32s-14.3-32-32-32H387.9L518.6 285.3c25-25 25-65.5 0-90.5L381.3 57.4c-25-25-65.5-25-90.5 0zM297.4 416H288l-105.4 0-80-80L227.3 211.3 364.7 348.7 297.4 416z"/>
                     </svg>
                 </button>
-                <span className="ml-2 font-bold text-darkBlue">Lenguaje C</span>
+                <span className="ml-2 font-bold text-darkBlue">{selectedText}</span>
             </div>
             <div className="overflow-y-auto max-h-[calc(100%-2rem)]">
                 <CodeMirror
@@ -140,7 +144,8 @@ const Traductor = ({ codeState=["", () => {}] }) => {
                   </svg>
                 </button>
                 
-                <span className="ml-2 font-semibold text-lightYellow">Traducción</span>
+                
+                <span className="ml-2 font-semibold text-lightYellow">{selectedText2}</span>
             </div>
 
             <div className="overflow-y-auto max-h-[calc(100%-2rem)]">
