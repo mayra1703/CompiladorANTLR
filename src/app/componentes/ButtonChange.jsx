@@ -44,6 +44,11 @@ function ButtonChange({SelectionChange, SelectionChange2, handleTraductorJasmin,
             handleTraductorJasmin();
         }
 
+        else if (selected.name === 'Moonlight Code' && selected2.name === 'Lenguaje C') {
+            console.log("Traduccion Moonlight");
+            handleMoonlightToC();
+        }
+
         else if (selected2.name == 'Moonlight Code') {
             console.log("Traduccion Moonlight");
             handleTraductor();

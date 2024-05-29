@@ -45,10 +45,18 @@ export default class CustomVisitor3 extends CVisitor {
   
 	  // Visit a parse tree produced by CParser#start.
 	  visitStart(ctx) {
-		this.translatedCode += "SerenityClass{\n";
-		this.visit(ctx.block());
-		this.translatedCode += "\n}";
-		return;
+		this.translatedCode += ".class public Class\n";
+        this.translatedCode += ".super java/lang/Object\n";
+        this.translatedCode += ".method public static main([Ljava/lang/String;)V\n";
+
+        // Stack and local variables limits
+        this.translatedCode += "\n.limit stack 50";
+        this.translatedCode += "\n.limit locals 50\n";
+
+        this.visit(ctx.block());
+
+        this.translatedCode += "\nreturn\n";
+        this.translatedCode += ".end method";
 	  }
   
   

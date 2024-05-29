@@ -99,7 +99,7 @@ export default class CustomVisitor4 extends MoonlightToCVisitor {
 		console.log("visitAsignacion");
 		let ID = ctx.ID() ? ctx.ID().getText() : "";
 		let VALUE = this.visit(ctx.expr());
-		this.translatedCode += `\n${ID} = ${VALUE} ;`;
+		this.translatedCode += `\n${ID} = ${VALUE} ;\n`;
 
 		return;
 	  }
@@ -168,7 +168,7 @@ export default class CustomVisitor4 extends MoonlightToCVisitor {
 
         let condition = this.visit(ctx.expr());
 		
-		this.translatedCode += `\nwhile(${condition}){`;
+		this.translatedCode += `\nwhile(${condition}){\n`;
 		this.visit(ctx.contenido())
 		this.translatedCode += `\n}`;
 
