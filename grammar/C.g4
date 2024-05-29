@@ -5,7 +5,7 @@ file                :   start+;
 
 start               :   VOID MAIN INITPAR FINALPAR INITKEY block FINALKEY;
 
-block               :   (contenido NEWLINE?)+
+block               :   (contenido NEWLINE?)*
                     ;
 
 contenido           :   declaracion
@@ -16,8 +16,7 @@ contenido           :   declaracion
                     |   incremento
                     ;
 
-declaracion         :   TYPE ID (IGUAL expr)? SEMI 
-			        |	TYPE id=(INV_ID|INT) (IGUAL expr)? SEMI 
+declaracion         :   TYPE ID (IGUAL expr)? SEMI?
 			        ;   
 
 asignacion          :   ID '=' expr SEMI 

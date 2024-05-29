@@ -10,53 +10,79 @@ export default class CustomVisitor3 extends CVisitor {
 
 	constructor() {
 		super();
+        this.stackLimit = 1;
+        this.localsLimit = 0;
+        this.labelCounter = 0;
+        this.variables = {};
 		this.translatedCode = "";
 	}
 
-	translateType(type){
-		switch(type){
-			case 'int':
-				return 'relaxint';
+    variableExist(variable_name) {
+        return !!this.variables[variable_name];
+    }
 
-			case 'float':
-				return 'skyfloat';
+    getVariableIndex(ID) {
+        return this.variables[ID] ? this.variables[ID].index : -1;
+    }
 
-			case 'char':
-				return 'nightchar';
+    getVariableValue(ID) {
+        return this.variables[ID].value;
+    }
 
-			default:
-				return '';
-		}
-	}
+    declare(ID, VALUE) {
+        let isVariableDefined = this.variableExist(ID);
+        if (!isVariableDefined) {
+            if (VALUE != undefined) {
+                this.variables[ID] = {index: this.localsLimit, value: VALUE};
+                this.translatedCode += `\nistore_${this.localsLimit}\n`;
+            }
 
-	isElseif(){
-		let state = this.translatedCode
-		let len = this.translatedCode.length
+            else {
+                this.variables[ID] = {
+                    index: this.localsLimit,
+                    value: undefined,
+                }
+            }
+        }
 
-		return 'else' == state[len-4] + state[len-3] + state[len-2] + state[len-1]
-	}
+        else {
+            const error = document.getElementById('error');
+			const contenedorError = document.getElementById('contenedorError');
+			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+			error.innerHTML += `Syntax error on line ${lineNumber}: Declaracion de "${ID}" esta repetida. <br>`;
+			contenedorError.classList.remove('hidden');
+        }
+
+        return ID;
+    }
+
+    generateLabel(label) {
+        return label + this.labelCounter++;
+    }
 
 	// Visit a parse tree produced by CParser#file.
 	visitFile(ctx) {
 		this.visitChildren(ctx)
+        console.log(this.variables);
 		return this.translatedCode;
 	  }
   
   
 	  // Visit a parse tree produced by CParser#start.
 	  visitStart(ctx) {
-		this.translatedCode += ".class public Class\n";
-        this.translatedCode += ".super java/lang/Object\n";
-        this.translatedCode += ".method public static main([Ljava/lang/String;)V\n";
-
-        // Stack and local variables limits
-        this.translatedCode += "\n.limit stack 50";
-        this.translatedCode += "\n.limit locals 50\n";
-
         this.visit(ctx.block());
 
         this.translatedCode += "\nreturn\n";
         this.translatedCode += ".end method";
+
+        let header = `.class public PruebaJasmin
+        .super java/lang/Object
+        .method public static main([Ljava/lang/String;)V
+        .limit stack ${this.stackLimit}
+        ${this.localsLimit ? `.limit locals ${this.localsLimit}\n` : ""}`;
+
+        this.translatedCode = header + this.translatedCode;
 	  }
   
   
@@ -70,6 +96,14 @@ export default class CustomVisitor3 extends CVisitor {
 	  visitContenido(ctx) {
 		console.log("visitContenido");
 		
+        if(ctx.whileStatement()) {
+            return this.visitChildren(ctx);
+        }
+
+        if (ctx.condicional()) {
+            return this.visitChildren(ctx);
+        }
+
 		return this.visitChildren(ctx);
 	  }
   
@@ -77,29 +111,40 @@ export default class CustomVisitor3 extends CVisitor {
 	  visitDeclaracion(ctx) {
 		console.log("visitDeclaracion");
 		const TYPE = ctx.TYPE().getText();
-		let ID = ctx.ID() ? ctx.ID().getText() : ctx.id.text;
+		let ID = ctx.ID().getText();
+        const VARIABLE_PATTERN = /^[A-Za-z]([A-Za-z0-9-_]+)?/;
+		const VALUE = ctx.expr() ? this.visit(ctx.expr()) : undefined;
 
-		if (ctx.IGUAL()) {
-			let VALUE = this.visit(ctx.expr());
-			this.translatedCode += `\n# ${this.translateType(
-				TYPE
-			)} ${ID} = ${VALUE} .\n`;
-		} else {
-			this.translatedCode += `\n# ${this.translateType(TYPE)} ${ID} .\n`;
-		}
 
-		return;
+		if (VARIABLE_PATTERN.test(ID)) {
+            return this.declare(ID, VALUE);
+        }
+
+        else {
+            const TYPE = ctx.TYPE.getText();
+            const error = document.getElementById('error');
+			const contenedorError = document.getElementById('contenedorError');
+			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+			error.innerHTML += `Syntax error on line ${lineNumber}: ID "${ID}" is not a valid identifier. <br>`;
+			contenedorError.classList.remove('hidden');
+        }
+
+		return [TYPE, ID];
 	  }
   
   
 	  // Visit a parse tree produced by CParser#asignacion.
 	  visitAsignacion(ctx) {
 		console.log("visitAsignacion");
-		let ID = ctx.ID() ? ctx.ID().getText() : "";
+		let ID = ctx.ID().getText();
 		let VALUE = this.visit(ctx.expr());
-		this.translatedCode += `\n-> ${ID} = (${VALUE}) .`;
+        const INDEX = this.getVariableIndex(ID);
 
-		return;
+        if (INDEX > -1) {
+            this.variables[ID].value = VALUE;
+            this.translatedCode += `\nistore_${INDEX}\n`;
+        }
 	  }
 
 	  // Visit a parse tree produced by CParser#impresion.

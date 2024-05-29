@@ -1,4 +1,4 @@
-// Generated from c:/Users/mayme/OneDrive/Desktop/copia-compilador/CompiladorANTLR/grammar/MoonlightToC.g4 by ANTLR 4.13.1
+// Generated from c:/Users/mayme/OneDrive/Desktop/copia-compilador/CompiladorANTLR/grammar/MoonlightToJasmin.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
-public class MoonlightToCParser extends Parser {
+public class MoonlightToJasminParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -89,7 +89,7 @@ public class MoonlightToCParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "MoonlightToC.g4"; }
+	public String getGrammarFileName() { return "MoonlightToJasmin.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -100,7 +100,7 @@ public class MoonlightToCParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public MoonlightToCParser(TokenStream input) {
+	public MoonlightToJasminParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -155,13 +155,13 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class StartContext extends ParserRuleContext {
-		public TerminalNode SERENITYCLASS() { return getToken(MoonlightToCParser.SERENITYCLASS, 0); }
-		public TerminalNode INITKEY() { return getToken(MoonlightToCParser.INITKEY, 0); }
-		public TerminalNode NEWLINE() { return getToken(MoonlightToCParser.NEWLINE, 0); }
+		public TerminalNode SERENITYCLASS() { return getToken(MoonlightToJasminParser.SERENITYCLASS, 0); }
+		public TerminalNode INITKEY() { return getToken(MoonlightToJasminParser.INITKEY, 0); }
+		public TerminalNode NEWLINE() { return getToken(MoonlightToJasminParser.NEWLINE, 0); }
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
-		public TerminalNode FINALKEY() { return getToken(MoonlightToCParser.FINALKEY, 0); }
+		public TerminalNode FINALKEY() { return getToken(MoonlightToJasminParser.FINALKEY, 0); }
 		public StartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -205,9 +205,9 @@ public class MoonlightToCParser extends Parser {
 		public ContenidoContext contenido(int i) {
 			return getRuleContext(ContenidoContext.class,i);
 		}
-		public List<TerminalNode> NEWLINE() { return getTokens(MoonlightToCParser.NEWLINE); }
+		public List<TerminalNode> NEWLINE() { return getTokens(MoonlightToJasminParser.NEWLINE); }
 		public TerminalNode NEWLINE(int i) {
-			return getToken(MoonlightToCParser.NEWLINE, i);
+			return getToken(MoonlightToJasminParser.NEWLINE, i);
 		}
 		public BlockContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -349,11 +349,11 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class DeclaracionContext extends ParserRuleContext {
-		public TerminalNode GATITO() { return getToken(MoonlightToCParser.GATITO, 0); }
-		public TerminalNode TYPE() { return getToken(MoonlightToCParser.TYPE, 0); }
-		public TerminalNode ID() { return getToken(MoonlightToCParser.ID, 0); }
-		public TerminalNode PUNTITO() { return getToken(MoonlightToCParser.PUNTITO, 0); }
-		public TerminalNode IGUAL() { return getToken(MoonlightToCParser.IGUAL, 0); }
+		public TerminalNode GATITO() { return getToken(MoonlightToJasminParser.GATITO, 0); }
+		public TerminalNode TYPE() { return getToken(MoonlightToJasminParser.TYPE, 0); }
+		public TerminalNode ID() { return getToken(MoonlightToJasminParser.ID, 0); }
+		public TerminalNode PUNTITO() { return getToken(MoonlightToJasminParser.PUNTITO, 0); }
+		public TerminalNode IGUAL() { return getToken(MoonlightToJasminParser.IGUAL, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
@@ -405,39 +405,86 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AsignacionContext extends ParserRuleContext {
-		public TerminalNode ARROW() { return getToken(MoonlightToCParser.ARROW, 0); }
-		public TerminalNode ID() { return getToken(MoonlightToCParser.ID, 0); }
-		public TerminalNode IGUAL() { return getToken(MoonlightToCParser.IGUAL, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode PUNTITO() { return getToken(MoonlightToCParser.PUNTITO, 0); }
 		public AsignacionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_asignacion; }
+	 
+		public AsignacionContext() { }
+		public void copyFrom(AsignacionContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class NormalAssignContext extends AsignacionContext {
+		public TerminalNode ARROW() { return getToken(MoonlightToJasminParser.ARROW, 0); }
+		public TerminalNode ID() { return getToken(MoonlightToJasminParser.ID, 0); }
+		public TerminalNode IGUAL() { return getToken(MoonlightToJasminParser.IGUAL, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode PUNTITO() { return getToken(MoonlightToJasminParser.PUNTITO, 0); }
+		public NormalAssignContext(AsignacionContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class MathAssignContext extends AsignacionContext {
+		public TerminalNode ARROW() { return getToken(MoonlightToJasminParser.ARROW, 0); }
+		public TerminalNode ID() { return getToken(MoonlightToJasminParser.ID, 0); }
+		public TerminalNode MATH_EQUALS() { return getToken(MoonlightToJasminParser.MATH_EQUALS, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode PUNTITO() { return getToken(MoonlightToJasminParser.PUNTITO, 0); }
+		public MathAssignContext(AsignacionContext ctx) { copyFrom(ctx); }
 	}
 
 	public final AsignacionContext asignacion() throws RecognitionException {
 		AsignacionContext _localctx = new AsignacionContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_asignacion);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(65);
-			match(ARROW);
-			setState(66);
-			match(ID);
-			setState(67);
-			match(IGUAL);
-			setState(68);
-			match(T__0);
-			setState(69);
-			expr(0);
-			setState(70);
-			match(T__1);
-			setState(71);
-			match(PUNTITO);
+			setState(81);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+			case 1:
+				_localctx = new NormalAssignContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(65);
+				match(ARROW);
+				setState(66);
+				match(ID);
+				setState(67);
+				match(IGUAL);
+				setState(68);
+				match(T__0);
+				setState(69);
+				expr(0);
+				setState(70);
+				match(T__1);
+				setState(71);
+				match(PUNTITO);
+				}
+				break;
+			case 2:
+				_localctx = new MathAssignContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(73);
+				match(ARROW);
+				setState(74);
+				match(ID);
+				setState(75);
+				match(MATH_EQUALS);
+				setState(76);
+				match(T__0);
+				setState(77);
+				expr(0);
+				setState(78);
+				match(T__1);
+				setState(79);
+				match(PUNTITO);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -465,18 +512,18 @@ public class MoonlightToCParser extends Parser {
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ShowExprContext extends ImpresionContext {
-		public TerminalNode ARROW() { return getToken(MoonlightToCParser.ARROW, 0); }
-		public TerminalNode WHISPER() { return getToken(MoonlightToCParser.WHISPER, 0); }
+		public TerminalNode ARROW() { return getToken(MoonlightToJasminParser.ARROW, 0); }
+		public TerminalNode WHISPER() { return getToken(MoonlightToJasminParser.WHISPER, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public TerminalNode PUNTITO() { return getToken(MoonlightToCParser.PUNTITO, 0); }
-		public List<TerminalNode> COMA() { return getTokens(MoonlightToCParser.COMA); }
+		public TerminalNode PUNTITO() { return getToken(MoonlightToJasminParser.PUNTITO, 0); }
+		public List<TerminalNode> COMA() { return getTokens(MoonlightToJasminParser.COMA); }
 		public TerminalNode COMA(int i) {
-			return getToken(MoonlightToCParser.COMA, i);
+			return getToken(MoonlightToJasminParser.COMA, i);
 		}
 		public ShowExprContext(ImpresionContext ctx) { copyFrom(ctx); }
 	}
@@ -489,33 +536,33 @@ public class MoonlightToCParser extends Parser {
 			_localctx = new ShowExprContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(73);
+			setState(83);
 			match(ARROW);
-			setState(74);
+			setState(84);
 			match(WHISPER);
-			setState(75);
+			setState(85);
 			match(T__0);
-			setState(76);
+			setState(86);
 			expr(0);
-			setState(81);
+			setState(91);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMA) {
 				{
 				{
-				setState(77);
+				setState(87);
 				match(COMA);
-				setState(78);
+				setState(88);
 				expr(0);
 				}
 				}
-				setState(83);
+				setState(93);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(84);
+			setState(94);
 			match(T__1);
-			setState(85);
+			setState(95);
 			match(PUNTITO);
 			}
 		}
@@ -557,28 +604,28 @@ public class MoonlightToCParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(87);
+			setState(97);
 			ifStatement();
-			setState(91);
+			setState(101);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==ELSE) {
 				{
 				{
-				setState(88);
+				setState(98);
 				elseIfStatement();
 				}
 				}
-				setState(93);
+				setState(103);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(95);
+			setState(105);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==DREAMYELSE) {
 				{
-				setState(94);
+				setState(104);
 				elseStatement();
 				}
 			}
@@ -598,13 +645,13 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class IfStatementContext extends ParserRuleContext {
-		public TerminalNode COZYCONDITION() { return getToken(MoonlightToCParser.COZYCONDITION, 0); }
+		public TerminalNode COZYCONDITION() { return getToken(MoonlightToJasminParser.COZYCONDITION, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public TerminalNode INITKEY() { return getToken(MoonlightToCParser.INITKEY, 0); }
-		public TerminalNode NEWLINE() { return getToken(MoonlightToCParser.NEWLINE, 0); }
-		public TerminalNode FINALKEY() { return getToken(MoonlightToCParser.FINALKEY, 0); }
+		public TerminalNode INITKEY() { return getToken(MoonlightToJasminParser.INITKEY, 0); }
+		public TerminalNode NEWLINE() { return getToken(MoonlightToJasminParser.NEWLINE, 0); }
+		public TerminalNode FINALKEY() { return getToken(MoonlightToJasminParser.FINALKEY, 0); }
 		public List<ContenidoContext> contenido() {
 			return getRuleContexts(ContenidoContext.class);
 		}
@@ -624,33 +671,33 @@ public class MoonlightToCParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(97);
+			setState(107);
 			match(COZYCONDITION);
-			setState(98);
+			setState(108);
 			match(T__0);
-			setState(99);
+			setState(109);
 			expr(0);
-			setState(100);
+			setState(110);
 			match(T__1);
-			setState(101);
+			setState(111);
 			match(INITKEY);
-			setState(102);
+			setState(112);
 			match(NEWLINE);
-			setState(106);
+			setState(116);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 18104320L) != 0)) {
 				{
 				{
-				setState(103);
+				setState(113);
 				contenido();
 				}
 				}
-				setState(108);
+				setState(118);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(109);
+			setState(119);
 			match(FINALKEY);
 			}
 		}
@@ -667,7 +714,7 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ElseIfStatementContext extends ParserRuleContext {
-		public TerminalNode ELSE() { return getToken(MoonlightToCParser.ELSE, 0); }
+		public TerminalNode ELSE() { return getToken(MoonlightToJasminParser.ELSE, 0); }
 		public IfStatementContext ifStatement() {
 			return getRuleContext(IfStatementContext.class,0);
 		}
@@ -683,9 +730,9 @@ public class MoonlightToCParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(111);
+			setState(121);
 			match(ELSE);
-			setState(112);
+			setState(122);
 			ifStatement();
 			}
 		}
@@ -702,13 +749,13 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ElseStatementContext extends ParserRuleContext {
-		public TerminalNode DREAMYELSE() { return getToken(MoonlightToCParser.DREAMYELSE, 0); }
-		public TerminalNode INITKEY() { return getToken(MoonlightToCParser.INITKEY, 0); }
-		public List<TerminalNode> NEWLINE() { return getTokens(MoonlightToCParser.NEWLINE); }
+		public TerminalNode DREAMYELSE() { return getToken(MoonlightToJasminParser.DREAMYELSE, 0); }
+		public TerminalNode INITKEY() { return getToken(MoonlightToJasminParser.INITKEY, 0); }
+		public List<TerminalNode> NEWLINE() { return getTokens(MoonlightToJasminParser.NEWLINE); }
 		public TerminalNode NEWLINE(int i) {
-			return getToken(MoonlightToCParser.NEWLINE, i);
+			return getToken(MoonlightToJasminParser.NEWLINE, i);
 		}
-		public TerminalNode FINALKEY() { return getToken(MoonlightToCParser.FINALKEY, 0); }
+		public TerminalNode FINALKEY() { return getToken(MoonlightToJasminParser.FINALKEY, 0); }
 		public List<ContenidoContext> contenido() {
 			return getRuleContexts(ContenidoContext.class);
 		}
@@ -728,29 +775,29 @@ public class MoonlightToCParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(114);
+			setState(124);
 			match(DREAMYELSE);
-			setState(115);
+			setState(125);
 			match(INITKEY);
-			setState(116);
+			setState(126);
 			match(NEWLINE);
-			setState(120);
+			setState(130);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 18104320L) != 0)) {
 				{
 				{
-				setState(117);
+				setState(127);
 				contenido();
 				}
 				}
-				setState(122);
+				setState(132);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(123);
+			setState(133);
 			match(FINALKEY);
-			setState(124);
+			setState(134);
 			match(NEWLINE);
 			}
 		}
@@ -767,15 +814,15 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class IncrementoContext extends ParserRuleContext {
-		public TerminalNode ARROW() { return getToken(MoonlightToCParser.ARROW, 0); }
-		public TerminalNode ID() { return getToken(MoonlightToCParser.ID, 0); }
-		public List<TerminalNode> PLUS() { return getTokens(MoonlightToCParser.PLUS); }
+		public TerminalNode ARROW() { return getToken(MoonlightToJasminParser.ARROW, 0); }
+		public TerminalNode ID() { return getToken(MoonlightToJasminParser.ID, 0); }
+		public List<TerminalNode> PLUS() { return getTokens(MoonlightToJasminParser.PLUS); }
 		public TerminalNode PLUS(int i) {
-			return getToken(MoonlightToCParser.PLUS, i);
+			return getToken(MoonlightToJasminParser.PLUS, i);
 		}
-		public List<TerminalNode> MINUS() { return getTokens(MoonlightToCParser.MINUS); }
+		public List<TerminalNode> MINUS() { return getTokens(MoonlightToJasminParser.MINUS); }
 		public TerminalNode MINUS(int i) {
-			return getToken(MoonlightToCParser.MINUS, i);
+			return getToken(MoonlightToJasminParser.MINUS, i);
 		}
 		public IncrementoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -789,26 +836,26 @@ public class MoonlightToCParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(126);
+			setState(136);
 			match(ARROW);
-			setState(127);
+			setState(137);
 			match(ID);
-			setState(132);
+			setState(142);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PLUS:
 				{
-				setState(128);
+				setState(138);
 				match(PLUS);
-				setState(129);
+				setState(139);
 				match(PLUS);
 				}
 				break;
 			case MINUS:
 				{
-				setState(130);
+				setState(140);
 				match(MINUS);
-				setState(131);
+				setState(141);
 				match(MINUS);
 				}
 				break;
@@ -830,13 +877,13 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class WhileStatementContext extends ParserRuleContext {
-		public TerminalNode DREAMLOOP() { return getToken(MoonlightToCParser.DREAMLOOP, 0); }
+		public TerminalNode DREAMLOOP() { return getToken(MoonlightToJasminParser.DREAMLOOP, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public TerminalNode INITKEY() { return getToken(MoonlightToCParser.INITKEY, 0); }
-		public TerminalNode NEWLINE() { return getToken(MoonlightToCParser.NEWLINE, 0); }
-		public TerminalNode FINALKEY() { return getToken(MoonlightToCParser.FINALKEY, 0); }
+		public TerminalNode INITKEY() { return getToken(MoonlightToJasminParser.INITKEY, 0); }
+		public TerminalNode NEWLINE() { return getToken(MoonlightToJasminParser.NEWLINE, 0); }
+		public TerminalNode FINALKEY() { return getToken(MoonlightToJasminParser.FINALKEY, 0); }
 		public List<ContenidoContext> contenido() {
 			return getRuleContexts(ContenidoContext.class);
 		}
@@ -856,33 +903,33 @@ public class MoonlightToCParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(134);
+			setState(144);
 			match(DREAMLOOP);
-			setState(135);
+			setState(145);
 			match(T__0);
-			setState(136);
+			setState(146);
 			expr(0);
-			setState(137);
+			setState(147);
 			match(T__1);
-			setState(138);
+			setState(148);
 			match(INITKEY);
-			setState(139);
+			setState(149);
 			match(NEWLINE);
-			setState(143);
+			setState(153);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 18104320L) != 0)) {
 				{
 				{
-				setState(140);
+				setState(150);
 				contenido();
 				}
 				}
-				setState(145);
+				setState(155);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(146);
+			setState(156);
 			match(FINALKEY);
 			}
 		}
@@ -899,7 +946,44 @@ public class MoonlightToCParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ExprContext extends ParserRuleContext {
+		public ExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expr; }
+	 
+		public ExprContext() { }
+		public void copyFrom(ExprContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class ParentesisContext extends ExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public ParentesisContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class ConditionContext extends ExprContext {
 		public Token cond_value;
+		public TerminalNode OC() { return getToken(MoonlightToJasminParser.OC, 0); }
+		public TerminalNode OL() { return getToken(MoonlightToJasminParser.OL, 0); }
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public ConditionContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class ValueAsCharContext extends ExprContext {
+		public TerminalNode STARSTRING() { return getToken(MoonlightToJasminParser.STARSTRING, 0); }
+		public TerminalNode CHAR() { return getToken(MoonlightToJasminParser.CHAR, 0); }
+		public ValueAsCharContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class MultDivContext extends ExprContext {
 		public Token operation;
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
@@ -907,22 +991,44 @@ public class MoonlightToCParser extends Parser {
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public TerminalNode OC() { return getToken(MoonlightToCParser.OC, 0); }
-		public TerminalNode OL() { return getToken(MoonlightToCParser.OL, 0); }
-		public TerminalNode STARSTRING() { return getToken(MoonlightToCParser.STARSTRING, 0); }
-		public TerminalNode CHAR() { return getToken(MoonlightToCParser.CHAR, 0); }
-		public TerminalNode FLOAT() { return getToken(MoonlightToCParser.FLOAT, 0); }
-		public TerminalNode NUM() { return getToken(MoonlightToCParser.NUM, 0); }
-		public TerminalNode ID() { return getToken(MoonlightToCParser.ID, 0); }
-		public TerminalNode MULT() { return getToken(MoonlightToCParser.MULT, 0); }
-		public TerminalNode DIV() { return getToken(MoonlightToCParser.DIV, 0); }
-		public TerminalNode PLUS() { return getToken(MoonlightToCParser.PLUS, 0); }
-		public TerminalNode MINUS() { return getToken(MoonlightToCParser.MINUS, 0); }
-		public TerminalNode MOD() { return getToken(MoonlightToCParser.MOD, 0); }
-		public ExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
+		public TerminalNode MULT() { return getToken(MoonlightToJasminParser.MULT, 0); }
+		public TerminalNode DIV() { return getToken(MoonlightToJasminParser.DIV, 0); }
+		public TerminalNode MOD() { return getToken(MoonlightToJasminParser.MOD, 0); }
+		public MultDivContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class NumContext extends ExprContext {
+		public TerminalNode FLOAT() { return getToken(MoonlightToJasminParser.FLOAT, 0); }
+		public TerminalNode NUM() { return getToken(MoonlightToJasminParser.NUM, 0); }
+		public NumContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class AddSubContext extends ExprContext {
+		public Token operation;
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
 		}
-		@Override public int getRuleIndex() { return RULE_expr; }
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public TerminalNode PLUS() { return getToken(MoonlightToJasminParser.PLUS, 0); }
+		public TerminalNode MINUS() { return getToken(MoonlightToJasminParser.MINUS, 0); }
+		public AddSubContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class IdContext extends ExprContext {
+		public TerminalNode ID() { return getToken(MoonlightToJasminParser.ID, 0); }
+		public IdContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class SignNumbersContext extends ExprContext {
+		public Token operation;
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode PLUS() { return getToken(MoonlightToJasminParser.PLUS, 0); }
+		public TerminalNode MINUS() { return getToken(MoonlightToJasminParser.MINUS, 0); }
+		public SignNumbersContext(ExprContext ctx) { copyFrom(ctx); }
 	}
 
 	public final ExprContext expr() throws RecognitionException {
@@ -941,27 +1047,55 @@ public class MoonlightToCParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(159);
+			setState(171);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
 				{
-				setState(149);
+				_localctx = new ParentesisContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+
+				setState(159);
 				match(T__0);
-				setState(150);
+				setState(160);
 				expr(0);
-				setState(151);
+				setState(161);
 				match(T__1);
+				}
+				break;
+			case PLUS:
+			case MINUS:
+				{
+				_localctx = new SignNumbersContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(163);
+				((SignNumbersContext)_localctx).operation = _input.LT(1);
+				_la = _input.LA(1);
+				if ( !(_la==PLUS || _la==MINUS) ) {
+					((SignNumbersContext)_localctx).operation = (Token)_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(164);
+				expr(8);
 				}
 				break;
 			case OC:
 			case OL:
 				{
-				setState(153);
-				((ExprContext)_localctx).cond_value = _input.LT(1);
+				_localctx = new ConditionContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(165);
+				((ConditionContext)_localctx).cond_value = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==OC || _la==OL) ) {
-					((ExprContext)_localctx).cond_value = (Token)_errHandler.recoverInline(this);
+					((ConditionContext)_localctx).cond_value = (Token)_errHandler.recoverInline(this);
 				}
 				else {
 					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -972,31 +1106,46 @@ public class MoonlightToCParser extends Parser {
 				break;
 			case STARSTRING:
 				{
-				setState(154);
+				_localctx = new ValueAsCharContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(166);
 				match(STARSTRING);
 				}
 				break;
 			case CHAR:
 				{
-				setState(155);
+				_localctx = new ValueAsCharContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(167);
 				match(CHAR);
 				}
 				break;
 			case FLOAT:
 				{
-				setState(156);
+				_localctx = new NumContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(168);
 				match(FLOAT);
 				}
 				break;
 			case NUM:
 				{
-				setState(157);
+				_localctx = new NumContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(169);
 				match(NUM);
 				}
 				break;
 			case ID:
 				{
-				setState(158);
+				_localctx = new IdContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(170);
 				match(ID);
 				}
 				break;
@@ -1004,65 +1153,86 @@ public class MoonlightToCParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(169);
+			setState(184);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(167);
+					setState(182);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 					case 1:
 						{
-						_localctx = new ExprContext(_parentctx, _parentState);
+						_localctx = new MultDivContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(161);
-						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(162);
-						((ExprContext)_localctx).operation = _input.LT(1);
+						setState(173);
+						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
+						setState(174);
+						((MultDivContext)_localctx).operation = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 496L) != 0)) ) {
-							((ExprContext)_localctx).operation = (Token)_errHandler.recoverInline(this);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 448L) != 0)) ) {
+							((MultDivContext)_localctx).operation = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(163);
-						expr(9);
+						setState(175);
+						expr(11);
 						}
 						break;
 					case 2:
 						{
-						_localctx = new ExprContext(_parentctx, _parentState);
+						_localctx = new AddSubContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(164);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(165);
-						((ExprContext)_localctx).cond_value = _input.LT(1);
+						setState(176);
+						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
+						setState(177);
+						((AddSubContext)_localctx).operation = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==OC || _la==OL) ) {
-							((ExprContext)_localctx).cond_value = (Token)_errHandler.recoverInline(this);
+						if ( !(_la==PLUS || _la==MINUS) ) {
+							((AddSubContext)_localctx).operation = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(166);
+						setState(178);
+						expr(10);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new ConditionContext(new ExprContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expr);
+						setState(179);
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						setState(180);
+						((ConditionContext)_localctx).cond_value = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !(_la==OC || _la==OL) ) {
+							((ConditionContext)_localctx).cond_value = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(181);
 						expr(7);
 						}
 						break;
 					}
 					} 
 				}
-				setState(171);
+				setState(186);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			}
 			}
 		}
@@ -1087,15 +1257,17 @@ public class MoonlightToCParser extends Parser {
 	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 8);
+			return precpred(_ctx, 10);
 		case 1:
+			return precpred(_ctx, 9);
+		case 2:
 			return precpred(_ctx, 6);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001#\u00ad\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001#\u00bc\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -1106,96 +1278,108 @@ public class MoonlightToCParser extends Parser {
 		"\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0003\u00037\b\u0003\u0001"+
 		"\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004>\b"+
 		"\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001"+
-		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0001"+
-		"\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0005\u0006P\b"+
-		"\u0006\n\u0006\f\u0006S\t\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001"+
-		"\u0007\u0001\u0007\u0005\u0007Z\b\u0007\n\u0007\f\u0007]\t\u0007\u0001"+
-		"\u0007\u0003\u0007`\b\u0007\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001"+
-		"\b\u0001\b\u0005\bi\b\b\n\b\f\bl\t\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001"+
-		"\t\u0001\n\u0001\n\u0001\n\u0001\n\u0005\nw\b\n\n\n\f\nz\t\n\u0001\n\u0001"+
-		"\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b"+
-		"\u0001\u000b\u0003\u000b\u0085\b\u000b\u0001\f\u0001\f\u0001\f\u0001\f"+
-		"\u0001\f\u0001\f\u0001\f\u0005\f\u008e\b\f\n\f\f\f\u0091\t\f\u0001\f\u0001"+
-		"\f\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001"+
-		"\r\u0001\r\u0001\r\u0003\r\u00a0\b\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001"+
-		"\r\u0001\r\u0005\r\u00a8\b\r\n\r\f\r\u00ab\t\r\u0001\r\u0000\u0001\u001a"+
-		"\u000e\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018"+
-		"\u001a\u0000\u0002\u0001\u0000\n\u000b\u0001\u0000\u0004\b\u00b6\u0000"+
-		"\u001d\u0001\u0000\u0000\u0000\u0002!\u0001\u0000\u0000\u0000\u0004-\u0001"+
-		"\u0000\u0000\u0000\u00066\u0001\u0000\u0000\u0000\b8\u0001\u0000\u0000"+
-		"\u0000\nA\u0001\u0000\u0000\u0000\fI\u0001\u0000\u0000\u0000\u000eW\u0001"+
-		"\u0000\u0000\u0000\u0010a\u0001\u0000\u0000\u0000\u0012o\u0001\u0000\u0000"+
-		"\u0000\u0014r\u0001\u0000\u0000\u0000\u0016~\u0001\u0000\u0000\u0000\u0018"+
-		"\u0086\u0001\u0000\u0000\u0000\u001a\u009f\u0001\u0000\u0000\u0000\u001c"+
-		"\u001e\u0003\u0002\u0001\u0000\u001d\u001c\u0001\u0000\u0000\u0000\u001e"+
-		"\u001f\u0001\u0000\u0000\u0000\u001f\u001d\u0001\u0000\u0000\u0000\u001f"+
-		" \u0001\u0000\u0000\u0000 \u0001\u0001\u0000\u0000\u0000!\"\u0005\r\u0000"+
-		"\u0000\"#\u0005\u0016\u0000\u0000#$\u0005!\u0000\u0000$%\u0003\u0004\u0002"+
-		"\u0000%&\u0005\u0017\u0000\u0000&\u0003\u0001\u0000\u0000\u0000\')\u0003"+
-		"\u0006\u0003\u0000(*\u0005!\u0000\u0000)(\u0001\u0000\u0000\u0000)*\u0001"+
-		"\u0000\u0000\u0000*,\u0001\u0000\u0000\u0000+\'\u0001\u0000\u0000\u0000"+
-		",/\u0001\u0000\u0000\u0000-+\u0001\u0000\u0000\u0000-.\u0001\u0000\u0000"+
-		"\u0000.\u0005\u0001\u0000\u0000\u0000/-\u0001\u0000\u0000\u000007\u0003"+
-		"\b\u0004\u000017\u0003\f\u0006\u000027\u0003\u000e\u0007\u000037\u0003"+
-		"\n\u0005\u000047\u0003\u0018\f\u000057\u0003\u0016\u000b\u000060\u0001"+
-		"\u0000\u0000\u000061\u0001\u0000\u0000\u000062\u0001\u0000\u0000\u0000"+
-		"63\u0001\u0000\u0000\u000064\u0001\u0000\u0000\u000065\u0001\u0000\u0000"+
-		"\u00007\u0007\u0001\u0000\u0000\u000089\u0005\u0018\u0000\u00009:\u0005"+
-		"\u0003\u0000\u0000:=\u0005\u001e\u0000\u0000;<\u0005\t\u0000\u0000<>\u0003"+
-		"\u001a\r\u0000=;\u0001\u0000\u0000\u0000=>\u0001\u0000\u0000\u0000>?\u0001"+
-		"\u0000\u0000\u0000?@\u0005\u0019\u0000\u0000@\t\u0001\u0000\u0000\u0000"+
-		"AB\u0005\u0014\u0000\u0000BC\u0005\u001e\u0000\u0000CD\u0005\t\u0000\u0000"+
-		"DE\u0005\u0001\u0000\u0000EF\u0003\u001a\r\u0000FG\u0005\u0002\u0000\u0000"+
-		"GH\u0005\u0019\u0000\u0000H\u000b\u0001\u0000\u0000\u0000IJ\u0005\u0014"+
-		"\u0000\u0000JK\u0005\u0015\u0000\u0000KL\u0005\u0001\u0000\u0000LQ\u0003"+
-		"\u001a\r\u0000MN\u0005#\u0000\u0000NP\u0003\u001a\r\u0000OM\u0001\u0000"+
-		"\u0000\u0000PS\u0001\u0000\u0000\u0000QO\u0001\u0000\u0000\u0000QR\u0001"+
-		"\u0000\u0000\u0000RT\u0001\u0000\u0000\u0000SQ\u0001\u0000\u0000\u0000"+
-		"TU\u0005\u0002\u0000\u0000UV\u0005\u0019\u0000\u0000V\r\u0001\u0000\u0000"+
-		"\u0000W[\u0003\u0010\b\u0000XZ\u0003\u0012\t\u0000YX\u0001\u0000\u0000"+
-		"\u0000Z]\u0001\u0000\u0000\u0000[Y\u0001\u0000\u0000\u0000[\\\u0001\u0000"+
-		"\u0000\u0000\\_\u0001\u0000\u0000\u0000][\u0001\u0000\u0000\u0000^`\u0003"+
-		"\u0014\n\u0000_^\u0001\u0000\u0000\u0000_`\u0001\u0000\u0000\u0000`\u000f"+
-		"\u0001\u0000\u0000\u0000ab\u0005\u000e\u0000\u0000bc\u0005\u0001\u0000"+
-		"\u0000cd\u0003\u001a\r\u0000de\u0005\u0002\u0000\u0000ef\u0005\u0016\u0000"+
-		"\u0000fj\u0005!\u0000\u0000gi\u0003\u0006\u0003\u0000hg\u0001\u0000\u0000"+
-		"\u0000il\u0001\u0000\u0000\u0000jh\u0001\u0000\u0000\u0000jk\u0001\u0000"+
-		"\u0000\u0000km\u0001\u0000\u0000\u0000lj\u0001\u0000\u0000\u0000mn\u0005"+
-		"\u0017\u0000\u0000n\u0011\u0001\u0000\u0000\u0000op\u0005\u0010\u0000"+
-		"\u0000pq\u0003\u0010\b\u0000q\u0013\u0001\u0000\u0000\u0000rs\u0005\u0011"+
-		"\u0000\u0000st\u0005\u0016\u0000\u0000tx\u0005!\u0000\u0000uw\u0003\u0006"+
-		"\u0003\u0000vu\u0001\u0000\u0000\u0000wz\u0001\u0000\u0000\u0000xv\u0001"+
-		"\u0000\u0000\u0000xy\u0001\u0000\u0000\u0000y{\u0001\u0000\u0000\u0000"+
-		"zx\u0001\u0000\u0000\u0000{|\u0005\u0017\u0000\u0000|}\u0005!\u0000\u0000"+
-		"}\u0015\u0001\u0000\u0000\u0000~\u007f\u0005\u0014\u0000\u0000\u007f\u0084"+
-		"\u0005\u001e\u0000\u0000\u0080\u0081\u0005\u0004\u0000\u0000\u0081\u0085"+
-		"\u0005\u0004\u0000\u0000\u0082\u0083\u0005\u0005\u0000\u0000\u0083\u0085"+
-		"\u0005\u0005\u0000\u0000\u0084\u0080\u0001\u0000\u0000\u0000\u0084\u0082"+
-		"\u0001\u0000\u0000\u0000\u0085\u0017\u0001\u0000\u0000\u0000\u0086\u0087"+
-		"\u0005\u0012\u0000\u0000\u0087\u0088\u0005\u0001\u0000\u0000\u0088\u0089"+
-		"\u0003\u001a\r\u0000\u0089\u008a\u0005\u0002\u0000\u0000\u008a\u008b\u0005"+
-		"\u0016\u0000\u0000\u008b\u008f\u0005!\u0000\u0000\u008c\u008e\u0003\u0006"+
-		"\u0003\u0000\u008d\u008c\u0001\u0000\u0000\u0000\u008e\u0091\u0001\u0000"+
-		"\u0000\u0000\u008f\u008d\u0001\u0000\u0000\u0000\u008f\u0090\u0001\u0000"+
-		"\u0000\u0000\u0090\u0092\u0001\u0000\u0000\u0000\u0091\u008f\u0001\u0000"+
-		"\u0000\u0000\u0092\u0093\u0005\u0017\u0000\u0000\u0093\u0019\u0001\u0000"+
-		"\u0000\u0000\u0094\u0095\u0006\r\uffff\uffff\u0000\u0095\u0096\u0005\u0001"+
-		"\u0000\u0000\u0096\u0097\u0003\u001a\r\u0000\u0097\u0098\u0005\u0002\u0000"+
-		"\u0000\u0098\u00a0\u0001\u0000\u0000\u0000\u0099\u00a0\u0007\u0000\u0000"+
-		"\u0000\u009a\u00a0\u0005\u001a\u0000\u0000\u009b\u00a0\u0005\u001c\u0000"+
-		"\u0000\u009c\u00a0\u0005\u001d\u0000\u0000\u009d\u00a0\u0005\u001b\u0000"+
-		"\u0000\u009e\u00a0\u0005\u001e\u0000\u0000\u009f\u0094\u0001\u0000\u0000"+
-		"\u0000\u009f\u0099\u0001\u0000\u0000\u0000\u009f\u009a\u0001\u0000\u0000"+
-		"\u0000\u009f\u009b\u0001\u0000\u0000\u0000\u009f\u009c\u0001\u0000\u0000"+
-		"\u0000\u009f\u009d\u0001\u0000\u0000\u0000\u009f\u009e\u0001\u0000\u0000"+
-		"\u0000\u00a0\u00a9\u0001\u0000\u0000\u0000\u00a1\u00a2\n\b\u0000\u0000"+
-		"\u00a2\u00a3\u0007\u0001\u0000\u0000\u00a3\u00a8\u0003\u001a\r\t\u00a4"+
-		"\u00a5\n\u0006\u0000\u0000\u00a5\u00a6\u0007\u0000\u0000\u0000\u00a6\u00a8"+
-		"\u0003\u001a\r\u0007\u00a7\u00a1\u0001\u0000\u0000\u0000\u00a7\u00a4\u0001"+
-		"\u0000\u0000\u0000\u00a8\u00ab\u0001\u0000\u0000\u0000\u00a9\u00a7\u0001"+
-		"\u0000\u0000\u0000\u00a9\u00aa\u0001\u0000\u0000\u0000\u00aa\u001b\u0001"+
-		"\u0000\u0000\u0000\u00ab\u00a9\u0001\u0000\u0000\u0000\u000f\u001f)-6"+
-		"=Q[_jx\u0084\u008f\u009f\u00a7\u00a9";
+		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001"+
+		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001"+
+		"\u0005\u0003\u0005R\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001"+
+		"\u0006\u0001\u0006\u0001\u0006\u0005\u0006Z\b\u0006\n\u0006\f\u0006]\t"+
+		"\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0007\u0001\u0007\u0005"+
+		"\u0007d\b\u0007\n\u0007\f\u0007g\t\u0007\u0001\u0007\u0003\u0007j\b\u0007"+
+		"\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0005\bs\b\b"+
+		"\n\b\f\bv\t\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001\n\u0001\n"+
+		"\u0001\n\u0001\n\u0005\n\u0081\b\n\n\n\f\n\u0084\t\n\u0001\n\u0001\n\u0001"+
+		"\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b"+
+		"\u0003\u000b\u008f\b\u000b\u0001\f\u0001\f\u0001\f\u0001\f\u0001\f\u0001"+
+		"\f\u0001\f\u0005\f\u0098\b\f\n\f\f\f\u009b\t\f\u0001\f\u0001\f\u0001\r"+
+		"\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001"+
+		"\r\u0001\r\u0001\r\u0001\r\u0003\r\u00ac\b\r\u0001\r\u0001\r\u0001\r\u0001"+
+		"\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0005\r\u00b7\b\r\n\r\f\r\u00ba"+
+		"\t\r\u0001\r\u0000\u0001\u001a\u000e\u0000\u0002\u0004\u0006\b\n\f\u000e"+
+		"\u0010\u0012\u0014\u0016\u0018\u001a\u0000\u0003\u0001\u0000\u0004\u0005"+
+		"\u0001\u0000\n\u000b\u0001\u0000\u0006\b\u00c8\u0000\u001d\u0001\u0000"+
+		"\u0000\u0000\u0002!\u0001\u0000\u0000\u0000\u0004-\u0001\u0000\u0000\u0000"+
+		"\u00066\u0001\u0000\u0000\u0000\b8\u0001\u0000\u0000\u0000\nQ\u0001\u0000"+
+		"\u0000\u0000\fS\u0001\u0000\u0000\u0000\u000ea\u0001\u0000\u0000\u0000"+
+		"\u0010k\u0001\u0000\u0000\u0000\u0012y\u0001\u0000\u0000\u0000\u0014|"+
+		"\u0001\u0000\u0000\u0000\u0016\u0088\u0001\u0000\u0000\u0000\u0018\u0090"+
+		"\u0001\u0000\u0000\u0000\u001a\u00ab\u0001\u0000\u0000\u0000\u001c\u001e"+
+		"\u0003\u0002\u0001\u0000\u001d\u001c\u0001\u0000\u0000\u0000\u001e\u001f"+
+		"\u0001\u0000\u0000\u0000\u001f\u001d\u0001\u0000\u0000\u0000\u001f \u0001"+
+		"\u0000\u0000\u0000 \u0001\u0001\u0000\u0000\u0000!\"\u0005\r\u0000\u0000"+
+		"\"#\u0005\u0016\u0000\u0000#$\u0005!\u0000\u0000$%\u0003\u0004\u0002\u0000"+
+		"%&\u0005\u0017\u0000\u0000&\u0003\u0001\u0000\u0000\u0000\')\u0003\u0006"+
+		"\u0003\u0000(*\u0005!\u0000\u0000)(\u0001\u0000\u0000\u0000)*\u0001\u0000"+
+		"\u0000\u0000*,\u0001\u0000\u0000\u0000+\'\u0001\u0000\u0000\u0000,/\u0001"+
+		"\u0000\u0000\u0000-+\u0001\u0000\u0000\u0000-.\u0001\u0000\u0000\u0000"+
+		".\u0005\u0001\u0000\u0000\u0000/-\u0001\u0000\u0000\u000007\u0003\b\u0004"+
+		"\u000017\u0003\f\u0006\u000027\u0003\u000e\u0007\u000037\u0003\n\u0005"+
+		"\u000047\u0003\u0018\f\u000057\u0003\u0016\u000b\u000060\u0001\u0000\u0000"+
+		"\u000061\u0001\u0000\u0000\u000062\u0001\u0000\u0000\u000063\u0001\u0000"+
+		"\u0000\u000064\u0001\u0000\u0000\u000065\u0001\u0000\u0000\u00007\u0007"+
+		"\u0001\u0000\u0000\u000089\u0005\u0018\u0000\u00009:\u0005\u0003\u0000"+
+		"\u0000:=\u0005\u001e\u0000\u0000;<\u0005\t\u0000\u0000<>\u0003\u001a\r"+
+		"\u0000=;\u0001\u0000\u0000\u0000=>\u0001\u0000\u0000\u0000>?\u0001\u0000"+
+		"\u0000\u0000?@\u0005\u0019\u0000\u0000@\t\u0001\u0000\u0000\u0000AB\u0005"+
+		"\u0014\u0000\u0000BC\u0005\u001e\u0000\u0000CD\u0005\t\u0000\u0000DE\u0005"+
+		"\u0001\u0000\u0000EF\u0003\u001a\r\u0000FG\u0005\u0002\u0000\u0000GH\u0005"+
+		"\u0019\u0000\u0000HR\u0001\u0000\u0000\u0000IJ\u0005\u0014\u0000\u0000"+
+		"JK\u0005\u001e\u0000\u0000KL\u0005\f\u0000\u0000LM\u0005\u0001\u0000\u0000"+
+		"MN\u0003\u001a\r\u0000NO\u0005\u0002\u0000\u0000OP\u0005\u0019\u0000\u0000"+
+		"PR\u0001\u0000\u0000\u0000QA\u0001\u0000\u0000\u0000QI\u0001\u0000\u0000"+
+		"\u0000R\u000b\u0001\u0000\u0000\u0000ST\u0005\u0014\u0000\u0000TU\u0005"+
+		"\u0015\u0000\u0000UV\u0005\u0001\u0000\u0000V[\u0003\u001a\r\u0000WX\u0005"+
+		"#\u0000\u0000XZ\u0003\u001a\r\u0000YW\u0001\u0000\u0000\u0000Z]\u0001"+
+		"\u0000\u0000\u0000[Y\u0001\u0000\u0000\u0000[\\\u0001\u0000\u0000\u0000"+
+		"\\^\u0001\u0000\u0000\u0000][\u0001\u0000\u0000\u0000^_\u0005\u0002\u0000"+
+		"\u0000_`\u0005\u0019\u0000\u0000`\r\u0001\u0000\u0000\u0000ae\u0003\u0010"+
+		"\b\u0000bd\u0003\u0012\t\u0000cb\u0001\u0000\u0000\u0000dg\u0001\u0000"+
+		"\u0000\u0000ec\u0001\u0000\u0000\u0000ef\u0001\u0000\u0000\u0000fi\u0001"+
+		"\u0000\u0000\u0000ge\u0001\u0000\u0000\u0000hj\u0003\u0014\n\u0000ih\u0001"+
+		"\u0000\u0000\u0000ij\u0001\u0000\u0000\u0000j\u000f\u0001\u0000\u0000"+
+		"\u0000kl\u0005\u000e\u0000\u0000lm\u0005\u0001\u0000\u0000mn\u0003\u001a"+
+		"\r\u0000no\u0005\u0002\u0000\u0000op\u0005\u0016\u0000\u0000pt\u0005!"+
+		"\u0000\u0000qs\u0003\u0006\u0003\u0000rq\u0001\u0000\u0000\u0000sv\u0001"+
+		"\u0000\u0000\u0000tr\u0001\u0000\u0000\u0000tu\u0001\u0000\u0000\u0000"+
+		"uw\u0001\u0000\u0000\u0000vt\u0001\u0000\u0000\u0000wx\u0005\u0017\u0000"+
+		"\u0000x\u0011\u0001\u0000\u0000\u0000yz\u0005\u0010\u0000\u0000z{\u0003"+
+		"\u0010\b\u0000{\u0013\u0001\u0000\u0000\u0000|}\u0005\u0011\u0000\u0000"+
+		"}~\u0005\u0016\u0000\u0000~\u0082\u0005!\u0000\u0000\u007f\u0081\u0003"+
+		"\u0006\u0003\u0000\u0080\u007f\u0001\u0000\u0000\u0000\u0081\u0084\u0001"+
+		"\u0000\u0000\u0000\u0082\u0080\u0001\u0000\u0000\u0000\u0082\u0083\u0001"+
+		"\u0000\u0000\u0000\u0083\u0085\u0001\u0000\u0000\u0000\u0084\u0082\u0001"+
+		"\u0000\u0000\u0000\u0085\u0086\u0005\u0017\u0000\u0000\u0086\u0087\u0005"+
+		"!\u0000\u0000\u0087\u0015\u0001\u0000\u0000\u0000\u0088\u0089\u0005\u0014"+
+		"\u0000\u0000\u0089\u008e\u0005\u001e\u0000\u0000\u008a\u008b\u0005\u0004"+
+		"\u0000\u0000\u008b\u008f\u0005\u0004\u0000\u0000\u008c\u008d\u0005\u0005"+
+		"\u0000\u0000\u008d\u008f\u0005\u0005\u0000\u0000\u008e\u008a\u0001\u0000"+
+		"\u0000\u0000\u008e\u008c\u0001\u0000\u0000\u0000\u008f\u0017\u0001\u0000"+
+		"\u0000\u0000\u0090\u0091\u0005\u0012\u0000\u0000\u0091\u0092\u0005\u0001"+
+		"\u0000\u0000\u0092\u0093\u0003\u001a\r\u0000\u0093\u0094\u0005\u0002\u0000"+
+		"\u0000\u0094\u0095\u0005\u0016\u0000\u0000\u0095\u0099\u0005!\u0000\u0000"+
+		"\u0096\u0098\u0003\u0006\u0003\u0000\u0097\u0096\u0001\u0000\u0000\u0000"+
+		"\u0098\u009b\u0001\u0000\u0000\u0000\u0099\u0097\u0001\u0000\u0000\u0000"+
+		"\u0099\u009a\u0001\u0000\u0000\u0000\u009a\u009c\u0001\u0000\u0000\u0000"+
+		"\u009b\u0099\u0001\u0000\u0000\u0000\u009c\u009d\u0005\u0017\u0000\u0000"+
+		"\u009d\u0019\u0001\u0000\u0000\u0000\u009e\u009f\u0006\r\uffff\uffff\u0000"+
+		"\u009f\u00a0\u0005\u0001\u0000\u0000\u00a0\u00a1\u0003\u001a\r\u0000\u00a1"+
+		"\u00a2\u0005\u0002\u0000\u0000\u00a2\u00ac\u0001\u0000\u0000\u0000\u00a3"+
+		"\u00a4\u0007\u0000\u0000\u0000\u00a4\u00ac\u0003\u001a\r\b\u00a5\u00ac"+
+		"\u0007\u0001\u0000\u0000\u00a6\u00ac\u0005\u001a\u0000\u0000\u00a7\u00ac"+
+		"\u0005\u001c\u0000\u0000\u00a8\u00ac\u0005\u001d\u0000\u0000\u00a9\u00ac"+
+		"\u0005\u001b\u0000\u0000\u00aa\u00ac\u0005\u001e\u0000\u0000\u00ab\u009e"+
+		"\u0001\u0000\u0000\u0000\u00ab\u00a3\u0001\u0000\u0000\u0000\u00ab\u00a5"+
+		"\u0001\u0000\u0000\u0000\u00ab\u00a6\u0001\u0000\u0000\u0000\u00ab\u00a7"+
+		"\u0001\u0000\u0000\u0000\u00ab\u00a8\u0001\u0000\u0000\u0000\u00ab\u00a9"+
+		"\u0001\u0000\u0000\u0000\u00ab\u00aa\u0001\u0000\u0000\u0000\u00ac\u00b8"+
+		"\u0001\u0000\u0000\u0000\u00ad\u00ae\n\n\u0000\u0000\u00ae\u00af\u0007"+
+		"\u0002\u0000\u0000\u00af\u00b7\u0003\u001a\r\u000b\u00b0\u00b1\n\t\u0000"+
+		"\u0000\u00b1\u00b2\u0007\u0000\u0000\u0000\u00b2\u00b7\u0003\u001a\r\n"+
+		"\u00b3\u00b4\n\u0006\u0000\u0000\u00b4\u00b5\u0007\u0001\u0000\u0000\u00b5"+
+		"\u00b7\u0003\u001a\r\u0007\u00b6\u00ad\u0001\u0000\u0000\u0000\u00b6\u00b0"+
+		"\u0001\u0000\u0000\u0000\u00b6\u00b3\u0001\u0000\u0000\u0000\u00b7\u00ba"+
+		"\u0001\u0000\u0000\u0000\u00b8\u00b6\u0001\u0000\u0000\u0000\u00b8\u00b9"+
+		"\u0001\u0000\u0000\u0000\u00b9\u001b\u0001\u0000\u0000\u0000\u00ba\u00b8"+
+		"\u0001\u0000\u0000\u0000\u0010\u001f)-6=Q[eit\u0082\u008e\u0099\u00ab"+
+		"\u00b6\u00b8";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

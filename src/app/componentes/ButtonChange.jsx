@@ -9,7 +9,7 @@ const options = [
     {id: 3, name: 'Lenguaje Jasmin'},
 ];
 
-function ButtonChange({SelectionChange, SelectionChange2, handleTraductorJasmin, handleMoonlightToC, handleTraductor}) {
+function ButtonChange({SelectionChange, SelectionChange2, handleTraductorJasmin, handleMoonlightToC, handleMoonlightToJasmin, handleTraductor}) {
     const [selected, setSelected] = useState(options[0]);
     const [selected2, setSelected2] = useState(options[1]);
     const [query, setQuery] = useState('');
@@ -39,18 +39,19 @@ function ButtonChange({SelectionChange, SelectionChange2, handleTraductorJasmin,
 
     const onTranslateClick = () => {
         console.log("onTranslateClick");
-        if (selected2.name === 'Lenguaje Jasmin') {
-            console.log("Traduccion a Jasmin");
+        if (selected.name === 'Lenguaje C' && selected2.name === 'Lenguaje Jasmin') {
             handleTraductorJasmin();
         }
 
         else if (selected.name === 'Moonlight Code' && selected2.name === 'Lenguaje C') {
-            console.log("Traduccion Moonlight");
             handleMoonlightToC();
         }
 
-        else if (selected2.name == 'Moonlight Code') {
-            console.log("Traduccion Moonlight");
+        else if (selected.name === 'Moonlight Code' && selected2.name === 'Lenguaje Jasmin') {
+            handleMoonlightToJasmin();
+        }
+
+        else if (selected.name === 'Lenguaje C' && selected2.name === 'Moonlight Code') {
             handleTraductor();
         }
     };

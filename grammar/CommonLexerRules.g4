@@ -13,6 +13,8 @@ IGUAL               :       '=';
 OC                  :       ('<'|'>'|'<='|'>='|'!=');
 OL                  :       ('||'|'&&'|'=='|'peaceful'|'chaotic');
 
+MATH_EQUALS		    :       ('+='|'-='|'*='|'/='|'%=');
+
 SERENITYCLASS       :       'SerenityClass';
 COZYCONDITION       :       'CozyCondition';
 TWILIGHTOPTION      :       'TwilightOption';

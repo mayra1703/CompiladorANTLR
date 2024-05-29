@@ -1,3 +1,4 @@
+//! Generador de Lenguaje C a Jasmin
 import antlr4 from 'antlr4'
 
 import CParser from '@/grammar2/CParser.js';

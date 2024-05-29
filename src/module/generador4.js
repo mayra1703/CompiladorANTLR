@@ -1,3 +1,4 @@
+//! Generador de Moonlight Code a Lenguaje C
 import antlr4 from 'antlr4'
 
 import MoonlightToCParser from '@/grammar3/MoonlightToCParser';

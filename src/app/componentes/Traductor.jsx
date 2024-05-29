@@ -3,7 +3,8 @@ import { noctisLilac } from '@uiw/codemirror-themes-all';
 import { createTheme } from '@uiw/codemirror-themes';
 import generador2 from '@/module/generador2.js';
 import generador3 from '@/module/generador3.js';
-import generador4 from '@/module/generador4.js'
+import generador4 from '@/module/generador4.js';
+import generador5 from '@/module/generador5.js';
 import CodeMirror from '@uiw/react-codemirror';
 import FileSaver from 'file-saver';
 import { calcular } from '@/module/generador';
@@ -14,7 +15,6 @@ const Traductor = ({ codeState=["", () => {}] }) => {
     const [inputText, setInputText] = codeState;
     const [inputTextCLang, setInputTextCLang] = useState("")
     const [inputTextMoonlight, setInputTextMoonlight] = useState("")
-    const [inputTextJasmin, setInputTextJasmin] = useState("")
     const [expressions, setExpressions] = useState('');
     const [selectedText, setSelectedText] = useState('Lenguaje C');
     const [selectedText2, setSelectedText2] = useState('Moonlight Code');
@@ -82,6 +82,13 @@ const Traductor = ({ codeState=["", () => {}] }) => {
       saveToTextFile(result, 'TranslationMoonlightCodeToC.txt')
     }
 
+    const handleMoonlightToJasmin = () => {
+      console.log("handleMoonlightToJasmin Bandera");
+      let result = generador5(inputTextMoonlight);
+      setInputText(result);
+      saveToTextFile(result, 'TranslationMoonlightCodeToJasmin.txt')
+    }
+
     let clean = () => {
         setInputText("")
         setInputTextCLang("")
@@ -124,7 +131,7 @@ const Traductor = ({ codeState=["", () => {}] }) => {
         </button>
       </section>
 
-      <ButtonChange SelectionChange={setSelectedText} SelectionChange2={setSelectedText2} handleTraductorJasmin={handleTraductorJasmin} handleMoonlightToC={handleMoonlightToC} handleTraductor={handleTraductor}/>
+      <ButtonChange SelectionChange={setSelectedText} SelectionChange2={setSelectedText2} handleTraductorJasmin={handleTraductorJasmin} handleMoonlightToC={handleMoonlightToC} handleMoonlightToJasmin={handleMoonlightToJasmin} handleTraductor={handleTraductor}/>
 
       <div className = 'flex m-5 items-center justify-center'>
         <div className = 'mt-5 flex'>

@@ -1,9 +1,10 @@
-//! Generador de Lenguaje C a Moonlight Code
+//! Generador de Moonlight Code a Jasmin
 import antlr4 from 'antlr4'
 
-import CParser from '@/grammar2/CParser.js';
-import CLexer from '@/grammar2/CLexer.js';
-import CustomVisitor2 from '@/helper/CustomVisitor2.js';
+import MoonlightToJasminParser from '@/grammar4/MoonlightToJasminParser';
+import MoonlightToJasminLexer from '@/grammar4/MoonlightToJasminLexer';
+
+import CustomVisitor5 from '@/helper/CustomVisitor5.js';
 
 class CustomErrorListener extends antlr4.error.ErrorListener {
     // Funcion para reconocer errores
@@ -46,13 +47,13 @@ class CustomErrorListener extends antlr4.error.ErrorListener {
 
 let traduccion = (input) => {
     const chars = new antlr4.InputStream(input);
-    const lexer = new CLexer(chars)
+    const lexer = new MoonlightToJasminLexer(chars)
     
     lexer.removeErrorListeners(); // Remover los listeners por defecto (No mostrarlos en consola)
     lexer.addErrorListener(new CustomErrorListener()); // Se crea un mensaje de error personalizado
    
     const tokens = new antlr4.CommonTokenStream(lexer)
-    const parser = new CParser(tokens)
+    const parser = new MoonlightToJasminParser(tokens)
 
     parser.removeErrorListeners();
     parser.addErrorListener(new CustomErrorListener());
@@ -60,10 +61,8 @@ let traduccion = (input) => {
     parser.buildParseTrees = true;
 
     const tree = parser.file();
-    const visitor = new CustomVisitor2();
+    const visitor = new CustomVisitor5();
     return visitor.visitFile(tree);
 };
 
 export default traduccion;
-
-
