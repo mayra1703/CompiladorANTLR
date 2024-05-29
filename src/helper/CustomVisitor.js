@@ -136,6 +136,65 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return [type, id];
 	}
 
+	assign(ID, VALUE, OPERATOR = '=') {
+		console.log("assign");
+		const TYPE = this.getVariableType(ID);
+
+		if (TYPE) {
+			if (this.assertTypeWithValue(TYPE, VALUE)) {
+				let variable = this.declaredIds[TYPE].find(
+					(variable) => variable.id === ID
+				);
+
+				switch (OPERATOR) {
+					case '=':
+						variable.value = VALUE;
+						break;
+
+					case '+=':
+						variable.value = variable.value + VALUE;
+						break;
+
+					case '-=':
+						variable.value = variable.value - VALUE;
+						break;
+
+					case '*=':
+						variable.value = variable.value * VALUE;
+						break;
+
+					case '/=':
+						variable.value = variable.value / VALUE;
+						break;
+
+					case '%=':
+						variable.value = variable.value % VALUE;
+						break;
+				}
+			}
+			
+			else {
+				const error = document.getElementById('error');
+				const contenedorError = document.getElementById('contenedorError');
+				const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+	
+				error.innerHTML += `Syntax error on line ${lineNumber}: Cant assign "${VALUE}" to type "${TYPE}". <br>`;
+				contenedorError.classList.remove('hidden');
+			}
+		}
+
+		else {
+				const error = document.getElementById('error');
+				const contenedorError = document.getElementById('contenedorError');
+				const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+	
+				error.innerHTML += `Syntax error on line ${lineNumber}: Variable "${ID}" is not defined. <br>`;
+				contenedorError.classList.remove('hidden');
+		}
+
+		return true;
+	}
+
 	  // Visit a parse tree produced by CompilatorParser#file.
 	  visitFile(ctx) {
 		console.log(this.declaredIds);
@@ -184,7 +243,9 @@ export default class CustomVisitor extends CompilatorVisitor {
 			}
 
 			return result;
-		} else {
+		} 
+		
+		else {
 			const TYPE = ctx.TYPE().getText();
 			const error = document.getElementById('error');
 			const contenedorError = document.getElementById('contenedorError');
@@ -197,16 +258,28 @@ export default class CustomVisitor extends CompilatorVisitor {
 		}
 	  }
   
-  	  // Visit a parse tree produced by CompilatorParser#asignacion.
-	  visitAsignacion(ctx) {
-		console.log("visitAsignacion");
-		const id = ctx.ID().getText();
-		const expr = this.visit(ctx.expr());
+  	  // Visit a parse tree produced by CompilatorParser#normalAssign.
+	  visitNormalAssign(ctx) {
+		console.log("visitNormalAssign");
 
-		this.memory.set(id, expr);
-		console.log(`Asignación: ${id} = ${expr}`);
-        return;
+		const ID = ctx.ID().getText();
+		const VALUE = this.visit(ctx.expr());
+
+		return this.assign(ID, VALUE);
 	  }
+  
+  
+	  // Visit a parse tree produced by CompilatorParser#mathAssign.
+	  visitMathAssign(ctx) {
+		console.log("visitMathAssign");
+
+		const ID = ctx.ID().getText();
+		const VALUE = this.visit(ctx.expr());
+		const OPERATOR = ctx.MATH_EQUALS().getText();
+
+		return this.assign(ID, VALUE, OPERATOR);
+	  }
+  
 
 	  // Visit a parse tree produced by CompilatorParser#showExpr.
 	  visitShowExpr(ctx) {
@@ -220,28 +293,6 @@ export default class CustomVisitor extends CompilatorVisitor {
 		mensaje.innerHTML += `-> ${value} <br>`;
 		
 
-		/*
-		// Obtenemos la cadena de formato de la expresión (si existe)
-		let formatString = "";
-
-		if (ctx.expr().length > 0) {
-			formatString = ctx.expr(0).getText().slice(1, -1); // Eliminamos las comillas de la cadena
-		}
-	
-		// Inicializamos la cadena de resultado con la cadena de formato
-		let resultado = formatString;
-	
-		// Reemplazamos "%d" por el valor del ID o la expresión en las expresiones restantes
-		for (let i = 1; i < ctx.expr().length; i++) {
-			const value = this.visit(ctx.expr(i)); // Obtenemos el valor de la expresión
-			resultado = resultado.replace(/%d/, value); // Reemplazamos "%d" por el valor de la expresión
-		}
-	
-		const contenedorImpresion = document.getElementById('contenedorImpresion');
-		const mensaje = document.getElementById('mensajeImpresion');
-		contenedorImpresion.classList.remove('hidden');
-		mensaje.innerHTML += `-> ${resultado} <br>`;
- 		*/
 		return null;
 	  }
 
@@ -442,10 +493,42 @@ export default class CustomVisitor extends CompilatorVisitor {
 		return ctx.getText();
 	  }
 
+	  // Visit a parse tree produced by CompilatorParser#multDiv.
+	  visitMultDiv(ctx) {
+		const operation_data = this.visitChildren(ctx);
+		let SYMBOL = ctx.operation.type;
+
+		if (SYMBOL == CompilatorParser.MULT) {
+			return operation_data[0] * operation_data[2];
+		}
+
+		if(SYMBOL == CompilatorParser.DIV){
+			return operation_data[0] / operation_data[2];
+		}
+
+		if(SYMBOL == CompilatorParser.MOD){
+			return operation_data[0] % operation_data[2];
+		}
+	  }
+
 	  // Visit a parse tree produced by CompilatorParser#num.
 	  visitNum(ctx) {
 		console.log("visitNum");
 		return Number(ctx.getText())
+	  }
+
+	  // Visit a parse tree produced by CompilatorParser#addSub.
+	  visitAddSub(ctx) {
+		const operation_data = this.visitChildren(ctx);
+		let SYMBOL = ctx.operation.type;
+
+		if (SYMBOL == CompilatorParser.PLUS) {
+			return operation_data[0] + operation_data[2];
+		} 
+		
+		else {
+			return operation_data[0] - operation_data[2];
+		}
 	  }
   
 	  // Visit a parse tree produced by CompilatorParser#arithmetic.
@@ -491,6 +574,14 @@ export default class CustomVisitor extends CompilatorVisitor {
 		contenedorError.classList.remove('hidden');
 		//if(this.memory.has(id)) return this.memory.get(id);
 		return 0;
+	  }
+
+	  // Visit a parse tree produced by CompilatorParser#signNumbers.
+	  visitSignNumbers(ctx) {
+		let sign = ctx.operation.text;
+		let number = this.visit(ctx.expr());
+		
+		return Number(`${sign}${number}`);
 	  }
   
   }

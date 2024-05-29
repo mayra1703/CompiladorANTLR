@@ -89,7 +89,7 @@ export default class CustomVisitor2 extends CVisitor {
 		console.log("visitAsignacion");
 		let ID = ctx.ID() ? ctx.ID().getText() : "";
 		let VALUE = this.visit(ctx.expr());
-		this.translatedCode += `\n-> ${ID} = (${VALUE}) .`;
+		this.translatedCode += `\n-> ${ID} ${ctx.eq.text} (${VALUE}) .`;
 
 		return;
 	  }
@@ -148,8 +148,7 @@ export default class CustomVisitor2 extends CVisitor {
 	  visitIncremento(ctx) {
 		console.log("visitIncremento");
 		const id = ctx.ID().getText();
-
-		this.translatedCode += `\n-> ${id}++`;
+        this.translatedCode += `\n-> ${id}++`;
 
 		return 
 	  }

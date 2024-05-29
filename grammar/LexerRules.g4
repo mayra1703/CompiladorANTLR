@@ -15,6 +15,8 @@ IGUAL               :       '=';
 OC                  :       ('<'|'>'|'<='|'>='|'!=');
 OL                  :       ('||'|'&&'|'=='|'true'|'false');
 
+MATH_EQUALS		    :       ('+='|'-='|'*='|'/='|'%=');
+
 VOID                :       'void';
 MAIN                :       'main';
 INITPAR             :       '(';

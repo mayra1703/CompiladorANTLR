@@ -19,7 +19,7 @@ contenido           :   declaracion
 declaracion         :   TYPE ID (IGUAL expr)? SEMI?
 			        ;   
 
-asignacion          :   ID '=' expr SEMI 
+asignacion          :   ID eq=(IGUAL|MATH_EQUALS) expr SEMI 
                     ;
 
 impresion           :   PRINTF '(' expr (COMA expr)* ')' SEMI 
