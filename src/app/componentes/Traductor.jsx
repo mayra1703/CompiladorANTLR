@@ -93,21 +93,28 @@ const Traductor = ({ codeState=["", () => {}] }) => {
     const handleDownload = () => {
       if (selectedText === 'Lenguaje C' && selectedText2 === "Moonlight Code") {
         saveToTextFile(result, 'TranslationCToMoonlightCode.txt')
+        toast.success("Traduccion descargada");
       }
 
       else if (selectedText === 'Lenguaje C' && selectedText2 === "Lenguaje Jasmin") {
         saveToTextFile(result, 'TranslationCToJasmin.txt')
+        toast.success("Traduccion descargada");
       }
 
       else if (selectedText === 'Moonlight Code' && selectedText2 === "Lenguaje C") {
         saveToTextFile(result, 'TranslationMoonlightCodeToC.txt')
+        toast.success("Traduccion descargada");
       }
 
       else if (selectedText === 'Moonlight Code' && selectedText2 === "Lenguaje Jasmin") {
         saveToTextFile(result, 'TranslationMoonlightCodeToJasmin.txt')
+        toast.success("Traduccion descargada");
       }
 
-      toast.success("Traduccion descargada");
+      else {
+        toast.error("Error en la descarga");
+      }
+
     }
 
     let clean = () => {
