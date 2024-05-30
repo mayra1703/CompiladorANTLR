@@ -1,6 +1,8 @@
 //! Generador de Moonlight Code a Jasmin
 import antlr4 from 'antlr4'
 
+import CompilatorParser from '@/grammar/CompilatorParser';
+import CompilatorLexer from '@/grammar/CompilatorLexer';
 import MoonlightToJasminParser from '@/grammar4/MoonlightToJasminParser';
 import MoonlightToJasminLexer from '@/grammar4/MoonlightToJasminLexer';
 
@@ -47,13 +49,13 @@ class CustomErrorListener extends antlr4.error.ErrorListener {
 
 let traduccion = (input) => {
     const chars = new antlr4.InputStream(input);
-    const lexer = new MoonlightToJasminLexer(chars)
+    const lexer = new CompilatorLexer(chars)
     
     lexer.removeErrorListeners(); // Remover los listeners por defecto (No mostrarlos en consola)
     lexer.addErrorListener(new CustomErrorListener()); // Se crea un mensaje de error personalizado
    
     const tokens = new antlr4.CommonTokenStream(lexer)
-    const parser = new MoonlightToJasminParser(tokens)
+    const parser = new CompilatorParser(tokens)
 
     parser.removeErrorListeners();
     parser.addErrorListener(new CustomErrorListener());

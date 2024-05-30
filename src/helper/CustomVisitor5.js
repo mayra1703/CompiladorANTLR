@@ -1,12 +1,14 @@
 
 import MoonlightToJasminVisitor from '@/grammar4/MoonlightToJasminVisitor.js';
+import CompilatorVisitor from '@/grammar/CompilatorVisitor';
+import CompilatorParser from '@/grammar/CompilatorParser';
 import MoonlightToJasminParser from '@/grammar4/MoonlightToJasminParser';
 
 // This class defines a complete generic visitor for a parse tree produced by CalculadoraParser.
 
 // En vez de visitas, retornar las palabras cambiadas a C
 
-export default class CustomVisitor5 extends MoonlightToJasminVisitor {
+export default class CustomVisitor5 extends CompilatorVisitor {
 
 	constructor() {
 		super();
@@ -41,8 +43,9 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
                 this.variables[ID] = {
                     index: this.localsLimit,
                     value: undefined,
-                }
+                };
             }
+            this.localsLimit++;
         }
 
         else {
@@ -74,9 +77,9 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
         this.visit(ctx.block());
 
         this.translatedCode += "\nreturn\n";
-        this.translatedCode += ".end method";
+        this.translatedCode += "\n.end method";
 
-        let header = `.class public PruebaJasmin
+        let header = `.class public Prueba
         .super java/lang/Object
         .method public static main([Ljava/lang/String;)V
         .limit stack ${this.stackLimit}
@@ -95,6 +98,7 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
 	  // Visit a parse tree produced by CParser#contenido.
 	  visitContenido(ctx) {
 		console.log("visitContenido");
+        console.log(ctx.getText());
 		
         if(ctx.whileStatement()) {
             return this.visitChildren(ctx);
@@ -128,9 +132,10 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
 
 			error.innerHTML += `Syntax error on line ${lineNumber}: ID "${ID}" is not a valid identifier. <br>`;
 			contenedorError.classList.remove('hidden');
+
+            return [TYPE, ID];
         }
 
-		return [TYPE, ID];
 	  }
   
   
@@ -157,6 +162,7 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
         const ID = ctx.ID().getText();
         const INDEX = this.getVariableIndex(ID);
         const OPERATOR = ctx.MATH_EQUALS().getText();
+        console.log(`${ID} ${OPERATOR} ${INDEX}`);
 
         if (INDEX > -1) {
             this.translatedCode += `\niload_${INDEX}`;
@@ -262,6 +268,7 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
                 this.translatedCode += `\n${condition.label}:`;
             }
 
+            console.log(condition.instruction);
             const instruction = this.visit(condition.instruction);
             this.translatedCode += `\n${instruction} ${conditions[i + 1].label}`;
             this.visit(condition.content);
@@ -314,7 +321,7 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
 
             else {
                 this.translatedCode += `\niinc ${variable.index} -1`;
-                variable.value = variable.value -1;
+                variable.value = variable.value - 1;
             }
         }
 
@@ -360,7 +367,7 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
       visitCondition(ctx) {
         console.log("visitCondition");
         this.visit(ctx.expr());
-        let [first_val, second_val] = this.visit(ctx.expr());
+        // let [first_val, second_val] = this.visit(ctx.expr());
         let symbol = ctx.cond_value.text;
 
         switch (symbol) {
@@ -441,6 +448,7 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
         if (ctx.getText().includes(".")) {
 
             value = parseFloat(ctx.getText());
+            console.log("parseFloat");
             this.translatedCode += `\nldc ${value}`;
 
             return value;
@@ -449,6 +457,7 @@ export default class CustomVisitor5 extends MoonlightToJasminVisitor {
         else {
 
             value = Number(ctx.getText());
+            console.log("Number");
             this.translatedCode += `\nldc ${value}`;
 
             return value;
