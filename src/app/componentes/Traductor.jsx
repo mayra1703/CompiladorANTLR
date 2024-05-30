@@ -7,6 +7,7 @@ import generador4 from '@/module/generador4.js';
 import generador5 from '@/module/generador5.js';
 import CodeMirror from '@uiw/react-codemirror';
 import FileSaver from 'file-saver';
+import toast, { Toaster } from 'react-hot-toast';
 import { calcular } from '@/module/generador';
 import ButtonChange from './ButtonChange';
 import React, { useState } from 'react'
@@ -65,28 +66,48 @@ const Traductor = ({ codeState=["", () => {}] }) => {
     let handleTraductor = () => {
       let result = generador2(inputTextCLang)
       setInputText(result)
-      saveToTextFile(result, 'TranslationCToMoonlightCode.txt')
+      //saveToTextFile(result, 'TranslationCToMoonlightCode.txt')
     }
     
     // Funcion para traducir de C (Primer CodeMirror) a Jasmin
     const handleTraductorJasmin = () => {
       let result = generador3(inputTextCLang);
       setInputText(result)
-      saveToTextFile(result, 'TranslationCToJasmin.txt')
+      //saveToTextFile(result, 'TranslationCToJasmin.txt')
     }
 
     const handleMoonlightToC = () => {
       console.log("handleMoonlightToC");
       let result = generador4(inputTextMoonlight);
       setInputText(result)
-      saveToTextFile(result, 'TranslationMoonlightCodeToC.txt')
+      //saveToTextFile(result, 'TranslationMoonlightCodeToC.txt')
     }
 
     const handleMoonlightToJasmin = () => {
-      console.log("handleMoonlightToJasmin Bandera");
+      console.log("handleMoonlightToJasmin");
       let result = generador5(inputTextMoonlight);
       setInputText(result);
-      saveToTextFile(result, 'TranslationMoonlightCodeToJasmin.txt')
+      //saveToTextFile(result, 'TranslationMoonlightCodeToJasmin.txt')
+    }
+
+    const handleDownload = () => {
+      if (selectedText === 'Lenguaje C' && selectedText2 === "Moonlight Code") {
+        saveToTextFile(result, 'TranslationCToMoonlightCode.txt')
+      }
+
+      else if (selectedText === 'Lenguaje C' && selectedText2 === "Lenguaje Jasmin") {
+        saveToTextFile(result, 'TranslationCToJasmin.txt')
+      }
+
+      else if (selectedText === 'Moonlight Code' && selectedText2 === "Lenguaje C") {
+        saveToTextFile(result, 'TranslationMoonlightCodeToC.txt')
+      }
+
+      else if (selectedText === 'Moonlight Code' && selectedText2 === "Lenguaje Jasmin") {
+        saveToTextFile(result, 'TranslationMoonlightCodeToJasmin.txt')
+      }
+
+      toast.success("Traduccion descargada");
     }
 
     let clean = () => {
@@ -118,6 +139,7 @@ const Traductor = ({ codeState=["", () => {}] }) => {
   return (
     <main className='place-content-center items-center h-screen bg-lightPurple'>
 
+      <Toaster/>
       <div className='flex flex-col bg-darkBlue h-20 text-center'>
         <p className='font-extrabold text-white p-2 text-3xl'>Moonlight Code</p>
         <p className='text-slate text-sm mb-2 font-extralight'>Agrega código en lenguaje Moonlight Code</p>
@@ -178,7 +200,11 @@ const Traductor = ({ codeState=["", () => {}] }) => {
 
         <section className='relative h-full w-1/2 mx-4 my-2 overflow-hidden border border-darkBlue rounded-md bg-darkBlue'>
             <div className="bg-darkBlue text-white text-sm w-full p-2.5 text-center inline-flex items-center border-b border-lightPurple">
-                
+                <button type="button" onClick={handleDownload} aria-label='Clean' className="inline-flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="w-5 h-5 text-lightYellow" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap='round' strokeLinejoin='round' d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                  </svg>
+                </button>
                 <span className="ml-2 font-semibold text-lightYellow">{selectedText2}</span>
             </div>
 

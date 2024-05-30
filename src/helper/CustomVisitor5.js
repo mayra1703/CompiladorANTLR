@@ -98,7 +98,6 @@ export default class CustomVisitor5 extends CompilatorVisitor {
 	  // Visit a parse tree produced by CParser#contenido.
 	  visitContenido(ctx) {
 		console.log("visitContenido");
-        console.log(ctx.getText());
 		
         if(ctx.whileStatement()) {
             return this.visitChildren(ctx);
@@ -114,7 +113,6 @@ export default class CustomVisitor5 extends CompilatorVisitor {
 	  // Visit a parse tree produced by CParser#declaracion.
 	  visitDeclaracion(ctx) {
 		console.log("visitDeclaracion");
-		const TYPE = ctx.TYPE().getText();
 		let ID = ctx.ID().getText();
         const VARIABLE_PATTERN = /^[A-Za-z]([A-Za-z0-9-_]+)?/;
 		const VALUE = ctx.expr() ? this.visit(ctx.expr()) : undefined;
@@ -162,8 +160,7 @@ export default class CustomVisitor5 extends CompilatorVisitor {
         const ID = ctx.ID().getText();
         const INDEX = this.getVariableIndex(ID);
         const OPERATOR = ctx.MATH_EQUALS().getText();
-        console.log(`${ID} ${OPERATOR} ${INDEX}`);
-
+        
         if (INDEX > -1) {
             this.translatedCode += `\niload_${INDEX}`;
 
@@ -191,6 +188,84 @@ export default class CustomVisitor5 extends CompilatorVisitor {
             this.translatedCode += `\nistore_${INDEX}\n`;
         }
       }
+
+      // Visit a parse tree produced by MoonlightToJasminParser#multDiv.
+      visitMultDiv(ctx) {
+        console.log("visitMultDiv");
+
+        const operation_data = this.visitChildren(ctx);
+        let SYMBOL = ctx.operation.type;
+        this.stackLimit += 2;
+
+        if (SYMBOL == MoonlightToJasminParser.MULT) {
+            this.translatedCode += `\nimul\n`;
+            return "swap";
+        }
+
+        if (SYMBOL == MoonlightToJasminParser.DIV) {
+            this.translatedCode += `\nidiv\n`;
+            return "swap";
+        }
+
+        if (SYMBOL == MoonlightToJasminParser.MOD) {
+            this.translatedCode += `\nirem\n`;
+            return "swap";
+        }
+      }
+
+      // Visit a parse tree produced by MoonlightToJasminParser#addSub.
+      visitAddSub(ctx) {
+        console.log("visitAddSub");
+        const operation_data = this.visitChildren(ctx);
+        
+        let SYMBOL = ctx.operation.type;
+        this.stackLimit += 2;
+
+        if (SYMBOL == MoonlightToJasminParser.PLUS) {
+            this.translatedCode += `\niadd\n`;
+            return "swap";
+        }
+
+        else {
+            this.translatedCode += `\nisub\n`;
+            return "swap";
+        }
+
+      }
+
+  
+	  // Visit a parse tree produced by CParser#incremento.
+	  visitIncremento(ctx) {
+		console.log("visitIncremento");
+
+		const ID = ctx.ID().getText();
+
+        if (this.getVariableIndex(ID) > -1) {
+            let variable = this.variables[ID];
+
+            if (ctx.PLUS().length > 0) {
+                this.translatedCode += `\niinc ${variable.index} 1`;
+                variable.value = variable.value + 1;
+            }
+
+            else {
+                this.translatedCode += `\niinc ${variable.index} -1`;
+                variable.value = variable.value - 1;
+            }
+        }
+
+        else {
+            const error = document.getElementById('error');
+			const contenedorError = document.getElementById('contenedorError');
+			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
+
+			error.innerHTML += `Syntax error on line ${lineNumber}: Variable "${ID}" is not defined. <br>`;
+			contenedorError.classList.remove('hidden');
+        }
+
+		return this.visitChildren(ctx)
+	  }
+
 
 	  // Visit a parse tree produced by MoonlightToJasminParser#showExpr.
 	  visitShowExpr(ctx) {
@@ -270,9 +345,61 @@ export default class CustomVisitor5 extends CompilatorVisitor {
 
             console.log(condition.instruction);
             const instruction = this.visit(condition.instruction);
-            this.translatedCode += `\n${instruction} ${conditions[i + 1].label}`;
-            this.visit(condition.content);
-            this.translatedCode += `\ngoto ${endIfLabel}\n`;
+
+            switch (instruction.conditionSentence) {
+                case 'AND':
+                    let repLabelAND = conditions[i + 1].label;
+
+                    for (let value of instruction.conditionValues) {
+                        this.visit(value.conditionValues)
+                        this.translatedCode += `\n${value.conditionSentence} ${repLabelAND}`;
+                    }
+
+                    this.visit(condition.content);
+                    this.translatedCode += `\ngoto ${endIfLabel}\n`;
+                    break
+
+                case 'OR':
+                    let ORLabel1 = this.generateLabel("ORLabel1");
+                    let ORLabel2 = this.generateLabel("ORLabel1");
+
+                    let trueLabel = this.generateLabel("ifORTrue");
+                    let repLabelOR = conditions[i + 1].label;
+
+                    this.translatedCode += `\ngoto ${ORLabel1}\n`;
+                    this.translatedCode += `\n${trueLabel}:\n`;
+
+                    this.visit(condition.content);
+                    this.translatedCode += `\ngoto ${endIfLabel}\n`;
+
+                    this.translatedCode += `\n${ORLabel1}:`;
+
+                    let isArray = Array.isArray(instruction.conditionValues[0].conditionValues)
+                    if (isArray) {
+                        this.visit(instruction.conditionValues[0].conditionValues)
+                    }
+
+                    else {
+                        this.visit(instruction.conditionValues[0].conditionValues.conditionValues);
+                    }
+
+                    this.translatedCode += `\n${instruction.conditionValues[0].conditionSentence} ${ORLabel2}`;
+                    this.translatedCode += `\ngoto ${trueLabel}\n`;
+
+                    this.translatedCode += `\n${ORLabel2}:`;
+                    this.visit(instruction.conditionValues[1].conditionValues)
+                    this.jazminCode += `\n${instruction.conditionValues[1].conditionSentence} ${repLabelOR}`;
+					this.jazminCode += `\ngoto ${trueLabel}\n`;
+					break
+
+                default:
+                    this.visit(instruction.conditionValues);
+                    this.translatedCode += `\n${instruction.conditionSentence} ${conditions[i + 1].label}`;
+                    this.visit(condition.content);
+                    this.translatedCode += `\ngoto ${endIfLabel}\n`;
+                    break
+            }
+
         }
 
         if (elseData) {
@@ -303,39 +430,7 @@ export default class CustomVisitor5 extends CompilatorVisitor {
 		console.log("visitElseStatement");
 		return ctx.contenido();
 	  }
-  
-	  
-	  // Visit a parse tree produced by CParser#incremento.
-	  visitIncremento(ctx) {
-		console.log("visitIncremento");
 
-		const ID = ctx.ID().getText();
-
-        if (this.getVariableIndex(ID) > -1) {
-            let variable = this.variables[ID];
-
-            if (ctx.PLUS().length > 0) {
-                this.translatedCode += `\niinc ${variable.index} 1`;
-                variable.value = variable.value + 1;
-            }
-
-            else {
-                this.translatedCode += `\niinc ${variable.index} -1`;
-                variable.value = variable.value - 1;
-            }
-        }
-
-        else {
-            const error = document.getElementById('error');
-			const contenedorError = document.getElementById('contenedorError');
-			const lineNumber = ctx.start.line; // Obtener el número de línea de inicio
-
-			error.innerHTML += `Syntax error on line ${lineNumber}: Variable "${ID}" is not defined. <br>`;
-			contenedorError.classList.remove('hidden');
-        }
-
-		return this.visitChildren(ctx)
-	  }
 
 	  // Visit a parse tree produced by CParser#whileStatement.
 	  visitWhileStatement(ctx) {
@@ -367,33 +462,44 @@ export default class CustomVisitor5 extends CompilatorVisitor {
       visitCondition(ctx) {
         console.log("visitCondition");
         this.visit(ctx.expr());
-        // let [first_val, second_val] = this.visit(ctx.expr());
         let symbol = ctx.cond_value.text;
 
         switch (symbol) {
             case ">":
-				return "if_icmple";
+				return {
+					conditionValues: ctx.expr(),
+					conditionSentence: "if_icmple"
+				};
 
 			case "<":
-				return "if_icmpge";
-
+                return {
+					conditionValues: ctx.expr(),
+					conditionSentence: "if_icmpge"
+				};
+				
 			case ">=":
-				return "if_icmplt";
+                return {
+					conditionValues: ctx.expr(),
+					conditionSentence: "if_icmplt"
+				};
 
 			case "<=":
-				return "if_icmpgt";
-
-			case "||":
-				return first_val || second_val;
-
-			case "&&":
-				return first_val && second_val;
-
+                return {
+					conditionValues: ctx.expr(),
+					conditionSentence: "if_icmpgt"
+				};
+				
 			case "==":
-				return "if_icmpne";
-
+                return {
+					conditionValues: ctx.expr(),
+					conditionSentence: "if_icmpne"
+				};
+				
 			case "!=":
-				return "if_icmpeq";
+                return {
+					conditionValues: ctx.expr(),
+					conditionSentence: "if_icmpeq"
+				};
 
 			case "true":
 				return true;
@@ -411,31 +517,6 @@ export default class CustomVisitor5 extends CompilatorVisitor {
       visitValueAsChar(ctx) {
         console.log("visitValueAsChar");
         return ctx.getText();
-      }
-  
-  
-      // Visit a parse tree produced by MoonlightToJasminParser#multDiv.
-      visitMultDiv(ctx) {
-        console.log("visitMultDiv");
-
-        const operation_data = this.visitChildren(ctx);
-        let SYMBOL = ctx.operation.type;
-        this.stackLimit += 2;
-
-        if (SYMBOL == MoonlightToJasminParser.MULT) {
-            this.translatedCode += `\nimul\n`;
-            return "swap";
-        }
-
-        if (SYMBOL == MoonlightToJasminParser.DIV) {
-            this.translatedCode += `\nidiv\n`;
-            return "swap";
-        }
-
-        if (SYMBOL == MoonlightToJasminParser.MOD) {
-            this.translatedCode += `\nirem\n`;
-            return "swap";
-        }
       }
   
       // Visit a parse tree produced by MoonlightToJasminParser#num.
@@ -465,24 +546,30 @@ export default class CustomVisitor5 extends CompilatorVisitor {
       }
   
   
-      // Visit a parse tree produced by MoonlightToJasminParser#addSub.
-      visitAddSub(ctx) {
-        console.log("visitAddSub");
-        const operation_data = this.visitChildren(ctx);
-        
-        let SYMBOL = ctx.operation.type;
-        this.stackLimit += 2;
+      // Visit a parse tree produced by CompilatorParser#comparation.
+	  visitComparation(ctx) {
+        console.log("visitComparation");
 
-        if (SYMBOL == MoonlightToJasminParser.PLUS) {
-            this.translatedCode += `\niadd\n`;
-            return "swap";
+        let [first_val, second_val] = this.visit(ctx.expr());
+
+        let symbol = ctx.cond_value.text;
+
+        switch (symbol) {
+            case "||":
+                return{
+                    conditionValues: [first_val, second_val],
+                    conditionSentence: 'OR'
+                };
+
+            case "&&":
+                return{
+                    conditionValues: [first_val, second_val],
+                    conditionSentence: 'AND'
+                };
+
+            default:
+                return false;
         }
-
-        else {
-            this.translatedCode += `\nisub\n`;
-            return "swap";
-        }
-
       }
   
   

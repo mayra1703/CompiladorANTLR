@@ -50,6 +50,7 @@ expr                :   '(' expr ')'                                        #par
                     |   operation=(PLUS|MINUS) expr					        #signNumbers
                     |   cond_value = (OC | OL)                              #condition
                     |   expr cond_value = (OC | OL) expr                    #condition
+                    |   expr cond_value = (OR | AND) expr                   #comparation
                     |   STARSTRING                                          #valueAsChar
                     |   CHAR                                                #valueAsChar
                     |   FLOAT                                               #num
